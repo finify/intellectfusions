@@ -19,7 +19,7 @@
         </ul>
         <div class="promobar_main d-flex align-items-center">
             <p class="promobar_main-text">Try for free! <span class="hide">30 day Trial and Free Lectures</span></p>
-            <a class="btn btn--yellow" href="#" id="signUpTrigger">
+            <a class="btn btn--yellow" href="/user/register">
                 <span>Sign Up</span>
             </a>
         </div>

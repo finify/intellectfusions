@@ -37,58 +37,19 @@ class LoginController extends Controller
         $user = Auth::User();
         Session::put('user', $user);
 
+       
+
         //account selector session 
         //demo and live
-        Session::put('account_type', 'demo');
-        Session::put('account_balance', $user->demo_balance);
-        Session::put('not_account_balance', $user->balance);
-                
-
-
-       
-        
-
-        return $this->authenticated($request, $user);
-    }
-
-    public function applogin(LoginRequest $request)
-    {
-        $credentials = $request->getCredentials();
-
-
-       
-        
-
-        // dd($credentials);
-        // dd($credentials);
-
-        if(!Auth::validate($credentials)){
-            return redirect()->to('user/applogin')->withErrors(['msg' => 'Login invalid , try with another credential']);
-            // return redirect()->intended('user/login')->withErrors(['msg' => 'Login invalid , try with another credential'])->with('link','login');
-            // return redirect()->intended('user/login')->with('login_error','Login was invalid, try with another credential')->with('link','login');
+        if(Auth::User()->user_type == "user"){
+            Session::put('user_type', 'user');
+            return redirect()->intended('user/dashboard')->with('login_success','Login was successfull');
+        }else{
+            Session::put('user_type', 'expert');
+            return redirect()->intended('user/expert/ddashboard')->with('login_success','Login was successfull');
         }
-
-        $user = Auth::getProvider()->retrieveByCredentials($credentials);
-
-        Auth::login($user);
-
-        $user = Auth::User();
-        Session::put('user', $user);
-
-        //account selector session 
-        //demo and live
-        Session::put('account_type', 'demo');
-        Session::put('account_balance', $user->demo_balance);
-        Session::put('not_account_balance', $user->balance);
-        Session::put('device', 'app');
-                
-
-
-       
-        
-
-        return $this->authenticated($request, $user);
     }
+
 
     /**
      * Handle response after user authenticated
@@ -101,6 +62,6 @@ class LoginController extends Controller
     protected function authenticated(Request $request, $user)
     {
         
-        return redirect()->intended('user/robot')->with('login_success','Login was successfull');
+        return redirect()->intended('user/dashboard')->with('login_success','Login was successfull');
     }
 }

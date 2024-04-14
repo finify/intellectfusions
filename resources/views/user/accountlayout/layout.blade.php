@@ -77,6 +77,10 @@
                 background-color:#6223D2!important;
                 color:white;
             }
+
+            /* input::placeholder{
+                  color:black!important;
+            } */
             
         </style>
     </head>
@@ -110,7 +114,7 @@
 
         <!-- App Settings (safe to remove) -->
         <script src="/dashassets/js/app-settings.js"></script>
-
+        @yield('footer')
     </body>
 
 </html>

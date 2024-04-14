@@ -22,8 +22,8 @@ class RegisterRequest extends FormRequest
     public function rules(): array
     {
         return [
+            'name' => 'required',
             'email' => 'required|email:rfc,dns|unique:users,email',
-            'username' => 'required|unique:users,username',
             'password' => 'required|min:8',
             'password_confirmation' => 'required|same:password',
         ];
@@ -33,15 +33,14 @@ class RegisterRequest extends FormRequest
     public function messages() :array
     {
         return [
+            'name.required' => 'Please input your name',
             'email.required' => 'Please input a valid email',
             'email.unique' => 'Please this email has been used ',
             'email.email' => 'Must be a valid email',
-            'username.required' => 'Please input a valid username',
-            'username.unique' => 'Please this username has been used ',
             'password.required' => 'Please input a valid password',
             'password.min' => 'Please your password should be 8 characters min ',
             'password_confirmation.required' => 'Please confirm password',
-            'password_confirmation.same' => 'Please password do not match ',
+            'password_confirmation.same' => 'Please password does not match ',
         ];
     }
 }
