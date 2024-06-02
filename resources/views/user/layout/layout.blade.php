@@ -23,52 +23,67 @@
         <link type="text/css"
               href="/dashassets/css/app.css"
               rel="stylesheet">
-        <link type="text/css"
-              href="/dashassets/css/app.rtl.css"
-              rel="stylesheet">
+       
 
         <!-- Material Design Icons -->
         <link type="text/css"
               href="/dashassets/css/vendor-material-icons.css"
               rel="stylesheet">
-        <link type="text/css"
-              href="/dashassets/css/vendor-material-icons.rtl.css"
-              rel="stylesheet">
+       
 
         <!-- Font Awesome FREE Icons -->
         <link type="text/css"
               href="/dashassets/css/vendor-fontawesome-free.css"
               rel="stylesheet">
-        <link type="text/css"
-              href="/dashassets/css/vendor-fontawesome-free.rtl.css"
-              rel="stylesheet">
-
+        
         
 
         <!-- Flatpickr -->
         <link type="text/css"
               href="/dashassets/css/vendor-flatpickr.css"
               rel="stylesheet">
-        <link type="text/css"
-              href="/dashassets/css/vendor-flatpickr.rtl.css"
-              rel="stylesheet">
+      
         <link type="text/css"
               href="/dashassets/css/vendor-flatpickr-airbnb.css"
               rel="stylesheet">
-        <link type="text/css"
-              href="/dashassets/css/vendor-flatpickr-airbnb.rtl.css"
-              rel="stylesheet">
+      
 
         <!-- Vector Maps -->
         <link type="text/css"
               href="/dashassets/vendor/jqvmap/jqvmap.min.css"
+              rel="stylesheet">
+       <!-- Select2 -->
+        <link type="text/css"
+              href="/dashassets/css/vendor-select2.css"
+              rel="stylesheet">
+      
+        <link type="text/css"
+              href="/dashassets/vendor/select2/select2.min.css"
               rel="stylesheet">
 
       <style>
             .bg-darker{
                   background-color:#6223D2!important;
             }
+           
+            .dz-preview {
+            width: 100%;
+            display: flex;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+        .dz-filename {
+            flex-grow: 1;
+        }
+        .dz-remove {
+            cursor: pointer;
+            color: red;
+            margin-left: 10px;
+        }
       </style>
+
+      <link href="https://cdnjs.cloudflare.com/ajax/libs/dropzone/5.5.1/min/dropzone.min.css" rel="stylesheet" />
+
         @yield('header')
     </head>
     <body class="layout-default">
@@ -152,20 +167,28 @@
         <script src="/dashassets/vendor/moment-range.js"></script>
 
         <!-- Chart.js -->
-        <script src="/dashassets/vendor/Chart.min.js"></script>
+        <!-- <script src="/dashassets/vendor/Chart.min.js"></script> -->
 
         <!-- App Charts JS -->
-        <script src="/dashassets/js/charts.js"></script>
-        <script src="/dashassets/js/chartjs-rounded-bar.js"></script>
+        <!-- <script src="/dashassets/js/charts.js"></script>
+        <script src="/dashassets/js/chartjs-rounded-bar.js"></script> -->
 
         <!-- Chart Samples -->
-        <script src="/dashassets/js/page.dashboard.js"></script>
-        <script src="/dashassets/js/progress-charts.js"></script>
+        <!-- <script src="/dashassets/js/page.dashboard.js"></script>
+        <script src="/dashassets/js/progress-charts.js"></script> -->
 
         <!-- Vector Maps -->
         <script src="/dashassets/vendor/jqvmap/jquery.vmap.min.js"></script>
         <script src="/dashassets/vendor/jqvmap/maps/jquery.vmap.world.js"></script>
         <script src="/dashassets/js/vector-maps.js"></script>
+
+        <script src="/dashassets/vendor/select2/select2.min.js"></script>
+        <script src="/dashassets/js/select2.js"></script>
+
+
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/dropzone/5.5.1/min/dropzone.min.js"></script>
+
+
         @yield('footer')
     </body>
 </html>

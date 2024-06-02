@@ -1,29 +1,29 @@
 <?php
 
-namespace App\Http\Controllers\User;
+namespace App\Http\Controllers\Expert;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
-class UserController extends Controller
+class ExpertController extends Controller
 {
     //
     public function dashboard(Request $request){
    
-        // dd("dd");
-        return view('user.dashboard');
+       
+        return view('expert.dashboard');
     }
 
     public function project(Request $request){
-        return view('user.project');
+        return view('expert.project');
     }
 
     public function notification(Request $request){
-        return view('user.notification');
+        return view('expert.notification');
     }
 
     public function settings(Request $request){
-        return view('user.settings');
+        return view('expert.settings');
     }
 
     public function resetpassword(Request $request, $resettype = null){

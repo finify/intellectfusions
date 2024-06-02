@@ -19,7 +19,7 @@
                 </button>
 
                 <!-- Navbar Brand -->
-                <a href="index.html"
+                <a href="/"
                 class="navbar-brand ">
 
                     <img src="{{ env('APP_LOGO_WHITE') }}" width="150px" alt=""/>
@@ -53,141 +53,30 @@
                                 data-perfect-scrollbar>
                                 <div class="py-2">
 
-                                    <div class="dropdown-item d-flex">
-                                        <div class="mr-3">
-                                            <div class="avatar avatar-sm"
-                                                style="width: 32px; height: 32px;">
-                                                <img src="assets/images/256_daniel-gaffey-1060698-unsplash.jpg"
-                                                    alt="Avatar"
-                                                    class="avatar-img rounded-circle">
+                                    @forelse ($notifications as $notification)
+                                        <div class="dropdown-item d-flex">
+                                            <div class="mr-3">
+                                                <a href="#">
+                                                    <div class="avatar avatar-xs"
+                                                        style="width: 32px; height: 32px;">
+                                                        <span class="avatar-title rounded-circle"> <i class="material-icons md-18 text-muted align-middle mr-1">check_circle</i></span>
+                                                    </div>
+                                                </a>
+                                            </div>
+                                            <div class="flex">
+                                                <a href="#">Big Joe</a> <small class="text-muted">wrote:</small><br>
+                                                <div>{{ $notification['text']}}</div>
+                                                <small class="text-muted">{{ $notification['created_at']}}</small>
                                             </div>
                                         </div>
-                                        <div class="flex">
-                                            <a href="">A.Demian</a> left a comment on <a href="">FlowDash</a><br>
-                                            <small class="text-muted">1 minute ago</small>
-                                        </div>
-                                    </div>
-                                    <div class="dropdown-item d-flex">
-                                        <div class="mr-3">
-                                            <a href="#">
-                                                <div class="avatar avatar-xs"
-                                                    style="width: 32px; height: 32px;">
-                                                    <span class="avatar-title bg-purple rounded-circle"><i class="material-icons icon-16pt">person_add</i></span>
-                                                </div>
-                                            </a>
-                                        </div>
-                                        <div class="flex">
-                                            New user <a href="#">Peter Parker</a> signed up.<br>
-                                            <small class="text-muted">1 hour ago</small>
-                                        </div>
-                                    </div>
-                                    <div class="dropdown-item d-flex">
-                                        <div class="mr-3">
-                                            <a href="#">
-                                                <div class="avatar avatar-xs"
-                                                    style="width: 32px; height: 32px;">
-                                                    <span class="avatar-title rounded-circle">JD</span>
-                                                </div>
-                                            </a>
-                                        </div>
-                                        <div class="flex">
-                                            <a href="#">Big Joe</a> <small class="text-muted">wrote:</small><br>
-                                            <div>Hey, how are you? What about our next meeting</div>
-                                            <small class="text-muted">2 minutes ago</small>
-                                        </div>
-                                    </div>
+                                    @empty
+                                    <div class="alert alert-danger" role="alert"> No notifications yet</div>
+                                    @endforelse
 
-                                    <div class="dropdown-item d-flex">
-                                        <div class="mr-3">
-                                            <div class="avatar avatar-sm"
-                                                style="width: 32px; height: 32px;">
-                                                <img src="assets/images/256_daniel-gaffey-1060698-unsplash.jpg"
-                                                    alt="Avatar"
-                                                    class="avatar-img rounded-circle">
-                                            </div>
-                                        </div>
-                                        <div class="flex">
-                                            <a href="">A.Demian</a> left a comment on <a href="">FlowDash</a><br>
-                                            <small class="text-muted">1 minute ago</small>
-                                        </div>
-                                    </div>
-                                    <div class="dropdown-item d-flex">
-                                        <div class="mr-3">
-                                            <a href="#">
-                                                <div class="avatar avatar-xs"
-                                                    style="width: 32px; height: 32px;">
-                                                    <span class="avatar-title bg-purple rounded-circle"><i class="material-icons icon-16pt">person_add</i></span>
-                                                </div>
-                                            </a>
-                                        </div>
-                                        <div class="flex">
-                                            New user <a href="#">Peter Parker</a> signed up.<br>
-                                            <small class="text-muted">1 hour ago</small>
-                                        </div>
-                                    </div>
-                                    <div class="dropdown-item d-flex">
-                                        <div class="mr-3">
-                                            <a href="#">
-                                                <div class="avatar avatar-xs"
-                                                    style="width: 32px; height: 32px;">
-                                                    <span class="avatar-title rounded-circle">JD</span>
-                                                </div>
-                                            </a>
-                                        </div>
-                                        <div class="flex">
-                                            <a href="#">Big Joe</a> <small class="text-muted">wrote:</small><br>
-                                            <div>Hey, how are you? What about our next meeting</div>
-                                            <small class="text-muted">2 minutes ago</small>
-                                        </div>
-                                    </div>
-
-                                    <div class="dropdown-item d-flex">
-                                        <div class="mr-3">
-                                            <div class="avatar avatar-sm"
-                                                style="width: 32px; height: 32px;">
-                                                <img src="assets/images/256_daniel-gaffey-1060698-unsplash.jpg"
-                                                    alt="Avatar"
-                                                    class="avatar-img rounded-circle">
-                                            </div>
-                                        </div>
-                                        <div class="flex">
-                                            <a href="">A.Demian</a> left a comment on <a href="">FlowDash</a><br>
-                                            <small class="text-muted">1 minute ago</small>
-                                        </div>
-                                    </div>
-                                    <div class="dropdown-item d-flex">
-                                        <div class="mr-3">
-                                            <a href="#">
-                                                <div class="avatar avatar-xs"
-                                                    style="width: 32px; height: 32px;">
-                                                    <span class="avatar-title bg-purple rounded-circle"><i class="material-icons icon-16pt">person_add</i></span>
-                                                </div>
-                                            </a>
-                                        </div>
-                                        <div class="flex">
-                                            New user <a href="#">Peter Parker</a> signed up.<br>
-                                            <small class="text-muted">1 hour ago</small>
-                                        </div>
-                                    </div>
-                                    <div class="dropdown-item d-flex">
-                                        <div class="mr-3">
-                                            <a href="#">
-                                                <div class="avatar avatar-xs"
-                                                    style="width: 32px; height: 32px;">
-                                                    <span class="avatar-title rounded-circle">JD</span>
-                                                </div>
-                                            </a>
-                                        </div>
-                                        <div class="flex">
-                                            <a href="#">Big Joe</a> <small class="text-muted">wrote:</small><br>
-                                            <div>Hey, how are you? What about our next meeting</div>
-                                            <small class="text-muted">2 minutes ago</small>
-                                        </div>
-                                    </div>
 
                                 </div>
                             </div>
-                            <a href="javascript:void(0);"
+                            <a href="/user/notification"
                             class="dropdown-item text-center navbar-notifications-menu__footer">View All</a>
                         </div>
                     </li>
@@ -200,7 +89,7 @@
                         data-toggle="dropdown"
                         data-caret="false">
                             <span class="mr-1 d-flex-inline">
-                                <span class="text-light">Adrian D.</span>
+                                <span class="text-light">{{ $user['name'] }}</span>
                             </span>
                             <img src="/dashassets/images/avatar/demi.png"
                                 class="rounded-circle"
@@ -215,11 +104,10 @@
                             </div>
                             <div class="dropdown-divider"></div>
                             <a class="dropdown-item active"
-                            href="index.html"><i class="material-icons">dvr</i> Dashboard</a>
+                            href="/user/dashboard"><i class="material-icons">dvr</i> Dashboard</a>
+                            
                             <a class="dropdown-item"
-                            href="profile.html"><i class="material-icons">account_circle</i> My profile</a>
-                            <a class="dropdown-item"
-                            href="edit-account.html"><i class="material-icons">edit</i> Edit account</a>
+                            href="/user/settings"><i class="material-icons">edit</i> Edit account</a>
                             <div class="dropdown-divider"></div>
                             <a class="dropdown-item"
                             href="{{ url('user/logout')}}"><i class="material-icons">exit_to_app</i> Logout</a>

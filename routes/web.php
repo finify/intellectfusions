@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Storage;
 
 /*
 |--------------------------------------------------------------------------
@@ -13,8 +14,9 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::group(['namespace' => 'App\Http\Controllers\Home'], function()
-{  
+//guest user routes
+
+Route::group(['namespace' => 'App\Http\Controllers\Home'], function(){  
     Route::get('/', 'HomeController@index')->name('home.index');
     Route::get('/about', 'HomeController@about')->name('home.about');
     Route::get('/contact', 'HomeController@contact')->name('home.contact');
@@ -25,6 +27,7 @@ Route::group(['namespace' => 'App\Http\Controllers\Home'], function()
     // Route::get('/affiliate/{id}', 'HomeController@affiliate')->name('affiliate.show');
 
 });
+
 
 
 Route::prefix('/admin')->namespace('App\Http\Controllers\Admin')->group(function(){
@@ -55,8 +58,7 @@ Route::prefix('/admin')->namespace('App\Http\Controllers\Admin')->group(function
            //Admin projecttype routes
            Route::resource('projecttypes', ProjecttypeController::class);
 
-        //Admin investmentplans routes
-        Route::resource('plans',PlansController::class);
+       
 
         //Admin activitys route
         // Route::resource('activity', ActivitysController::class);
@@ -65,10 +67,7 @@ Route::prefix('/admin')->namespace('App\Http\Controllers\Admin')->group(function
         Route::get('logout','AdminController@logout');
 
         //deposit routes
-        Route::match(['get','post'],'deposit', 'DepositController@deposit');
-
-        //deposit routes
-        Route::match(['get','post'],'withdraws', 'WithdrawController@withdraw');
+        // Route::match(['get','post'],'withdraws', 'WithdrawController@withdraw');
 
         
 
@@ -78,6 +77,15 @@ Route::prefix('/admin')->namespace('App\Http\Controllers\Admin')->group(function
     
 });
 
+Route::get('/download/tmp/{filename}', function ($filename) {
+    $file = storage_path('tmp/uploads/' . $filename);
+
+    if (!file_exists($file)) {
+        abort(404);
+    }
+
+    return response()->download($file);
+})->name('download.tmp');
 
 Route::prefix('/user')->namespace('App\Http\Controllers\User')->group(function(){
     Route::group(['middleware' => ['guest']], function() {
@@ -110,8 +118,30 @@ Route::prefix('/user')->namespace('App\Http\Controllers\User')->group(function()
     });
 
     Route::group(['middleware' => ['auth']], function() {
-        Route::get('/dashboard', 'UserController@dashboard')->name('dashboard.view');
-        Route::get('/project', 'UserController@project')->name('project.view');
+        Route::match(['get','post'],'/dashboard', 'UserController@dashboard')->name('dashboard');
+        Route::post('/dashboard/storemedia', 'UserController@storeMedia')->name('dashboard.storemedia');//to upload file to server
+        Route::post('/dashboard/deleteMedia', 'UserController@deleteMedia')->name('dashboard.deleteMedia');
+        // Route::post('/dashboard', 'UserController@dashboard')->name('dashboard.store');
+
+        //All project routes
+        Route::get('/project', 'UserController@project')->name('project.index');
+        Route::get('/projects/{slug}', 'ProjectsController@projects')->name('project.show');
+        Route::patch('/projects/{slug}', 'ProjectsController@projects')->name('project.update');
+        Route::post('/projects/{slug}', 'ProjectsController@projects')->name('project.edit');
+        Route::post('/projectsstoremedia', 'ProjectsController@storeMedia')->name('project.storemedia');//to upload file to server
+        Route::post('/projectsdeletmedia', 'ProjectsController@deleteMedia')->name('project.deletemedia');//to upload file to server
+        Route::get('/download/tmp/{filename}', function ($filename) {
+            $file = storage_path('tmp/uploads/' . $filename);
+        
+            if (!file_exists($file)) {
+                abort(404);
+            }
+        
+            return response()->download($file);
+        })->name('download.tmp');
+
+
+
         Route::get('/notification', 'UserController@notification')->name('notification.view');
         Route::get('/settings', 'UserController@settings')->name('settings.view');
          Route::get('/logout', 'LogoutController@perform')->name('logout.perform');
@@ -134,20 +164,20 @@ Route::prefix('/expert')->namespace('App\Http\Controllers\Expert')->group(functi
          /**
          * Login Routes*
          */
-        Route::get('/login', 'LoginController@show')->name('login.show');
-        Route::post('/login', 'LoginController@login')->name('login.perform');
+        Route::get('/login', 'LoginController@show')->name('expertlogin.show');
+        Route::post('/login', 'LoginController@login')->name('expertlogin.perform');
 
          //resetpassword
         Route::match(['get','post'],'/resetpassword/{slug}', 'ExpertController@resetpassword')->name('account.resetpassword');
 
     });
 
-    Route::group(['middleware' => ['auth']], function() {
-        Route::get('/dashboard', 'ExpertController@dashboard')->name('dashboard.view');
-        Route::get('/project', 'ExpertController@project')->name('project.view');
-        Route::get('/notification', 'ExpertController@notification')->name('notification.view');
-        Route::get('/settings', 'ExpertController@settings')->name('settings.view');
-         Route::get('/logout', 'LogoutController@perform')->name('logout.perform');
+    Route::group(['middleware' => ['expert']], function() {
+        Route::get('/dashboard', 'ExpertController@dashboard')->name('expertdashboard.view');
+        Route::get('/project', 'ExpertController@project')->name('expertproject.view');
+        Route::get('/notification', 'ExpertController@notification')->name('expertnotification.view');
+        Route::get('/settings', 'ExpertController@settings')->name('expertsettings.view');
+         Route::get('/logout', 'LogoutController@perform')->name('expertlogout.perform');
     });
 
 

@@ -11,15 +11,14 @@ class projects extends Model
 
     protected $fillable = [
         'user_id',
-        'amount',
-        'amount_earned',
-        'duration',
-        'duration_start',
-        'duration_end',
-        'strategy_id',
-        'features',
-        'profit_limit_exceed',
-        'account_type',
-        'status'
+        'project_title',
+        'description',
+        'project_type',
+        'subject_area',
+        'project_attachment_id',
+        'deadline',
+        'progress',
+        'expert_id',
+        'price'
     ];
 }

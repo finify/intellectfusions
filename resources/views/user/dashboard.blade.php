@@ -1,24 +1,3 @@
-@section('header')
- <!-- Select2 -->
- <link type="text/css"
-              href="/dashassets/css/vendor-select2.css"
-              rel="stylesheet">
-        <link type="text/css"
-              href="/dashassets/css/vendor-select2.rtl.css"
-              rel="stylesheet">
-        <link type="text/css"
-              href="/dashassets/vendor/select2/select2.min.css"
-              rel="stylesheet">
-
- <!-- Dropzone -->
- <link type="text/css"
-              href="/dashassets/css/vendor-dropzone.css"
-              rel="stylesheet">
-        <link type="text/css"
-              href="/dashassets/css/vendor-dropzone.rtl.css"
-              rel="stylesheet">              
-              
-@endsection
 @extends('user.layout.layout')
 
 
@@ -33,6 +12,11 @@
                 </ol>
             </nav>
             <h1 class="m-0">Dashboard</h1>
+            @if(Session::has('upload_success'))
+                <div class="alert alert-success" role="alert">
+                    {{Session::get('upload_success')}}
+                </div>
+            @endif
         </div>
         
     </div>
@@ -45,7 +29,7 @@
             <div class="card w-100">
                 <div class="card-header card-header-large bg-white d-flex align-items-center">
                     <div class="d-flex flex-column">
-                        <h5>ifeanyiizuegbu@yahoo.com</h5>
+                        <h5>{{ $user['email'] }}</h5>
                         <div class="avatar avatar-xxl avatar-online">
                             <img src="/dashassets/images/256_daniel-gaffey-1060698-unsplash.jpg" alt="Avatar" class="avatar-img rounded-circle">
                         </div>
@@ -56,19 +40,19 @@
                     <div class="list-group list-group-small list-group-flush">
                         <div class="list-group-item d-flex align-items-center px-0">
                             <div class="mr-3 flex">All</div>
-                            <div class="mr-3 text-dark">3</div>
+                            <div class="mr-3 text-dark">{{ $project_details['all'] }}</div>
                         </div>
                         <div class="list-group-item d-flex align-items-center px-0">
                             <div class="mr-3 flex">Auction</div>
-                            <div class="mr-3 text-dark">0</div>
+                            <div class="mr-3 text-dark">{{ $project_details['auctions'] }}</div>
                         </div>
                         <div class="list-group-item d-flex align-items-center px-0">
                             <div class="mr-3 flex">In Progress</div>
-                            <div class="mr-3 text-dark">0</div>
+                            <div class="mr-3 text-dark">{{ $project_details['inprogress'] }}</div>
                         </div>
                         <div class="list-group-item d-flex align-items-center px-0">
                             <div class="mr-3 flex">Completed</div>
-                            <div class="mr-3 text-dark">0</div>
+                            <div class="mr-3 text-dark">{{ $project_details['completed'] }}</div>
                         </div>
                     </div>
                 </div>
@@ -86,58 +70,24 @@
                 </div>
                 <ul class="list-group list-group-flush">
 
-                    <li class="list-group-item list-group-item-action py-2">
-                        <div class="row align-items-center">
-                            <div class="col-lg-auto">
-                                <i class="material-icons md-18 text-muted align-middle mr-1">check_circle</i>
-                                <span>Add content on lessons</span>
+                    @forelse ($notifications as $notification)
+                        <li class="list-group-item list-group-item-action py-2">
+                            <div class="row align-items-center">
+                                <div class="col-lg-auto">
+                                    <i class="material-icons md-18 text-muted align-middle mr-1">check_circle</i>
+                                    <span>{{ $notification['text']}}</span>
+                                </div>
+                                <div class="col-lg d-flex align-items-center text-md-right">
+                                    <span class="ml-auto badge badge-outline-info">{{ $notification['type']}}</span> 
+                                </div>
                             </div>
-                            <div class="col-lg d-flex align-items-center text-md-right">
-                                <span class="ml-auto badge badge-outline-info">Request</span> 
-                            </div>
-                        </div>
-                    </li>
-
-                    <li class="list-group-item list-group-item-action py-2">
-                        <div class="row align-items-center">
-                            <div class="col-lg-auto">
-                                <i class="material-icons md-18 text-muted align-middle mr-1">check_circle</i>
-                                <span>Fix dropdowns in navbars</span>
-                            </div>
-                            <div class="col-lg d-flex align-items-center text-md-right">
-                                <span class="ml-auto badge badge-outline-danger">Bug</span>
-                            </div>
-                        </div>
-                    </li>
-
-                    <li class="list-group-item list-group-item-action py-2">
-                        <div class="row align-items-center">
-                            <div class="col-lg-auto">
-                                <i class="material-icons md-18 text-muted align-middle mr-1">check_circle</i>
-                                <span>Add new sidebar to the right</span>
-                            </div>
-                            <div class="col-lg d-flex align-items-center text-md-right">
-                                <span class="ml-auto badge badge-outline-info">Request</span>
-                            </div>
-                        </div>
-                    </li>
-
-                    <li class="list-group-item list-group-item-action py-2">
-                        <div class="row align-items-center">
-                            <div class="col-lg-auto">
-                                <i class="material-icons md-18 text-muted align-middle mr-1">check_circle</i>
-                                <span>Create Dashboard for administrative tasks</span>
-                            </div>
-                            <div class="col-lg d-flex align-items-center text-md-right">
-                                <span class="ml-auto badge badge-outline-primary">feature</span>
-                            </div>
-                        </div>
-                    </li>
-
+                        </li>
+                    @empty
+                    <div class="alert alert-danger" role="alert"> No notifications yet</div>
+                    @endforelse
                 </ul>
             </div>
         </div>
-       
     </div>
 
     <div class="row">
@@ -149,17 +99,25 @@
                     
                 </div>
                 <div class="card-body text-dark">
-                    <form>
+                    <form action="" method="POST" enctype="multipart/form-data">
+                        @csrf
                         <div class="form-group">
                             <label for="exampleInputEmail1 text-dark">Project Title:</label>
                             <input type="text"
+                                    name="project_title"
                                     class="form-control"
                                     id="exampleInputEmail1"
-                                    placeholder="Enter your project title ..">
+                                    placeholder="Enter your project title .."  value="{{ old('project_title') }}" required/>
+                            @error('project_title')
+                            <span class="text-danger text-left">{{ $message }}</span>
+                            @enderror
                         </div>
                         <div class="form-group">
                             <label for="exampleInputBrief1">Brief Description:</label>
-                            <textarea class="form-control" id="exampleInputBrief1" name="" id="" cols="30" rows="10"></textarea>
+                            <textarea class="form-control" id="exampleInputBrief1" name="description" id="" cols="30" rows="10" required></textarea>
+                            @error('description')
+                            <span class="text-danger text-left">{{ $message }}</span>
+                            @enderror
                         </div>
 
                         <div class="row">
@@ -167,11 +125,16 @@
                                 <div class="form-group">
                                     <label for="select05">Project Type</label>
                                     <select id="select05"
+                                            name="project_type"
                                             data-toggle="select"
-                                            class="form-control form-control-sm">
-                                        <option>My first option</option>
-                                        <option>Another option</option>
-                                        <option>Third option is here</option>
+                                            class="form-control form-control-sm" required>
+                                            @forelse ($projecttypes as $projecttype)
+                                                <option value="{{ $projecttype['type_name'] }}">{{ $projecttype['type_name'] }}</option>
+                                            @empty
+                                                <option>No Project Type</option>
+                                            @endforelse
+                                        
+                                        
                                     </select>
                                 </div>
                             </div>
@@ -179,61 +142,29 @@
                                 <div class="form-group">
                                     <label for="select05">Subject Area</label>
                                     <select id="select02"
+                                            name="subject_area"
                                             data-toggle="select"
-                                            class="form-control form-control-sm">
-                                        <option>My first option</option>
-                                        <option>Another option</option>
-                                        <option>Third option is here</option>
+                                            class="form-control form-control-sm" required >
+                                            @forelse ($fields as $field)
+                                                <option value="{{ $field['field_name'] }}">{{ $field['field_name'] }}</option>
+                                            @empty
+                                                <option>No Project Type</option>
+                                            @endforelse
                                     </select>
                                 </div>      
                             </div>
                            
                         </div>
-                        <div class="form-group"> 
-                            <label for="dropzone">Attachment</label>
-                            <div class="dropzone dropzone-multiple w-100"
-                                    data-toggle="dropzone"
-                                    data-dropzone-multiple
-                                    data-dropzone-url="http://"
-                                    accept="image/*,application/pdf"
-                                    data-dropzone-files=''>
+                        <div class="form-group">
+                            <label for="document">Documents</label>
+                            <div class="needsclick dropzone" id="document-dropzone">
 
-                                <div class="fallback">
-                                    <div class="custom-file">
-                                        <input type="file"
-                                                class="custom-file-input"
-                                                id="customFileUploadMultiple"
-                                                multiple>
-                                        <label class="custom-file-label"
-                                                for="customFileUploadMultiple">Choose file</label>
-                                    </div>
-                                </div>
-
-                                <ul class="dz-preview dz-preview-multiple list-group list-group-flush">
-                                    <li class="list-group-item">
-                                        <div class="form-row align-items-center">
-
-                                            <div class="col">
-                                                <div class="font-weight-bold"
-                                                        data-dz-name>...</div>
-                                                <p class="small text-muted mb-0"
-                                                    data-dz-size>...</p>
-                                            </div>
-                                            <div class="col-auto">
-                                                <a href="#"
-                                                    class="text-red"
-                                                    data-dz-remove>
-                                                    <i class="material-icons">close</i>
-                                                </a>
-                                            </div>
-                                        </div>
-                                    </li>
-                                </ul>
                             </div>
                         </div>
                         <div class="form-group">
                             <label class="text-label" for="flatpickrSample04">Deadline</label>
                             <input id="flatpickrSample04"
+                                    name="deadline"
                                     type="text"
                                     class="form-control"
                                     placeholder="Pick a Date"
@@ -242,6 +173,8 @@
                                     data-flatpickr-alt-format="F j, Y"
                                     value="">
                         </div>
+
+                        <input type="hidden" value="formsubmit" name="formsubmit">
                         
                        
                         <button type="submit"
@@ -258,36 +191,35 @@
                     <h4 class="card-header__title m-0">Active Project</h4>
                 </div>
                 <div class="card-body py-1 px-2">
-                    <div class="card">
-                        <div class="card-body py-2">
-                            <div class="row">
-                                <div class="col-lg-9 d-flex flex-column w-">
-                                    <p><i class="material-icons icon-16pt mr-1">business</i> Deadline March 28,2024 </p>
-                                    <h5><a href="#">Projecct report for electric vehichlee</a></h5>
-                                    <h6>Engineering, Thesis</h6>
-                                </div>
-                                <div class="col-lg-3 d-flex flex-column">
-                                    <h4>$30</h4>
-                                    <span class="badge badge-success text-center">Completed</span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="card">
-                        <div class="card-body py-2">
-                            <div class="row">
-                                <div class="col-lg-9 d-flex flex-column w-">
-                                    <p><i class="material-icons icon-16pt mr-1">business</i> Deadline March 28,2024 </p>
-                                    <h5><a href="#">Projecct report for electric vehichlee</a></h5>
-                                    <h6>Engineering, Thesis</h6>
-                                </div>
-                                <div class="col-lg-3 d-flex flex-column">
-                                    <h4>$30</h4>
-                                    <h3 class="badge badge-success text-center ">Completed</h3>
+                    @forelse ($projects as $project)
+                        <div class="card">
+                            <div class="card-body py-2">
+                                <div class="row">
+                                    <div class="col-lg-9 d-flex flex-column w-">
+                                        <p><i class="material-icons icon-16pt mr-1">business</i> Deadline {{ $project['deadline']}} </p>
+                                        <h5><a href="/user/projects/{{ $project['id']}}">{{ $project['project_title']}}</a></h5>
+                                        <h6>{{ $project['subject_area']}}</h6>
+                                    </div>
+                                    <div class="col-lg-3 d-flex flex-column">
+                                        <h4>@money($project['price'])</h4>
+                                            @if ($project['progress'] == 1)
+                                                <span class='badge badge-secondary'>Auction</span>
+                                            @elseif ($project['progress'] == 2)
+                                                <span class='badge badge-danger'>In Progress</span>
+                                            @elseif ($project['progress'] == 3)
+                                                <span class='badge badge-success'>Completed</span>
+                                            @else
+                                               
+                                            @endif
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
+                    @empty
+                    <div class="alert alert-danger" role="alert"> No Projects yet</div>
+                    @endforelse
+                    
+                    
                 </div>
             </div>
 
@@ -299,20 +231,48 @@
 @endsection
 
 @section('footer')
-   <!-- Select2 -->
-   <script src="/dashassets/vendor/select2/select2.min.js"></script>
-    <script src="/dashassets/js/select2.js"></script>
+<script>
+  var uploadedDocumentMap = {}
+  Dropzone.options.documentDropzone = {
+    url: '{{ route('dashboard.storemedia') }}',
+    maxFilesize: 2, // MB
+    addRemoveLinks: true,
+    headers: {
+      'X-CSRF-TOKEN': "{{ csrf_token() }}"
+    },
+    success: function (file, response) {
+      $('form').append('<input type="hidden" name="document[]" value="' + response.name + '">')
+      uploadedDocumentMap[file.name] = response.name
+    },
+    removedfile: function (file) {
+      file.previewElement.remove()
+      var name = ''
+      if (typeof file.file_name !== 'undefined') {
+        name = file.file_name
+      } else {
+        name = uploadedDocumentMap[file.name]
+      }
+      $('form').find('input[name="document[]"][value="' + name + '"]').remove();
 
-    <script src="/dashassets/vendor/dropzone.min.js"></script>
-        <script src="/dashassets/js/dropzone.js"></script>
-
-    <script>
-        $("#flatpickrSample04").flatpickr({
-            enableTime: true,
-            dateFormat: "Y-m-d H:i",
+      // Send AJAX request to delete file from server
+        $.ajax({
+            type: 'POST',
+            url: '{{ route('dashboard.deleteMedia') }}',
+            data: { filename: name, _token: '{{ csrf_token() }}' },
+            success: function(data){
+                console.log('File deleted successfully');
+            },
+            error: function(xhr, status, error) {
+                console.error('Error deleting file:', error);
+            }
         });
-        Dropzone.options.dropzone = {
-            acceptedFiles: 'image/*'
-        }
-    <script>
+
+
+    },
+    init: function () {
+     
+    }
+  }
+</script>
+
 @endsection

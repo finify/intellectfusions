@@ -78,7 +78,7 @@
         <!-- Header Layout -->
         <div class="mdk-header-layout js-mdk-header-layout">
 
-            @include('user.layout.header')
+            @include('expert.layout.header')
 
             <!-- Header Layout Content -->
             <div class="mdk-header-layout__content">
@@ -93,7 +93,7 @@
                     </div>
                     <!-- // END drawer-layout__content -->
 
-                    @include('user.layout.footer')
+                    @include('expert.layout.footer')
                 </div>
                 <!-- // END drawer-layout -->
 

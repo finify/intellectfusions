@@ -3,19 +3,13 @@
         <div class="footer_wrapper d-sm-flex flex-wrap flex-lg-nowrap justify-content-lg-between">
             <div class="footer_block col-sm-6 col-lg-auto" data-order="1">
                 <div class="logo logo--footer">
-                    <a class="d-inline-flex align-items-center" href="index.html">
-                        <span class="logo_picture">
-                            <img src="/homeassets/svg/logo.svg" alt="Edison" />
-                        </span>
-                        <span class="text">
-                            <span class="brand">edison</span>
-                            <span class="text_secondary">courses</span>
-                        </span>
+                    <a class="d-inline-flex align-items-center" href="/">
+                        <img src="/homeassets/img/intellectfusionlogo.png" alt="Intellectfusions" />
                     </a>
                 </div>
-                <p class="footer_block-text">
+                <!-- <p class="footer_block-text">
                     Curabitur non libero at lorem finibus lobortis. Ut auctor egestas pretium. Proin nunc ligula, venenatis tempor
-                </p>
+                </p> -->
                 <ul class="footer_block-socials d-flex align-items-center">
                     <li class="footer_block-socials_item">
                         <a class="link" href="https://www.facebook.com" target="_blank" rel="noopener noreferrer">
@@ -36,7 +30,7 @@
                 <div class="wrapper d-flex flex-column">
                     <a class="link link--contacts text text--sm d-inline-flex align-items-center" href="mailto:example@domain.com">
                         <i class="icon-envelope icon"></i>
-                        acadesiq@mail.com
+                        info@intellectfusions.com
                     </a>
                     <a class="link link--contacts text text--sm d-inline-flex align-items-center" href="tel:+123456789">
                         <i class="icon-phone-solid icon"></i>
@@ -48,31 +42,20 @@
                 <h5 class="footer_block-header">Information:</h5>
                 <ul class="footer_block-nav">
                     <li class="footer_block-nav_item">
-                        <a class="link" href="about.html">About This Project</a>
+                        <a class="link" href="/about">About</a>
                     </li>
                     <li class="footer_block-nav_item">
-                        <a class="link" href="contacts.html">Contact Us</a>
+                        <a class="link" href="/contact">Contact Us</a>
                     </li>
-                    <li class="footer_block-nav_item">
-                        <a class="link" href="courses.html">All Courses</a>
-                    </li>
-                    <li class="footer_block-nav_item">
-                        <a class="link" href="journal.html">From the Blog</a>
-                    </li>
-                    <li class="footer_block-nav_item">
-                        <a class="link" href="library.html">Media Library</a>
-                    </li>
-                    <li class="footer_block-nav_item">
-                        <a class="link" href="faq.html">FAQ</a>
-                    </li>
+                    
                 </ul>
             </div>
             <div class="footer_block col-sm-6 col-lg-auto m-sm-0" data-order="3">
-                <h5 class="footer_block-header">Popular Courses:</h5>
+                <h5 class="footer_block-header">Popular Services:</h5>
                 <ul class="footer_block-list">
                     <li class="footer_block-list_item d-flex align-items-baseline">
                         <span class="marker"></span>
-                        <a class="link" href="course.html">Data Science Fundamentals CS with Python and SQL</a>
+                        <a class="link" href="course.html">Essay</a>
                     </li>
                     <li class="footer_block-list_item d-flex align-items-baseline">
                         <span class="marker"></span>
@@ -91,7 +74,7 @@
             <a class="footer_secondary-scroll" id="scrollToTop" href="#">
                 <i class="icon-angle-up icon"></i>
             </a>
-            <p class="footer_secondary-copyright">Copyright @ <span id="currentYear"></span> Edison by Finifytech</p>
+            <p class="footer_secondary-copyright">Copyright @ <span id="currentYear"></span> Intellectfusions by Finifytech</p>
         </div>
     </div>
 </footer>

@@ -24,7 +24,8 @@
             <div class="content-wrapper">
                 <h1 class="page_main-header">About</h1>
                 <p class="page_main-text">
-                Studyhub is an innovative online platform linking driven students with leading experts globally. It serves as an ideal space for individuals to collaborate with proficient professionals across various subjects, fostering successful learning outcomes and knowledge sharing. Within Studyhub, accessing experts in any field is seamless; connect directly with them through our secure chat feature, eliminating intermediaries.
+                At IntellectFusions, we believe in the power of knowledge and its ability to transform lives. Our platform was born from the idea of providing comprehensive assistance to students, individuals and businesses worldwide in need of academic assistance, data analysis and more. We collaborate with companies to develop customized data analysis solutions that meet their unique needs and enable them to make informed decisions based on accurate, actionable insights. Our team of dedicated experts comprises seasoned educators, researchers, and data analysts, each committed to delivering exceptional service to your unique needs and their years of experience to every project. Whether you're a student striving for academic success, a business seeking to optimize operations, or an individual looking to create effective presentations, we have the expertise and resources to help you achieve your goals.
+At IntellectFusions, we're not just a service provider - we're your partner in excellence.
                 </p>
 
             </div>

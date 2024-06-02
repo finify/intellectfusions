@@ -32,21 +32,26 @@ class LoginController extends Controller
 
         $user = Auth::getProvider()->retrieveByCredentials($credentials);
 
+      
         Auth::login($user);
 
         $user = Auth::User();
         Session::put('user', $user);
 
-       
+        // dd(Auth::User()->user_type);
+
+        return $this->authenticated($request, $user);
 
         //account selector session 
         //demo and live
         if(Auth::User()->user_type == "user"){
+            
             Session::put('user_type', 'user');
-            return redirect()->intended('user/dashboard')->with('login_success','Login was successfull');
+            return redirect()->intended('/user/dashboard')->with('login_success','Login was successfull');
+       
         }else{
             Session::put('user_type', 'expert');
-            return redirect()->intended('user/expert/ddashboard')->with('login_success','Login was successfull');
+            return redirect()->intended('/expert/dashboard')->with('login_success','Login was successfull');
         }
     }
 
@@ -61,7 +66,13 @@ class LoginController extends Controller
      */
     protected function authenticated(Request $request, $user)
     {
+        if(Auth::User()->user_type == "user"){
+            // dd("hello");
+            Session::put('user_type', 'user');
+            return redirect()->to('user/dashboard')->with('login_success','Login was successfull');
+       
+        }
         
-        return redirect()->intended('user/dashboard')->with('login_success','Login was successfull');
+        // return redirect()->intended('user/dashboard')->with('login_success','Login was successfull');
     }
 }

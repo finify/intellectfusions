@@ -120,8 +120,33 @@
         <div class="promo_content">
             <h2 class="promo_content-header" data-aos="fade-left">We Have Data Scientics Available</h2>
             <p class="promo_content-text" data-aos="fade-up" data-aos-delay="50">
-            Unlock the power of data with our cutting-edge solutions and expertise. Whether you're a seasoned data scientist or just starting your journey, we've got you covered. Our team of experienced professionals offers a wide range of services, from data analysis and visualization to machine learning and predictive modeling.
+            Data analysis is a vital component of modern business as it is crucial for making informed business decisions, but without the proper resources and expertise, it can be a costly and time-consuming endeavor. IntellectFusions offers partnerships to companies and individuals that want a reliable and cost-effective data analysis service enabling them to gain valuable insights quickly and efficiently. 
+As your trusted data analytics partner, we leverage our years of expertise and knowledge to deliver accurate and actionable insights tailored to your unique requirements.
             </p>
+            <h4>Data areas covered by intellectfusions</h4>
+            <ul class="popular_tags courses-tags d-flex flex-wrap align-items-start justify-content-start">
+                <li class="list-item" data-aos="fade-left">
+                    <a class="tag" href="#">Finance</a>
+                </li>
+                <li class="list-item" data-aos="fade-left" data-aos-delay="50">
+                    <a class="tag" href="#">Academic</a>
+                </li>
+                <li class="list-item" data-aos="fade-left" data-aos-delay="100">
+                    <a class="tag" href="#">Healthcare</a>
+                </li>
+                <li class="list-item" data-aos="fade-left" data-aos-delay="150">
+                    <a class="tag" href="#">Sales</a>
+                </li>
+                <li class="list-item" data-aos="fade-left" data-aos-delay="200">
+                    <a class="tag" href="#">HR</a>
+                </li>
+                <li class="list-item" data-aos="fade-left" data-aos-delay="250">
+                    <a class="tag" href="#">Assets</a>
+                </li>
+                <li class="list-item" data-aos="fade-left" data-aos-delay="250">
+                    <a class="tag" href="#">Brands and products</a>
+                </li>
+            </ul>
             <a class="promo_content-btn btn btn--gradient" href="#" data-aos="fade-up" data-aos-delay="100">
                 <span class="text">Talk to an Expert</span>
             </a>
@@ -150,23 +175,48 @@
                         <i class="icon-check icon"></i>
                         <div class="content">
                             <h5 class="title">Fill in a brief</h5>
-                            <p class="text">Tell us what you need help with, describe your project requirements, and set the deadline.</p>
+                            <p class="text">Outline your project goals briefly.</p>
                         </div>
                     </li>
                     <li class="about_main-list_item" data-aos="fade-up" data-aos-delay="50">
                         <i class="icon-check icon"></i>
                         <div class="content">
-                            <h5 class="title">We provide you with expert</h5>
-                            <p class="text">Receive offers from those who can help with assignments, compare their ratings, and pick the best one for your task.</p>
+                            <h5 class="title">Register</h5>
+                            <p class="text">Join our community by registering as a user.</p>
+                        </div>
+                    </li>
+                    <li class="about_main-list_item" data-aos="fade-up" data-aos-delay="50">
+                        <i class="icon-check icon"></i>
+                        <div class="content">
+                            <h5 class="title">Provide project details </h5>
+                            <p class="text">Provide project details in the dialogue box, including requirements, file if any and deadlines, then hit submit.</p>
                         </div>
                     </li>
                     <li class="about_main-list_item" data-aos="fade-up" data-aos-delay="100">
                         <i class="icon-check icon"></i>
                         <div class="content">
                             <h5 class="title">
-                                Get it done on time
+                                ⁠Chat directly with Admin
                             </h5>
-                            <p class="text">Chat with our expert directly, discuss your project in detail, and get professional academic assistance by the deadline.</p>
+                            <p class="text">⁠Chat directly with any of our administrators to discuss your project in detail. </p>
+                        </div>
+                    </li>
+                    <li class="about_main-list_item" data-aos="fade-up" data-aos-delay="100">
+                        <i class="icon-check icon"></i>
+                        <div class="content">
+                            <h5 class="title">
+                                ⁠Pay
+                            </h5>
+                            <p class="text">⁠Make your payment via any of our reliable gateway </p>
+                        </div>
+                    </li>
+                    <li class="about_main-list_item" data-aos="fade-up" data-aos-delay="100">
+                        <i class="icon-check icon"></i>
+                        <div class="content">
+                            <h5 class="title">
+                                Get project delivered
+                            </h5>
+                            <p class="text">One of our certified writers will work on your assignment and deliver it on your registered email along with a free Plagiarism Report to prove originality of the work on or before the deadline date. </p>
                         </div>
                     </li>
                 </ul>
@@ -248,11 +298,14 @@
     <div class="underlay"></div>
     <div class="container d-lg-flex align-items-center">
         <div class="banner_content">
-            <h4 class="banner_content-title" data-aos="fade-up">
-                Unlimited access to educational materials and lectures for subscribers
+            <h4 class="banner_content-title mb-3" data-aos="fade-up">
+                What we do
             </h4>
+            <p class="text-light" style="color:white!important;">
+            IntellectFusions offers a wide range of services to help businesses and students succeed. Our data analysis services can transform raw data into valuable insights that drive growth, reduce costs, and improve decision-making. We also offer professional academic writing services for students, covering all types of assignments and papers. And for businesses, students, and other clients, we create high-quality PowerPoint presentations that effectively communicate information and ideas. In addition, we offer a variety of other services as needed, tailored to the unique requirements of our clients.
+            </p>
             <div class="wrapper" data-aos="fade-up" data-aos-delay="50">
-                <a class="banner_content-btn btn btn--yellow" href="pricing.html">See pricing plans</a>
+                <a class="banner_content-btn btn btn--yellow" href="pricing.html">Get Started Today</a>
             </div>
         </div>
         <div class="banner_media">

@@ -27,7 +27,7 @@ class LoginController extends Controller
         // dd($credentials);
 
         if(!Auth::validate($credentials)){
-            return redirect()->to('user/login')->withErrors(['msg' => 'Login invalid , try with another credential']);
+            return redirect()->to('expert/login')->withErrors(['msg' => 'Login invalid , try with another credential']);
         }
 
         $user = Auth::getProvider()->retrieveByCredentials($credentials);
@@ -46,7 +46,7 @@ class LoginController extends Controller
             return redirect()->intended('user/dashboard')->with('login_success','Login was successfull');
         }else{
             Session::put('user_type', 'expert');
-            return redirect()->intended('user/expert/ddashboard')->with('login_success','Login was successfull');
+            return redirect()->intended('expert/dashboard')->with('login_success','Login was successfull');
         }
     }
 
