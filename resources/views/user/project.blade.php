@@ -33,6 +33,8 @@
                                         <h5><a href="/user/projects/{{ $project['id']}}">{{ $project['project_title']}}</a></h5>
                                         <h6>{{ $project['subject_area']}}</h6>
                                     </div>
+
+                                    
                                     <div class="col-lg-3 d-flex flex-column">
                                         <h4>@money($project['price'])</h4>
                                             @if ($project['progress'] == 1)
