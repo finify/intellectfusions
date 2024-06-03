@@ -29,6 +29,13 @@
                             <span class="sidebar-menu-text">Notification</span>
                         </a>
                     </li>
+                    <li class="sidebar-menu-item">
+                        <a class="sidebar-menu-button"
+                            href="{{ url('user/logout')}}">
+                            <i class="sidebar-menu-icon sidebar-menu-icon--left material-icons">power</i>
+                            <span class="sidebar-menu-text">Logout</span>
+                        </a>
+                    </li>
                     
                 </ul>
             </div>
