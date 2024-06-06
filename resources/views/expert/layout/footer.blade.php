@@ -31,9 +31,9 @@
                     </li>
                     <li class="sidebar-menu-item">
                         <a class="sidebar-menu-button"
-                            href="/expert/notification">
-                            <i class="sidebar-menu-icon sidebar-menu-icon--left material-icons">notifications</i>
-                            <span class="sidebar-menu-text">Withdrawal</span>
+                            href="/expert/payout">
+                            <i class="sidebar-menu-icon sidebar-menu-icon--left material-icons">dns</i>
+                            <span class="sidebar-menu-text">Pay out</span>
                         </a>
                     </li>
                     

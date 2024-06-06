@@ -8,4 +8,5 @@ use Illuminate\Database\Eloquent\Model;
 class Expert extends Model
 {
     use HasFactory;
+    protected $guard = "expert";
 }

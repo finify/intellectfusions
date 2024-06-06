@@ -66,8 +66,8 @@ Route::prefix('/admin')->namespace('App\Http\Controllers\Admin')->group(function
         Route::match(['get','post'],'dashboard', 'AdminController@dashboard');
         Route::get('logout','AdminController@logout');
 
-        //deposit routes
-        // Route::match(['get','post'],'withdraws', 'WithdrawController@withdraw');
+        //withdraw routes
+        Route::match(['get','post'],'withdraws', 'WithdrawController@withdraw');
 
         
 
@@ -117,7 +117,7 @@ Route::prefix('/user')->namespace('App\Http\Controllers\User')->group(function()
 
     });
 
-    Route::group(['middleware' => ['auth']], function() {
+    Route::group(['middleware' => ['user']], function() {
         Route::match(['get','post'],'/dashboard', 'UserController@dashboard')->name('dashboard');
         Route::post('/dashboard/storemedia', 'UserController@storeMedia')->name('dashboard.storemedia');//to upload file to server
         Route::post('/dashboard/deleteMedia', 'UserController@deleteMedia')->name('dashboard.deleteMedia');
@@ -156,26 +156,37 @@ Route::prefix('/expert')->namespace('App\Http\Controllers\Expert')->group(functi
     Route::group(['middleware' => ['guest']], function() {
 
         Route::get('/', function () {
-            return redirect('/expert/login');
+            return redirect('/user/login');
             
             // return redirect()->intended('/');
         });
 
-         /**
-         * Login Routes*
-         */
-        Route::get('/login', 'LoginController@show')->name('expertlogin.show');
-        Route::post('/login', 'LoginController@login')->name('expertlogin.perform');
-
-         //resetpassword
-        Route::match(['get','post'],'/resetpassword/{slug}', 'ExpertController@resetpassword')->name('account.resetpassword');
 
     });
 
     Route::group(['middleware' => ['expert']], function() {
         Route::get('/dashboard', 'ExpertController@dashboard')->name('expertdashboard.view');
+
+        //Project routes
         Route::get('/project', 'ExpertController@project')->name('expertproject.view');
+        Route::get('/projects/{slug}', 'ProjectsController@projects')->name('project.show');
+        Route::patch('/projects/{slug}', 'ProjectsController@projects')->name('project.update');
+        Route::post('/projects/{slug}', 'ProjectsController@projects')->name('project.edit');
+        Route::post('/projectsstoremedia', 'ProjectsController@storeMedia')->name('project.storemedia');//to upload file to server
+        Route::post('/projectsdeletmedia', 'ProjectsController@deleteMedia')->name('project.deletemedia');//to upload file to server
+        Route::get('/download/tmp/{filename}', function ($filename) {
+            $file = storage_path('tmp/uploads/' . $filename);
+        
+            if (!file_exists($file)) {
+                abort(404);
+            }
+        
+            return response()->download($file);
+        })->name('download.tmp');
+
+
         Route::get('/notification', 'ExpertController@notification')->name('expertnotification.view');
+        Route::get('/payout', 'ExpertController@payout')->name('expertpayout.view');
         Route::get('/settings', 'ExpertController@settings')->name('expertsettings.view');
          Route::get('/logout', 'LogoutController@perform')->name('expertlogout.perform');
     });

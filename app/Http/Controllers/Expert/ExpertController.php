@@ -4,26 +4,65 @@ namespace App\Http\Controllers\Expert;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+
+use App\Models\User;
+use App\Models\projects;
+use App\Models\project_expert;
+use App\Models\projecttype;
+use App\Models\fields;
+use App\Models\Notifications;
+use App\Models\Attachment;
+
 
 class ExpertController extends Controller
 {
-    //
+    
+    public function getUserDetails(){
+        $user = User::where('id', Auth::guard('expert')->User()->id)->first()->toArray();
+        $projects = projects::where('expert_id', Auth::guard('expert')->User()->id)->get()->toArray();
+        $notifications = Notifications::where('user_id', Auth::guard('expert')->User()->id)->get()->toArray();
+
+        $auctions = project_expert::where('expert_id', Auth::guard('expert')->User()->id)->get()->toArray();
+        $inprogress = projects::where('expert_id', Auth::guard('expert')->User()->id)->where('progress','2')->get()->toArray();
+        $completeds = projects::where('expert_id', Auth::guard('expert')->User()->id)->where('progress','3')->get()->toArray();
+
+
+        $all = count($completeds) + count($inprogress)+ count($auctions);
+        $project_details = [
+            'auctions'=>count($auctions),
+            'inprogress'=>count($inprogress),
+            'completed'=>count($completeds),
+            'all'=>$all,
+        ];
+
+        return compact('user','notifications','auctions','inprogress','completeds','projects','project_details');
+    }
+
     public function dashboard(Request $request){
-   
+        $details = $this->getUserDetails();
        
-        return view('expert.dashboard');
+        return view('expert.dashboard')->with($details);
     }
 
     public function project(Request $request){
-        return view('expert.project');
+        $details = $this->getUserDetails();
+        return view('expert.project')->with($details);
     }
 
     public function notification(Request $request){
-        return view('expert.notification');
+        $details = $this->getUserDetails();
+        return view('expert.notification')->with($details);
+    }
+
+    public function payout(Request $request){
+        $details = $this->getUserDetails();
+        return view('expert.payout')->with($details);
     }
 
     public function settings(Request $request){
-        return view('expert.settings');
+        $details = $this->getUserDetails();
+        return view('expert.settings')->with($details);
     }
 
     public function resetpassword(Request $request, $resettype = null){

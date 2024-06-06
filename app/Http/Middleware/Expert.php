@@ -17,7 +17,7 @@ class Expert
     public function handle(Request $request, Closure $next): Response
     {
         if(!Auth::guard('expert')->check()){
-            return redirect('/expert/login');
+            return redirect('/user/login');
         }
         return $next($request);
     }

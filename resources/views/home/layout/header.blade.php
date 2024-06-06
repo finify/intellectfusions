@@ -18,7 +18,10 @@
             </li>
         </ul>
         <div class="promobar_main d-flex align-items-center">
-            <p class="promobar_main-text">Try for free! <span class="hide">30 day Trial and Free Lectures</span></p>
+            <!-- <p class="promobar_main-text">Try for free! <span class="hide">30 day Trial and Free Lectures</span></p> -->
+            <a class="btn btn--yellow mr-2" href="/user/login" style="background: linear-gradient(180deg, #6a11cb 1.26%, #2575fc 100%); margin-right:10px; color:white;">
+                <span>Login</span>
+            </a>
             <a class="btn btn--yellow" href="/user/register">
                 <span>Sign Up</span>
             </a>

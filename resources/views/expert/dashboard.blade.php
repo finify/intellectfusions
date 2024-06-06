@@ -45,7 +45,7 @@
             <div class="card w-100">
                 <div class="card-header card-header-large bg-white d-flex align-items-center">
                     <div class="d-flex flex-column">
-                        <h5>ifeanyiizuegbu@yahoo.com</h5>
+                        <h5>{{ $user['email'] }}</h5>
                         <div class="avatar avatar-xxl avatar-online">
                             <img src="/dashassets/images/256_daniel-gaffey-1060698-unsplash.jpg" alt="Avatar" class="avatar-img rounded-circle">
                         </div>
@@ -56,19 +56,19 @@
                     <div class="list-group list-group-small list-group-flush">
                         <div class="list-group-item d-flex align-items-center px-0">
                             <div class="mr-3 flex">All</div>
-                            <div class="mr-3 text-dark">3</div>
+                            <div class="mr-3 text-dark">{{ $project_details['all'] }}</div>
                         </div>
                         <div class="list-group-item d-flex align-items-center px-0">
                             <div class="mr-3 flex">Auction</div>
-                            <div class="mr-3 text-dark">0</div>
+                            <div class="mr-3 text-dark">{{ $project_details['auctions'] }}</div>
                         </div>
                         <div class="list-group-item d-flex align-items-center px-0">
                             <div class="mr-3 flex">In Progress</div>
-                            <div class="mr-3 text-dark">0</div>
+                            <div class="mr-3 text-dark">{{ $project_details['inprogress'] }}</div>
                         </div>
                         <div class="list-group-item d-flex align-items-center px-0">
                             <div class="mr-3 flex">Completed</div>
-                            <div class="mr-3 text-dark">0</div>
+                            <div class="mr-3 text-dark">{{ $project_details['completed'] }}</div>
                         </div>
                     </div>
                 </div>
@@ -145,39 +145,37 @@
 
             <div class="card">
                 <div class="card-header bg-white">
-                    <h4 class="card-header__title m-0">Active Project</h4>
+                    <h4 class="card-header__title m-0">Projects InProgress</h4>
                 </div>
                 <div class="card-body py-1 px-2">
-                    <div class="card">
-                        <div class="card-body py-2">
-                            <div class="row">
-                                <div class="col-lg-9 d-flex flex-column w-">
-                                    <p><i class="material-icons icon-16pt mr-1">business</i> Deadline March 28,2024 </p>
-                                    <h5><a href="#">Projecct report for electric vehichlee</a></h5>
-                                    <h6>Engineering, Thesis</h6>
-                                </div>
-                                <div class="col-lg-3 d-flex flex-column">
-                                    <h4>$30</h4>
-                                    <span class="badge badge-success text-center">Completed</span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="card">
-                        <div class="card-body py-2">
-                            <div class="row">
-                                <div class="col-lg-9 d-flex flex-column w-">
-                                    <p><i class="material-icons icon-16pt mr-1">business</i> Deadline March 28,2024 </p>
-                                    <h5><a href="#">Projecct report for electric vehichlee</a></h5>
-                                    <h6>Engineering, Thesis</h6>
-                                </div>
-                                <div class="col-lg-3 d-flex flex-column">
-                                    <h4>$30</h4>
-                                    <h3 class="badge badge-success text-center ">Completed</h3>
+                    @forelse ($inprogress as $inprogres)
+                        <div class="card">
+                            <div class="card-body py-2">
+                                <div class="row">
+                                    <div class="col-lg-9 d-flex flex-column w-">
+                                        <p><i class="material-icons icon-16pt mr-1">business</i> Deadline {{ $inprogres['deadline']}} </p>
+                                        <h5><a href="/expert/projects/{{ $inprogres['id']}}">{{ $inprogres['project_title']}}</a></h5>
+                                        <h6>{{ $inprogres['subject_area']}}</h6>
+                                    </div>
+                                    <div class="col-lg-3 d-flex flex-column">
+                                        <h4>@money($inprogres['price'])</h4>
+                                            @if ($inprogres['progress'] == 1)
+                                                <span class='badge badge-secondary'>Auction</span>
+                                            @elseif ($inprogres['progress'] == 2)
+                                                <span class='badge badge-danger'>In Progress</span>
+                                            @elseif ($inprogres['progress'] == 3)
+                                                <span class='badge badge-success'>Completed</span>
+                                            @else
+                                               
+                                            @endif
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
+                    @empty
+                    <div class="alert alert-danger" role="alert"> No Projects In Progress Yet</div>
+                    @endforelse
+                    
                 </div>
             </div>
 

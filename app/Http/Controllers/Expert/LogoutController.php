@@ -16,6 +16,6 @@ class LogoutController extends Controller
         
         Auth::logout();
 
-        return redirect('expert/login');
+        return redirect('user/login');
     }
 }

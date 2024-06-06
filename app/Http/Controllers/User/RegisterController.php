@@ -58,17 +58,18 @@ class RegisterController extends Controller
         $lastid = User::all()->last()->id;
 
         $Expertdetails = [
-            'users_id'=> $lastid,
-            'created'=>$datecreated
+            'user_id'=> $lastid,
+            'about'=> "",
+            'phone_number'=> "",
+            'field_of_study'=> "",
+            'project_type'=> "",
+            'balance'=> "0",
         ];
         if($data['user_type'] == "expert"){
                //insert into profile table with just user id and created
             $expertdetails = Expertdetail::create($Expertdetails);
         }
-        $Profiledetails = [
-            'users_id'=> $lastid,
-            'created'=>$datecreated
-        ];
+       
      
 
         // dd($invested);
@@ -102,19 +103,27 @@ class RegisterController extends Controller
             //mailing refered user
            
         }
-        auth()->login($user);
+        // auth()->login($user);
 
-        $user = Auth::User();
-        Session::put('user', $user);
+        // $user = Auth::User();
+        // Session::put('user', $user);
+
+        if(Auth::guard('web')->attempt(['email'=>$data['email'], 'password'=>$data['password'],'user_type'=>'user'])){
+            return redirect('user/dashboard')->with('signup_success', "Account successfully registered.");
+        }elseif(Auth::guard('expert')->attempt(['email'=>$data['email'], 'password'=>$data['password'],'user_type'=>'expert'])){
+            return redirect('expert/dashboard')->with('signup_success', "Account successfully registered.");
+        }else{
+           
+        }
 
         //account selector session 
         //demo and live
-        Session::put('user_type', 'expert');
+        // Session::put('user_type', 'expert');
 
-        if($data['user_type'] == "expert"){
-            return redirect('/user/expert/dashboard')->with('signup_success', "Account successfully registered.");
-        }else{
-            return redirect('/user/dashboard')->with('signup_success', "Account successfully registered.");
-        }
+        // if($data['user_type'] == "expert"){
+        //     return redirect('/user/expert/dashboard')->with('signup_success', "Account successfully registered.");
+        // }else{
+        //     return redirect('/user/dashboard')->with('signup_success', "Account successfully registered.");
+        // }
     }
 }

@@ -39,11 +39,12 @@
                         <div class="card">
                             <div class="stat-widget-one card-body">
                                 <div class="stat-icon d-inline-block">
-                                    <i class="ti-money text-success border-success"></i>
+                                    <i class="ti-user text-success border-success"></i>
                                 </div>
-                                <div class="stat-content d-inline-block">
-                                    <div class="stat-text">Total Deposit</div>
-                                    <div class="stat-digit"></div>
+                                <div class="stat-content d-inline-block ml-2">
+                                    <div class="stat-text">Accounts</div>
+                                    <div class="h5">All Users: 54</div>
+                                    <div class="h5">All Experts: 55</div>
                                 </div>
                             </div>
                         </div>
@@ -52,11 +53,13 @@
                         <div class="card">
                             <div class="stat-widget-one card-body">
                                 <div class="stat-icon d-inline-block">
-                                    <i class="ti-tradingbot text-primary border-primary"></i>
+                                    <i class="ti-bag text-primary border-primary"></i>
                                 </div>
-                                <div class="stat-content d-inline-block">
-                                    <div class="stat-text">Earned</div>
-                                   
+                                <div class="stat-content d-inline-block ml-2">
+                                    <div class="stat-text">Projects</div>
+                                    <div class="h5 mb-1">Auction: 54</div>
+                                    <div class="h5 mb-1">In Progress: 55</div>
+                                    <div class="h5 mb-1">Completed: 55</div>
                                 </div>
                             </div>
                         </div>
@@ -67,9 +70,10 @@
                                 <div class="stat-icon d-inline-block">
                                     <i class="ti-layout-grid2 text-pink border-pink"></i>
                                 </div>
-                                <div class="stat-content d-inline-block">
-                                    <div class="stat-text">Subscriptions</div>
-                                    
+                                <div class="stat-content d-inline-block ml-2">
+                                    <div class="stat-text">Categories</div>
+                                    <div class="h5 mb-1">Field of Study: 54</div>
+                                    <div class="h5 mb-1">Project Type: 55</div>
                                 </div>
                             </div>
                         </div>
@@ -81,7 +85,7 @@
                     <div class="col-lg-12">
                         <div class="card">
                             <div class="card-header">
-                                <h4 class="card-title">All Bots</h4>
+                                <h4 class="card-title">All Projects</h4>
                             </div>
                             <div class="card-body">
                                 <div class="table-responsive">

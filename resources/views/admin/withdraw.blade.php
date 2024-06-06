@@ -36,9 +36,9 @@
                                         <thead>
                                             <tr>
                                                 <th>User</th>
-                                                <th>gateway</th>
+                                                <th>Payment Method</th>
                                                 <th>Amount</th>
-                                                <th>Userwalletid</th>
+                                                <th>Payment Details</th>
                                                 <th>status</th>
                                                 <th>action</th>
                                             </tr>
@@ -47,9 +47,9 @@
                                         @forelse ($withdraws as $withdraw )
                                             <tr>
                                                 <td>#{{ $withdraw->user_id}} {{ $withdraw->username}}</td>
-                                                <td>{{ $withdraw->gateway }}</td>
+                                                <td>{{ $withdraw->payment_method }}</td>
                                                 <td>{{ $withdraw->amount }}</td>
-                                                <td>{{ $withdraw->userwallet_id }}</td>
+                                                <td>{{ $withdraw->payment_details }}</td>
                                                 <td>
                                                     @if ($withdraw->withdraw_status == 1)
                                                         <div class="badge badge-success">Approved</div>

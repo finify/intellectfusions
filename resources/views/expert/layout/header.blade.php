@@ -96,7 +96,7 @@
                         data-toggle="dropdown"
                         data-caret="false">
                             <span class="mr-1 d-flex-inline">
-                                <span class="text-light">Adrian D1.</span>
+                                <span class="text-light">{{ $user['name'] }}</span>
                             </span>
                             <img src="/dashassets/images/avatar/demi.png"
                                 class="rounded-circle"
@@ -106,8 +106,8 @@
                         <div id="account_menu"
                             class="dropdown-menu dropdown-menu-right">
                             <div class="dropdown-item-text dropdown-item-text--lh">
-                                <div><strong>Adrian Demian</strong></div>
-                                <div class="text-muted">@adriandemian</div>
+                                <div><strong>{{ $user['name'] }}</strong></div>
+                                <div class="text-muted">{{ $user['email'] }}</div>
                             </div>
                             <div class="dropdown-divider"></div>
                             <a class="dropdown-item active"
