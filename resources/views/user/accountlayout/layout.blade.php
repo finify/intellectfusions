@@ -115,6 +115,33 @@
         <!-- App Settings (safe to remove) -->
         <script src="/dashassets/js/app-settings.js"></script>
         @yield('footer')
+        <script>
+     $(document).ready(function() {
+        $(".signup-form").hide();
+
+        $("#usertype").val("user");
+        $("[id^=selectbtn]").each(function () {
+            $(this).click(function () {
+                var usertype = $(this).attr('account');
+                $("#usertype").val(usertype); 
+                if(usertype == "user"){
+                    $("#selectbtn2").removeClass("user-type-active");
+                    $(this).addClass("user-type-active");
+                    $(".signup-form").show();
+                    
+                }else{
+                    $("#selectbtn1").removeClass("user-type-active");
+                    $(this).addClass("user-type-active");
+                    $(".signup-form").show();
+                }
+                
+            });
+        });
+     });
+    // $("#selectbtn1").addClass("user-type-active");
+ 
+   
+</script>
     </body>
 
 </html>
