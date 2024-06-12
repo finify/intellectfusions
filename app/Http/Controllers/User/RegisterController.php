@@ -5,14 +5,15 @@ namespace App\Http\Controllers\User;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Http\Requests\RegisterRequest;
-use App\Mail\DemoMail;
-use App\Mail\RegistrationMail;
-use App\Models\Expertdetail;
-use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Session;
 use Carbon\Carbon;
+
+use App\Mail\UserMail;
+use App\Mail\RegistrationMail;
+use App\Models\Expertdetail;
+use App\Models\User;
 
 class RegisterController extends Controller
 {
@@ -37,12 +38,10 @@ class RegisterController extends Controller
      */
     public function register(RegisterRequest $request) 
     {
+        //get all requests
         $data = $request->all();
 
-        // if()
-        // $data['referer'] = "";
-        
-
+        //get formated date in carbon
         $datecreated =  Carbon::now();
 
         if($request->validated()){
@@ -50,9 +49,6 @@ class RegisterController extends Controller
             $validated['status'] = 1;
             $validated['user_type'] = $data['user_type'];
         }
-
-        
-
 
         $user = User::create($validated);
         $lastid = User::all()->last()->id;
@@ -65,40 +61,56 @@ class RegisterController extends Controller
             'project_type'=> "",
             'balance'=> "0",
         ];
+
         if($data['user_type'] == "expert"){
-               //insert into profile table with just user id and created
+            //insert into profile table with just user id and created
             $expertdetails = Expertdetail::create($Expertdetails);
+            //email registered user
+            $mailData = [
+                'subject' => 'Welcome To Intellectfusions',
+                'username'=> $data['name'],
+                'body'=>'
+                <p>You recently created an account with Intellectfusions. Please finalize your account by adding a few more details about yourself.</p>
+                <p><strong>Follow these simple steps to start earning on Intellectfusions</strong></p>
+                <ul>
+                    <li>Try out our ai trading robot using the demo account</li>
+                    <li>Deposit into your Live account and start trading real assets</li>
+                    <li>Withdraw earnings after the end of robot cycle</li>
+                </ul>',
+            ];
+            Mail::to($data['email'])->send(new UserMail($mailData));
+        }else{
+            //email registered user
+            $mailData = [
+                'subject' => 'Welcome To Intellectfusions',
+                'username'=> $data['name'],
+                'body'=>'
+                <p>Thank you for registering with Intellectfusions. Please share the details of your project, and we’ll get started right away</p>
+                <p><strong>Follow these simple steps on Intellectfusions</strong></p>
+                <ul>
+                    <li>Login to your users dashboard</li>
+                    <li>Submit your project details</li>
+                    <li>Sit back and relax while our professional experts work on your project</li>
+                </ul>',
+            ];
+            Mail::to($data['email'])->send(new UserMail($mailData));
         }
        
      
 
-        // dd($invested);
         if($user){
-            //email registered user
-            // $mailData = [
-            //     'title' => 'Welcome To Ranefy',
-            //     'username'=> $data['username'],
-            //     'body'=>'
-            //     <p>Your registration was successful and you can now login and  start trading to earn profits</p>
-            //     <p><strong>Follow these simple steps to start earning on Ranefy</strong></p>
-            //     <ul>
-            //         <li>Try out our ai trading robot using the demo account</li>
-            //         <li>Deposit into your Live account and start trading real assets</li>
-            //         <li>Withdraw earnings after the end of robot cycle</li>
-            //     </ul>',
-            // ];
-            // Mail::to($data['email'])->send(new RegistrationMail($mailData));
+            
 
             //email Admin
-            // mailData = [
-            //     'title' => 'New User Registration',
-            //     'email' => $data['email'],
-            //     'body' => '<p>'.$data['email'].' just signed up to Ranefy</p>
-            //     <p><strong>Login to admin to follow up with user</strong></p>
-            //     ',
-            //     'username'=> 'Admin'
-            // ];
-            // Mail::to(env('ADMIN_EMAIL'))->send(new RegistrationMail($mailData));$
+            $mailData = [
+                'subject' => 'New User Registration',
+                'email' => $data['email'],
+                'body' => '<p>'.$data['email'].' just signed up to Intellectfusions</p>
+                <p><strong>Login to admin to follow up with user</strong></p>
+                ',
+                'username'=> 'Admin'
+            ];
+            Mail::to(env('ADMIN_EMAIL'))->send(new UserMail($mailData));
 
             //mailing refered user
            
@@ -111,7 +123,7 @@ class RegisterController extends Controller
         if(Auth::guard('web')->attempt(['email'=>$data['email'], 'password'=>$data['password'],'user_type'=>'user'])){
             return redirect('user/dashboard')->with('signup_success', "Account successfully registered.");
         }elseif(Auth::guard('expert')->attempt(['email'=>$data['email'], 'password'=>$data['password'],'user_type'=>'expert'])){
-            return redirect('expert/dashboard')->with('signup_success', "Account successfully registered.");
+            return redirect('expert/settings/details')->with('signup_success', "Account successfully registered.");
         }else{
            
         }

@@ -26,9 +26,9 @@
                 
                 <div class="row">
                     <div class="col-12">
-                    @if(Session::has('success_message'))
+                    @if(Session::has('success'))
                         <div class="alert alert-success" role="alert">
-                        {{Session::get('success_message')}}
+                        {{Session::get('success')}}
                         </div>
                     @endif
                     </div>
@@ -39,16 +39,19 @@
                         <div class="card">
                             <div class="card-body">
                                 <div class="profile-statistics">
-                                    <div class="text-center mt-4 border-bottom-1 pb-3">
+                                    <div class="text-left mt-4 border-bottom-1 pb-3">
                                         <div class="row mb-4">
-                                            <div class="col">
-                                                <h3 class="m-b-0">@money($details['balance'])</h3><span class="text-dark">Live Balance</span>
+                                            <div class="col-6">
+                                                <h5 class="m-b-0">Email : {{ $user['email'] }}</h5>
+                                                <!-- <span class="text-dark">Active project</span> -->
                                             </div>
-                                            <div class="col">
-                                                <h3 class="m-b-0">{{$details['tradingbots']}}</h3><span class="text-dark">bots</span>
+                                            <div class="col-6">
+                                                <h5 class="m-b-0">Name : {{ $user['name'] }}</h5>
+                                                <!-- <span class="text-dark">Active project</span> -->
                                             </div>
+                                            
                                             <div class="col-12">
-                                                <h3 class="m-b-0">{{ date('d-M-Y', strtotime($user['created_at'])) }}</h3><span class="text-dark">Registered</span>
+                                                <h4 class="m-b-0">@dateformat($user['created_at'])</h4><span class="text-dark">Registered</span>
                                             </div>
                                         </div>
                                         
@@ -64,33 +67,15 @@
                                 <div class="profile-tab">
                                     <div class="custom-tab-1">
                                         <ul class="nav nav-tabs">
-                                            <li class="nav-item"><a href="#my-posts" data-toggle="tab" class="nav-link active show">Bonus</a>
+                                            <li class="nav-item"><a href="#email" data-toggle="tab" class="nav-link active show">Email</a>
                                             </li>
-                                            <li class="nav-item"><a href="#about-me" data-toggle="tab" class="nav-link">Email</a>
-                                            </li>
-                                            <li class="nav-item"><a href="#deposits" data-toggle="tab" class="nav-link">deposits</a>
-                                            </li>
-                                            <li class="nav-item"><a href="#investments" data-toggle="tab" class="nav-link">bots</a>
-                                            </li>
-                                            <li class="nav-item"><a href="#referals" data-toggle="tab" class="nav-link">Referals</a>
+                                            <li class="nav-item"><a href="#projects" data-toggle="tab" class="nav-link">Projects</a>
                                             </li>
                                         </ul>
                                         <div class="tab-content">
-                                            <div id="my-posts" class="tab-pane fade active show">
-                                                <div class="my-post-content pt-3">
-                                                    <form method="post" action="{{ url('admin/viewusers')}}/{{ $user['id'] }}">@CSrf
-                                                        <div class="form-group">
-                                                            <label for="exampleInputName1">Amount</label>
-                                                            <input type="number" value="" step="0.01" pattern="^\d+(?:\.\d{1,2})?$"  class="form-control"  name="amount">
-                                                        </div>
-                                                        <input type="hidden" name="action" value="bonus">
-                                                        <button type="submit" class="btn btn-dark btn-block">Send Bonus</button>
-                                                    </form>
-                                                </div>
-                                            </div>
-                                            <div id="about-me" class="tab-pane fade">
+                                            <div id="email" class="tab-pane fade active show">
                                                 <div class="about-me-content pt-3">
-                                                    <form method="post" action="{{ url('admin/viewusers')}}/{{ $user['id'] }}">@CSrf
+                                                    <form method="post" action="">@CSrf
                                                         <div class="form-group">
                                                             <label for="exampleInputName1">Subject</label>
                                                             <input type="subject" class="form-control"  name="subject">
@@ -105,99 +90,36 @@
                                                     </form>
                                                 </div>
                                             </div>
-                                            <div id="deposits" class="tab-pane fade">
+                                            <div id="projects" class="tab-pane fade">
                                                 <div class="about-me-content pt-3">
                                                     <div class="table-responsive">
                                                         <table class="table text-dark student-data-table m-t-20">
                                                             <thead>
                                                                 <tr>
-                                                                    <th>Amount</th>
-                                                                    <th>status</th>
+                                                                    <th>Project Title</th>
+                                                                    <th>User Price</th>
+                                                                    <th>Status</th>
+                                                                    <th>Created at</th>
                                                                 </tr>
                                                             </thead>
                                                             <tbody>
-                                                            @forelse ($deposits as $deposit)
+                                                            @forelse ($projects as $project)
                                                                 <tr>
-                                                                    <td>@money($deposit['amount']) </td>
+                                                                    <td> <a href="{{ url('admin/viewproject') }}/{{ $project['id'] }}"> {{ $project['project_title'] }} </a>   </td>
+                                                                    <td>@money($project['price']) </td>
                                                                     <td> 
-                                                                        @if ($deposit['deposit_status'] == 1)
-                                                                            <span class='badge badge-success'>Approved</span>
-                                                                        @elseif ($deposit['deposit_status'] == 0)
-                                                                            <span class='badge badge-danger'>Pending</span>
-                                                                        @else
-                                                                            <span class='badge badge-secondary'>Profit Exceeded</span>
-                                                                        @endif
-                                                                    </td>
-                                                                </tr>      
-                                                                @empty
-                                                                <div class="alert alert-danger" role="alert"> No data found</div>
-                                                                @endforelse
-                                                                
-                                                                
-                                                            </tbody>
-                                                        </table>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div id="investments" class="tab-pane fade">
-                                                <div class="about-me-content pt-3">
-                                                <div class="table-responsive">
-                                                        <table class="table text-dark student-data-table m-t-20">
-                                                            <thead>
-                                                                <tr>
-                                                                    <th>Amount</th>
-                                                                    <th>earned</th>
-                                                                    <th>status</th>
-                                                                </tr>
-                                                            </thead>
-                                                            <tbody>
-                                                            @forelse ($tradingbots as $tradingbot)
-                                                                <tr>
-                                                                    <td>@money($tradingbot['amount']) </td>
-                                                                    <td>@money($tradingbot['amount_earned']) </td>
-                                                                    <td> 
-                                                                        @if ($tradingbot['status'] == 1)
-                                                                            <span class='badge badge-success'>Active</span>
-                                                                        @elseif ($tradingbot['status'] == 0)
-                                                                            <span class='badge badge-danger'>Expired</span>
-                                                                        @else
-                                                                            <span class='badge badge-secondary'>Profit Exceeded</span>
-                                                                        @endif
+                                                                        @if ($project['progress'] == 1)
+                                                                            <span class='badge badge-danger'>Auction</span>
+                                                                        @elseif ($project['progress'] == 2)
+                                                                            <span class='badge badge-primary'>In Progress</span>
                                                                         
-                                                                    </td>
-                                                                </tr>      
-                                                                @empty
-                                                                <div class="alert alert-danger" role="alert"> No data found</div>
-                                                                @endforelse
-                                                                
-                                                                
-                                                            </tbody>
-                                                        </table>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div id="referals" class="tab-pane fade">
-                                                <div class="about-me-content pt-3">
-                                                <div class="table-responsive">
-                                                        <table class="table text-dark student-data-table m-t-20">
-                                                            <thead>
-                                                                <tr>
-                                                                    <th>Name</th>
-                                                                    <th>status</th>
-                                                                </tr>
-                                                            </thead>
-                                                            <tbody>
-                                                            @forelse ($refers as $refer)
-                                                                <tr>
-                                                                    <td>{{ $refer['username'] }}</td>
-                                                                    <td> 
-                                                                        @if ($refer['refearned'] == 1)
-                                                                            <span class='badge badge-success'>Refer Earned</span>
+                                                                        @elseif ($project['progress'] == 3)
+                                                                            <span class='badge badge-success'>Completed</span>
                                                                         @else
-                                                                        <span class='badge badge-danger'>Refer Not Earned</span>
+                                                                            <span class='badge badge-secondary'>Unknown</span>
                                                                         @endif
-                                                                        
                                                                     </td>
+                                                                    <td>@dateformat($project['created_at'])</td>
                                                                 </tr>      
                                                                 @empty
                                                                 <div class="alert alert-danger" role="alert"> No data found</div>

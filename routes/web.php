@@ -20,7 +20,8 @@ Route::group(['namespace' => 'App\Http\Controllers\Home'], function(){
     Route::get('/', 'HomeController@index')->name('home.index');
     Route::get('/about', 'HomeController@about')->name('home.about');
     Route::get('/contact', 'HomeController@contact')->name('home.contact');
-    Route::get('/services', 'HomeController@services')->name('home.services');
+    Route::get('/terms', 'HomeController@terms')->name('home.terms');
+    Route::get('/refund', 'HomeController@refund')->name('home.refund');
     Route::get('/faq', 'HomeController@faq')->name('home.faq');
     Route::get('/plagiarism', 'HomeController@plagiarism')->name('home.plagiarism');
 
@@ -45,11 +46,18 @@ Route::prefix('/admin')->namespace('App\Http\Controllers\Admin')->group(function
 
         //users route
         Route::match(['get','post'],'users', 'AdminController@users');
+        Route::match(['get','post'],'viewusers/{slug}', 'AdminController@viewusers');
+
+        //experts route
+        Route::match(['get','post'],'experts', 'ExpertsController@index');
+        Route::match(['get','post'],'viewexpert/{slug}', 'ExpertsController@viewexpert');
 
         //Email route
         Route::match(['get','post'],'email', 'AdminController@email');
 
-        Route::match(['get','post'],'viewusers/{slug}', 'AdminController@viewusers');
+       
+        //viewproject route
+        Route::match(['get','post'],'viewproject/{slug}', 'ProjectsController@project');
 
         
         //Admin field routes
@@ -77,15 +85,7 @@ Route::prefix('/admin')->namespace('App\Http\Controllers\Admin')->group(function
     
 });
 
-Route::get('/download/tmp/{filename}', function ($filename) {
-    $file = storage_path('tmp/uploads/' . $filename);
 
-    if (!file_exists($file)) {
-        abort(404);
-    }
-
-    return response()->download($file);
-})->name('download.tmp');
 
 Route::prefix('/user')->namespace('App\Http\Controllers\User')->group(function(){
     Route::group(['middleware' => ['guest']], function() {
@@ -138,7 +138,7 @@ Route::prefix('/user')->namespace('App\Http\Controllers\User')->group(function()
             }
         
             return response()->download($file);
-        })->name('download.tmp');
+        })->name('userdownload.tmp');
 
 
 
@@ -175,20 +175,31 @@ Route::prefix('/expert')->namespace('App\Http\Controllers\Expert')->group(functi
         Route::post('/projectsstoremedia', 'ProjectsController@storeMedia')->name('project.storemedia');//to upload file to server
         Route::post('/projectsdeletmedia', 'ProjectsController@deleteMedia')->name('project.deletemedia');//to upload file to server
         Route::get('/download/tmp/{filename}', function ($filename) {
-            $file = storage_path('tmp/uploads/' . $filename);
+            $file = storage_path('/app/public/tmp/uploads/' . $filename);
         
+            dd($file);
             if (!file_exists($file)) {
                 abort(404);
             }
         
             return response()->download($file);
-        })->name('download.tmp');
+        })->name('expertdownload.tmp');
 
 
         Route::get('/notification', 'ExpertController@notification')->name('expertnotification.view');
-        Route::get('/payout', 'ExpertController@payout')->name('expertpayout.view');
-        Route::get('/settings', 'ExpertController@settings')->name('expertsettings.view');
-         Route::get('/logout', 'LogoutController@perform')->name('expertlogout.perform');
+
+        //payout
+        Route::match(['get','post'],'payout', 'ExpertController@payout');
+
+        //settings
+        Route::match(['get','post'],'settings/{slug}', 'SettingController@setting')->name('expertsettings.view');
+        Route::get('/getfieldofstudyoptions', 'SettingController@getfieldofstudyOptions')->name('getfieldofstudyoptions.perform');
+        Route::get('/getfieldofstudy', 'SettingController@getfieldofstudy')->name('getfieldofstudy.perform');
+        Route::get('/getprojecttype', 'SettingController@getprojecttype')->name('getprojecttype.perform');
+        Route::post('/picstoremedia', 'SettingController@storeMedia')->name('picupload.storemedia');//to upload file to server
+        Route::post('/picdeletmedia', 'SettingController@deleteMedia')->name('picdelete.deletemedia');//to upload file to server
+
+        Route::get('/logout', 'LogoutController@perform')->name('expertlogout.perform');
     });
 
 

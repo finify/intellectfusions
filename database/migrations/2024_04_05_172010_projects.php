@@ -20,8 +20,12 @@ return new class extends Migration
             $table->string('project_attachment_id');
             $table->string('deadline');
             $table->string('progress')->comment('1-action, 2-inprogress , 3-completed');
-            $table->string('expert_id')->comment('0-no expert found');
+            $table->unsignedBigInteger('expert_id')->comment('0-no expert found');
+            $table->foreign('expert_id')->references('id')->on('users');
+            $table->unsignedBigInteger('user_id');
+            $table->foreign('user_id')->references('id')->on('users');
             $table->string('price');
+            $table->string('expert_price')->nullable();
             $table->timestamps();
         });
     }

@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Expert;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Schema;
 
 use App\Models\User;
 use App\Models\projects;
@@ -13,6 +14,8 @@ use App\Models\projecttype;
 use App\Models\fields;
 use App\Models\Notifications;
 use App\Models\Attachment;
+use App\Models\Expertdetail;
+use App\Models\withdraw;
 
 
 class ExpertController extends Controller
@@ -28,6 +31,14 @@ class ExpertController extends Controller
         $completeds = projects::where('expert_id', Auth::guard('expert')->User()->id)->where('progress','3')->get()->toArray();
 
 
+        //withdrawl details
+        $withdraws = withdraw::where('user_id',Auth::guard('expert')->User()->id)->orderBy('id','desc')->get()->toArray();
+
+        $expertdetail = Expertdetail::where('user_id', Auth::guard('expert')->User()->id)->first()?->toArray() ?? array_fill_keys(Schema::getColumnListing('expertdetails'),null);
+        
+
+        //withdrawal details
+
         $all = count($completeds) + count($inprogress)+ count($auctions);
         $project_details = [
             'auctions'=>count($auctions),
@@ -36,7 +47,7 @@ class ExpertController extends Controller
             'all'=>$all,
         ];
 
-        return compact('user','notifications','auctions','inprogress','completeds','projects','project_details');
+        return compact('user','notifications','auctions','inprogress','completeds','projects','project_details','withdraws','expertdetail');
     }
 
     public function dashboard(Request $request){
@@ -57,11 +68,77 @@ class ExpertController extends Controller
 
     public function payout(Request $request){
         $details = $this->getUserDetails();
-        return view('expert.payout')->with($details);
+        $data = $request->all();
+        
+
+        $Expertdetail = Expertdetail::where('user_id', Auth::guard('expert')->User()->id)->first()?->toArray() ?? array_fill_keys(Schema::getColumnListing('expertdetails'),null);
+
+        if($request->isMethod('POST')){
+            $withdrawdetails = [
+                'user_id'=> Auth::guard('expert')->User()->id,
+                'payment_method'=> $data['payment_method'],
+                'amount'=> $data['amount'],
+                'payment_details'=> $data['payment_details'],
+                'withdraw_status'=>0
+            ];
+
+            if($Expertdetail['balance'] >= $data['amount']){
+                $withdrawn = withdraw::create($withdrawdetails);
+
+                $newbalance = $Expertdetail['balance'] - $data['amount'];
+
+                $updated = Expertdetail::where('id',Auth::guard('expert')->User()->id)->update(['balance'=> $newbalance]);
+
+                if($updated){
+
+                    //email withdraw user
+                    $mailData = [
+                        'title' => 'Withdrawal Request',
+                        'body' => '<p>Your Withdrawal of $'.$data['amount'].' has been recieved and will be processed shortly</p>
+                        <p>Payment Details:</p>
+                        <p>'.$data['payment_details'].'</p>
+                        ',
+                        'username'=> Auth::guard('expert')->User()->name
+                    ];
+                    // Mail::to($user['email'])->send(new WithdrawMail($mailData));
+
+                    //email withdraw admin
+                    $mailData = [
+                        'title' => 'New Withdrawal Request',
+                        'body' => '<p>'.Auth::guard('expert')->User()->name.'Just made a Withdrawal of $'.$data['amount'].' and needs approval</p>
+                        <p>Payment Details:</p>
+                        <p>'.$data['payment_details'].'</p>
+                        ',
+                        'username'=> "Admin"
+                    ];
+                    // Mail::to(env('ADMIN_EMAIL'))->send(new WithdrawMail($mailData));
+                    $allwithdraws = withdraw::where('user_id', Auth::guard('expert')->User()->id)->sum('amount');
+                    return redirect()->to('expert/payout')->with('withdraw_success', 'Your withdrawal was successful')->with($this->getUserDetails())->with('totalwithraws',$allwithdraws);
+                }else{
+                    $allwithdraws = withdraw::where('user_id', Auth::guard('expert')->User()->id)->sum('amount');
+                    return redirect()->to('expert/payout')->with('error_message', 'error occured')->with($this->getUserDetails())->with('totalwithraws',$allwithdraws);
+                }
+            }else{
+                $allwithdraws = withdraw::where('user_id', Auth::guard('expert')->User()->id)->sum('amount');
+                return redirect()->to('expert/payout')->with('error_message', 'Your do not have enough funds in wallet!')->with($this->getUserDetails())->with('totalwithraws',$allwithdraws);
+            }
+
+
+
+
+        };
+
+        
+        $allwithdraws = withdraw::where('user_id', Auth::guard('expert')->User()->id)->sum('amount');
+        // dd($allwithdraws);
+        $details = $this->getUserDetails();
+        return view('expert.payout')->with($details)->with('totalwithraws',$allwithdraws);
     }
 
     public function settings(Request $request){
         $details = $this->getUserDetails();
+        
+
         return view('expert.settings')->with($details);
     }
 

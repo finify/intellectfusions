@@ -3,12 +3,17 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use App\Mail\WithdrawMail;
-use App\Models\User;
-use App\Models\withdraw;
+
+
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Mail;
+
+use App\Mail\WithdrawMail;
+
+use App\Models\Expertdetail;
+use App\Models\User;
+use App\Models\withdraw;
 
 class WithdrawController extends Controller
 {
@@ -33,22 +38,24 @@ class WithdrawController extends Controller
                 //email withdraw user approval
                 $mailData = [
                     'title' => 'Withdrawal Approved',
-                    'body' => '<p>Your Withdrawal of $'.$currentwithdraw['amount'].' to the '.$currentwithdraw['gateway'].' wallet  <strong>'.$currentwithdraw['userwallet_id'].'</strong> has been approved and payment sent to wallet specified</p>
+                    'body' => '<p>Your Withdrawal of $'.$currentwithdraw['amount'].' to the details provided below has been approved and payment sent to wallet specified</p>
+                    <p>'.$currentwithdraw['payment_details'].'</p>
                     ',
-                    'username'=> $currentuser['username']
+                    'username'=> $currentuser['name']
                 ];
-                Mail::to($currentuser['email'])->send(new WithdrawMail($mailData));
+                // Mail::to($currentuser['email'])->send(new WithdrawMail($mailData));
 
                 return redirect()->back()->with('withdraw_message', 'Your have successfully approved the withdrawal ');
 
             }elseif($data['action'] == "decline"){
                 //step 1 update withdraw status to 3
                 $withdrawUpdated = withdraw::where('id',$data['withdrawid'])->update(['withdraw_status'=> 3]);
+                $Expertdetail = Expertdetail::where('user_id', $currentwithdraw['user_id'])->first()?->toArray() ?? array_fill_keys(Schema::getColumnListing('expertdetails'),null);
+              
 
-
-                $newbalance = $currentuser['balance'] + $currentwithdraw['amount'];
+                $newbalance = $Expertdetail['balance'] + $currentwithdraw['amount'];
     
-                $updated = User::where('id', $currentuser['id'])->update(['balance'=> $newbalance]);
+                $updated = Expertdetail::where('id',$currentwithdraw['user_id'])->update(['balance'=> $newbalance]);
 
                 return redirect()->back()->with('deposit_message', 'Your have successfully declined the withdraw');
             }

@@ -19,6 +19,7 @@ class projects extends Model
         'deadline',
         'progress',
         'expert_id',
-        'price'
+        'price',
+        'expert_price'
     ];
 }

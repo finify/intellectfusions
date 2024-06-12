@@ -16,6 +16,7 @@ return new class extends Migration
             $table->unsignedBigInteger('project_id');
             $table->unsignedBigInteger('expert_id');
             $table->foreign('project_id')->references('id')->on('projects');
+            $table->foreign('expert_id')->references('id')->on('users');
             $table->string('status')->comment('0-not assigned 1-assigned');
             $table->timestamps();
         });

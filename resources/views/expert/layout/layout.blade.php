@@ -69,6 +69,9 @@
                   background-color:#6223D2!important;
             }
       </style>
+
+      <link href="https://cdnjs.cloudflare.com/ajax/libs/dropzone/5.5.1/min/dropzone.min.css" rel="stylesheet" />
+      <!-- <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" /> -->
         @yield('header')
     </head>
     <body class="layout-default">
@@ -115,6 +118,22 @@
         </div> -->
 
         <!-- jQuery -->
+
+            <!--Start of Tawk.to Script-->
+            <script type="text/javascript">
+            var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();
+            (function(){
+            var s1=document.createElement("script"),s0=document.getElementsByTagName("script")[0];
+            s1.async=true;
+            s1.src='https://embed.tawk.to/66673be29a809f19fb3c231b/1i01k3s0i';
+            s1.charset='UTF-8';
+            s1.setAttribute('crossorigin','*');
+            s0.parentNode.insertBefore(s1,s0);
+            })();
+            </script>
+            <!--End of Tawk.to Script-->
+
+
         <script src="/dashassets/vendor/jquery.min.js"></script>
 
         <!-- Bootstrap -->
@@ -166,6 +185,9 @@
         <script src="/dashassets/vendor/jqvmap/jquery.vmap.min.js"></script>
         <script src="/dashassets/vendor/jqvmap/maps/jquery.vmap.world.js"></script>
         <script src="/dashassets/js/vector-maps.js"></script>
+
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/dropzone/5.5.1/min/dropzone.min.js"></script>
+        <!-- <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script> -->
         @yield('footer')
     </body>
 </html>

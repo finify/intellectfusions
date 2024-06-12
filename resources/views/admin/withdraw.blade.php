@@ -46,7 +46,7 @@
                                         <tbody>
                                         @forelse ($withdraws as $withdraw )
                                             <tr>
-                                                <td>#{{ $withdraw->user_id}} {{ $withdraw->username}}</td>
+                                                <td>#{{ $withdraw->user_id}} {{ $withdraw->name}}</td>
                                                 <td>{{ $withdraw->payment_method }}</td>
                                                 <td>{{ $withdraw->amount }}</td>
                                                 <td>{{ $withdraw->payment_details }}</td>

@@ -3,15 +3,15 @@
 @section('header')
 <link rel="stylesheet" href="/homeassets/css/course.min.css" />
 <link rel="stylesheet" href="/homeassets/css/about.min.css" />
+<link rel="stylesheet" href="/homeassets/css/index.min.css" />
 @endsection
-
 @section('content')
 <header class="page">
     <div class="page_breadcrumbs">
         <div class="container">
             <ul class="page_breadcrumbs-list d-flex flex-wrap align-items-center">
                 <li class="list-item">
-                    <a href="index.html" class="link">Home</a>
+                    <a href="/" class="link">Home</a>
                 </li>
 
                 <li class="list-item">About</li>
@@ -70,7 +70,7 @@ At IntellectFusions, we're not just a service provider - we're your partner in e
             allowfullscreen
         ></iframe>
     </div>
-    <div class="infoblock_block col-lg-6" data-order="3">
+    <!-- <div class="infoblock_block col-lg-6" data-order="3">
         <div class="parallax">
             <div class="img">
                 <picture>
@@ -80,10 +80,7 @@ At IntellectFusions, we're not just a service provider - we're your partner in e
             </div>
         </div>
     </div>
-    <div
-        class="infoblock_block col-lg-6 infoblock_block--sale d-flex flex-column justify-content-center align-items-center"
-        data-order="4"
-    >
+    <div class="infoblock_block col-lg-6 infoblock_block--sale d-flex flex-column justify-content-center align-items-center" data-order="4">
         <div class="content d-flex flex-column flex-sm-row align-items-center align-items-sm-start">
             <span class="content_percent">50%</span>
             <div class="content_text d-flex flex-column align-items-center align-items-xl-start">
@@ -97,6 +94,28 @@ At IntellectFusions, we're not just a service provider - we're your partner in e
                 <span class="text">Get Started Now</span>
             </button>
         </form>
+    </div> -->
+</section>
+<!-- popular courses section start -->
+<section class="popular py-5">
+    <div class="container">
+        <div class="popular_header">
+            <h2 class="popular_header-title" data-aos="fade-up">Services</h2>
+            <p class="popular_header-text" data-aos="fade-down">
+               Explore the wide range of services we offer to discover how we can support your success:
+            </p>
+        </div>
+        <ul class="popular_tags courses-tags d-flex flex-wrap align-items-center justify-content-center">
+            @forelse ($projecttypes as $projecttype)
+                <li class="list-item" data-aos="fade-left">
+                    <a class="tag" href="#">{{ $projecttype['type_name']}}</a>
+                </li>
+            @empty
+                <div class="alert alert-danger" role="alert">No project type</div>
+            @endforelse
+            
+        </ul>
+       
     </div>
 </section>
 <!-- info blocks section end -->
@@ -295,7 +314,7 @@ At IntellectFusions, we're not just a service provider - we're your partner in e
 
 
 <!-- faq section start -->
-<section class="faq">
+<!-- <section class="faq">
     <div class="phone">
         <lottie-player
             src="/homeassets/lottie/phone.json"
@@ -325,7 +344,6 @@ At IntellectFusions, we're not just a service provider - we're your partner in e
             </p>
         </div>
         <div class="faq_accordion" id="faq_accordion">
-            <!-- item 1 -->
             <div class="faq_accordion-item">
                 <div class="item-wrapper">
                     <h4
@@ -348,7 +366,6 @@ At IntellectFusions, we're not just a service provider - we're your partner in e
                     </div>
                 </div>
             </div>
-            <!-- item 2 -->
             <div class="faq_accordion-item">
                 <div class="item-wrapper">
                     <h4
@@ -371,7 +388,6 @@ At IntellectFusions, we're not just a service provider - we're your partner in e
                     </div>
                 </div>
             </div>
-            <!-- item 3 -->
             <div class="faq_accordion-item">
                 <div class="item-wrapper">
                     <h4
@@ -397,7 +413,7 @@ At IntellectFusions, we're not just a service provider - we're your partner in e
         </div>
         <a class="faq_btn btn--arrow" href="faq.html">View all<i class="icon-arrow-right-solid icon"></i></a>
     </div>
-</section>
+</section> -->
 
 <!-- faq section end -->
 @endsection

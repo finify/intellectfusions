@@ -5,8 +5,9 @@
 @endsection
 
 @section('content')
+
  <!-- hero section start -->
- <div class="underlay"></div>
+<div class="underlay"></div>
 <section class="hero">
     <div class="container d-lg-flex align-items-center">
         <div class="hero_content">
@@ -51,77 +52,29 @@
     </div>
 </section>
 <!-- hero section end -->
-<!-- features section start -->
-<div class="features">
-    <div class="container">
-        <ul class="features_list d-md-flex flex-wrap">
-            <li class="features_list-item col-md-4" data-order="1" data-aos="fade-up">
-                <div class="card">
-                    <div class="content">
-                        <div class="card_media">
-                            <i class="icon-user-graduate-solid icon"></i>
-                        </div>
-                        <div class="card_main">
-                            <h5 class="card_main-title">Huge Community of Experts</h5>
-                            <p class="card_main-text">
-                                We bring together verified college professors, practicing scientist.
-                            </p>
-                        </div>
-                    </div>
-                </div>
-            </li>
-            <li class="features_list-item col-md-4" data-order="2" data-aos="fade-up">
-                <div class="card">
-                    <div class="content">
-                        <div class="card_media">
-                            <i class="icon-gem-solid icon"></i>
-                        </div>
-                        <div class="card_main">
-                            <h5 class="card_main-title">Affordable Prices</h5>
-                            <p class="card_main-text">
-                                We use high-tech solutions such as AI-based tools to cover various parts of the process of each project. 
-                            </p>
-                        </div>
-                    </div>
-                </div>
-            </li>
-            <li class="features_list-item col-md-4" data-order="3" data-aos="fade-up">
-                <div class="card">
-                    <div class="content">
-                        <div class="card_media">
-                            <i class="icon-headset-solid icon"></i>
-                        </div>
-                        <div class="card_main">
-                            <h5 class="card_main-title">24/7 Support</h5>
-                            <p class="card_main-text">
-                            Our support team is here for you 24/7 to answer any questions and resolve any issues you might have
-                            </p>
-                        </div>
-                    </div>
-                </div>
-            </li>
-        </ul>
-    </div>
-</div>
-<!-- features section end -->
+
 <!-- promo section start -->
 <section class="promo">
-    <div class="container d-flex flex-column-reverse flex-lg-row justify-content-lg-end">
-        <div class="promo_media">
-            <lottie-player
+    <div class="container d-flex flex-column flex-lg-row justify-content-lg-end align-items-center">
+        <div class="row p-4">
+            <div class="col-12 p-2">
+                    <img src="/homeassets/img/dataanalysisimage.png" width="100%" alt="">
+            </div>
+            <!-- <lottie-player
                 src="/homeassets/lottie/scene.json"
                 background="transparent"
                 speed="1"
                 style="width: 100%; height: 100%"
                 loop
                 autoplay
-            ></lottie-player>
+            ></lottie-player> -->
+            
         </div>
         <div class="promo_content">
             <h2 class="promo_content-header" data-aos="fade-left">We Have Data Scientics Available</h2>
             <p class="promo_content-text" data-aos="fade-up" data-aos-delay="50">
             Data analysis is a vital component of modern business as it is crucial for making informed business decisions, but without the proper resources and expertise, it can be a costly and time-consuming endeavor. IntellectFusions offers partnerships to companies and individuals that want a reliable and cost-effective data analysis service enabling them to gain valuable insights quickly and efficiently. 
-As your trusted data analytics partner, we leverage our years of expertise and knowledge to deliver accurate and actionable insights tailored to your unique requirements.
+            As your trusted data analytics partner, we leverage our years of expertise and knowledge to deliver accurate and actionable insights tailored to your unique requirements.
             </p>
             <h4>Data areas covered by intellectfusions</h4>
             <ul class="popular_tags courses-tags d-flex flex-wrap align-items-start justify-content-start">
@@ -154,8 +107,123 @@ As your trusted data analytics partner, we leverage our years of expertise and k
     </div>
 </section>
 <!-- promo section end -->
+
+<!-- features section start -->
+<div class="features py-5">
+    <div class="container">
+        <ul class="features_list d-md-flex flex-wrap row">
+            <li class="features_list-item col-md-4 col-6" data-order="1" data-aos="fade-up">
+                <div class="card">
+                    <div class="content">
+                        <div class="card_media">
+                            <i class="icon-user-graduate-solid icon"></i>
+                        </div>
+                        <div class="card_main">
+                            <h5 class="card_main-title display-6">Huge Community of Experts</h5>
+                            <p class="card_main-text">
+                                We bring together verified college professors, practicing scientist.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </li>
+            <li class="features_list-item col-md-4 col-6" data-order="2" data-aos="fade-up">
+                <div class="card">
+                    <div class="content">
+                        <div class="card_media">
+                            <i class="icon-gem-solid icon"></i>
+                        </div>
+                        <div class="card_main">
+                            <h5 class="card_main-title">Affordable Prices</h5>
+                            <p class="card_main-text">
+                                We use high-tech solutions such as AI-based tools to cover various parts of the process of each project. 
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </li>
+            <li class="features_list-item col-md-4 col-6" data-order="3" data-aos="fade-up">
+                <div class="card">
+                    <div class="content">
+                        <div class="card_media">
+                            <i class="icon-headset-solid icon"></i>
+                        </div>
+                        <div class="card_main">
+                            <h5 class="card_main-title">24/7 Support</h5>
+                            <p class="card_main-text">
+                            Our support team is here for you 24/7 to answer any questions and resolve any issues you might have
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </li>
+            <li class="features_list-item col-md-4 col-6" data-order="3" data-aos="fade-up">
+                <div class="card">
+                    <div class="content">
+                        <div class="card_media">
+                            <i class="icon-money-check-alt-solid icon"></i>
+                        </div>
+                        <div class="card_main">
+                            <h5 class="card_main-title">Safe payment method </h5>
+                            <p class="card_main-text">
+                            We offer secure payment options with advanced encryption to protect your financial information.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </li>
+            <li class="features_list-item col-md-4 col-6" data-order="3" data-aos="fade-up">
+                <div class="card">
+                    <div class="content">
+                        <div class="card_media">
+                            <i class="icon-user-shield-solid icon"></i>
+                        </div>
+                        <div class="card_main">
+                            <h5 class="card_main-title">Money-Back Guarantee</h5>
+                            <p class="card_main-text">
+                            If you're not completely satisfied with your purchase, we offer a hassle-free refund
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </li>
+            <li class="features_list-item col-md-4 col-6" data-order="3" data-aos="fade-up">
+                <div class="card">
+                    <div class="content">
+                        <div class="card_media">
+                            <i class="icon-project-diagram-solid icon"></i>
+                        </div>
+                        <div class="card_main">
+                            <h5 class="card_main-title">Data Protection</h5>
+                            <p class="card_main-text">
+                            We implement robust data protection measures to safeguard your informations
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </li>
+            <!-- <li class="features_list-item col-md-4 col-6" data-order="3" data-aos="fade-up">
+                <div class="card">
+                    <div class="content">
+                        <div class="card_media">
+                            <i class="icon-money-check-alt-solid icon"></i>
+                        </div>
+                        <div class="card_main">
+                            <h5 class="card_main-title">Plagiarism Checker</h5>
+                            <p class="card_main-text">
+                            Ensure the originality of your work with our plagiarism checker.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </li> -->
+        </ul>
+    </div>
+</div>
+<!-- features section end -->
+
 <!-- about section start -->
-<section class="about">
+<section class="about p-4">
     <div class="container">
         <div class="about_deco">
             <lottie-player
@@ -224,75 +292,34 @@ As your trusted data analytics partner, we leverage our years of expertise and k
         </div>
         <div class="about_review" data-aos="zoom-in">
             <div class="about_review-wrapper">
-                <div class="media">
-                    <picture>
-                        <source data-srcset="/homeassets/img/placeholder.jpg" srcset="/homeassets/img/placeholder.jpg" />
-                        <img class="lazy" data-src="/homeassets/img/placeholder.jpg" src="/homeassets/img/placeholder.jpg" alt="media" />
-                    </picture>
-                </div>
-                <div class="main">
-                    <h5 class="main_name">Diana Gloster</h5>
-                    <ul class="rating d-flex align-items-center">
-                        <li class="rating_star">
-                            <i class="icon-star icon"></i>
-                        </li>
-                        <li class="rating_star">
-                            <i class="icon-star icon"></i>
-                        </li>
-                        <li class="rating_star">
-                            <i class="icon-star icon"></i>
-                        </li>
-                        <li class="rating_star">
-                            <i class="icon-star icon"></i>
-                        </li>
-                        <li class="rating_star">
-                            <i class="icon-star icon"></i>
-                        </li>
-                    </ul>
-                    <q class="main_review quote">
-                        “Mauris tellus lorem, tempus sed nibh at, varius convallis mi. sed scelerisque odio neque a lacus. Ut
-                        consectetur ligula. ed rhoncus sapien eget feugiat.”
-                    </q>
-                </div>
-            </div>
+               <img src="" alt="">
         </div>
     </div>
 </section>
 <!-- about section end -->
 <!-- popular courses section start -->
-<section class="popular">
+<section class="popular py-5">
     <div class="container">
         <div class="popular_header">
-            <h2 class="popular_header-title" data-aos="fade-up">Popular Services</h2>
+            <h2 class="popular_header-title" data-aos="fade-up">Services</h2>
             <p class="popular_header-text" data-aos="fade-down">
-                Sed a eros sodales diam sagittis faucibus. Cras id erat nisl. Fusce faucibus nulla sed finibus egestas.
-                Vestibulum purus magna.
+               Explore the wide range of services we offer to discover how we can support your success:
             </p>
         </div>
         <ul class="popular_tags courses-tags d-flex flex-wrap align-items-center justify-content-center">
-            <li class="list-item" data-aos="fade-left">
-                <a class="tag" href="#">programming</a>
-            </li>
-            <li class="list-item" data-aos="fade-left" data-aos-delay="50">
-                <a class="tag" href="#">management</a>
-            </li>
-            <li class="list-item" data-aos="fade-left" data-aos-delay="100">
-                <a class="tag" href="#">art</a>
-            </li>
-            <li class="list-item" data-aos="fade-left" data-aos-delay="150">
-                <a class="tag" href="#">digital marketing</a>
-            </li>
-            <li class="list-item" data-aos="fade-left" data-aos-delay="200">
-                <a class="tag" href="#">game development</a>
-            </li>
-            <li class="list-item" data-aos="fade-left" data-aos-delay="250">
-                <a class="tag" href="#">smm</a>
-            </li>
+            @forelse ($projecttypes as $projecttype)
+                <li class="list-item" data-aos="fade-left">
+                    <a class="tag" href="#">{{ $projecttype['type_name']}}</a>
+                </li>
+            @empty
+                <div class="alert alert-danger" role="alert">No project type</div>
+            @endforelse
+            
         </ul>
        
     </div>
 </section>
-<!-- popular courses section end -->
+<!-- info blocks section end -->
 <!-- banner section start -->
 <div class="banner">
     <div class="underlay"></div>

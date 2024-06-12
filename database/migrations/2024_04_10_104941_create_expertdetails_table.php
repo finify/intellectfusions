@@ -13,12 +13,22 @@ return new class extends Migration
     {
         Schema::create('expertdetails', function (Blueprint $table) {
             $table->id();
-            $table->string('user_id');
-            $table->string('about')->nullable();
-            $table->string('phone_number')->nullable();
-            $table->string('field_of_study')->nullable();
-            $table->string('project_type')->nullable();
+            $table->unsignedBigInteger('user_id');
+            $table->foreign('user_id')->references('id')->on('users');
             $table->string('balance')->nullable();
+            $table->string('profileimage')->nullable();
+            $table->text('about')->nullable();
+            $table->string('phone_number')->nullable();
+            $table->json('field_of_study')->nullable();
+            $table->json('project_type')->nullable();
+            $table->string('country')->nullable();
+            $table->string('city')->nullable();
+            $table->string('degree_obtained')->nullable();
+            $table->string('degree_obtained_others')->nullable();
+            $table->string('availability')->nullable();
+            $table->string('deliver')->nullable();
+            $table->text('plagiarism')->nullable();
+            $table->text('plagiarismcheck')->nullable();
             $table->timestamps();
         });
     }

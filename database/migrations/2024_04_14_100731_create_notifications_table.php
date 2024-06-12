@@ -16,6 +16,7 @@ return new class extends Migration
             $table->unsignedBigInteger('user_id');
             $table->foreign('user_id')->references('id')->on('users');
             $table->string('text');
+            $table->string('notify_id');
             $table->string('type');
             $table->string('seen')->comment('0-not seen    1 seen');
             $table->timestamps();

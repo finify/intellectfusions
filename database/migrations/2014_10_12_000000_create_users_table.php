@@ -16,6 +16,7 @@ return new class extends Migration
             $table->string('name');
             $table->string('password');
             $table->string('email')->unique();
+            $table->string('profilepicture')->nullable();
             $table->string('user_type')->comment('user or expert');
             $table->string('status')->comment('0-inactive and 1-active user');
             $table->timestamp('email_verified_at')->nullable();

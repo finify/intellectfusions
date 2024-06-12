@@ -12,6 +12,7 @@ use App\Models\projecttype;
 use App\Models\fields;
 use App\Models\Notifications;
 use App\Models\Attachment;
+use App\Models\Expertdetail;
 use App\Models\ExpertAttachment;
 
 class ProjectsController extends Controller
@@ -24,12 +25,12 @@ class ProjectsController extends Controller
         $project = projects::where('expert_id', Auth::guard('expert')->User()->id)->where('id',$slug)->first()->toArray();
         $attachments = Attachment::where('project_id',$slug)->get()->toArray();
         $expertattachments = ExpertAttachment::where('project_id',$slug)->get()->toArray();
-
-        return compact('user','notifications','project','attachments','expertattachments');
+        $expertdetail = Expertdetail::where('user_id', Auth::guard('expert')->User()->id)->first()?->toArray() ?? array_fill_keys(Schema::getColumnListing('expertdetails'),null);
+        return compact('user','notifications','project','attachments','expertattachments','expertdetail');
     }
 
     public function storeMedia(Request $request){
-        $path = storage_path('tmp/uploads');
+        $path = storage_path('app/public/expertfiles');
 
         if (!file_exists($path)) {
             mkdir($path, 0777, true);
@@ -37,7 +38,7 @@ class ProjectsController extends Controller
 
         $file = $request->file('file');
 
-        $name = uniqid() . '_' . trim($file->getClientOriginalName());
+        $name = uniqid() . '_' . str_replace(' ', '-', trim($file->getClientOriginalName())) ;
 
         $file->move($path, $name);
         return response()->json([
@@ -50,7 +51,7 @@ class ProjectsController extends Controller
         $filename = $request->input('filename');
 
         // Specify the path of the file to be deleted
-        $filePath = storage_path('tmp/uploads/' . $filename);
+        $filePath = storage_path('app/public/expertfiles/' . $filename);
 
         // Check if the file exists
         if (file_exists($filePath)) {
@@ -66,7 +67,7 @@ class ProjectsController extends Controller
         $filename = $request->input('filename');
 
         // Specify the path of the file to be deleted
-        $filePath = storage_path('tmp/uploads/' . $filename);
+        $filePath = storage_path('expertfiles/' . $filename);
 
         // Check if the file exists
         if (file_exists($filePath)) {
@@ -95,25 +96,28 @@ class ProjectsController extends Controller
 
                 foreach ($request->input('document', []) as $file) {
                     $attachment_details = [
-                        'user_id'=> Auth::User()->id,
+                        'user_id'=> Auth::guard('expert')->User()->id,
                         'project_id'=> $slug,
                         'filename'=> $file,
                         'original_filename'=> $file,
                         'status'=> 0
                     ];
     
-                    $attachment = Attachment::create($attachment_details);               
+                    $attachment = ExpertAttachment::create($attachment_details);               
                 }
                 $details = $this->getProjectDetails($slug);
                 return redirect()->back()->with($details)->with('success','File Uploaded');
             }elseif($data['action'] == "deletefile"){
+            
                 $filename = $request->input('filename');
 
                 $attachmentid = $data['attachmentid'];
-                // Specify the path of the file to be deleted
-                $filePath = storage_path('tmp/uploads/' . $filename);
+              
 
-                $deleted = Attachment::where('id',$attachmentid)->delete();
+                // Specify the path of the file to be deleted
+                $filePath = storage_path('expertfiles/' . $filename);
+
+                $deleted = ExpertAttachment::where('id',$attachmentid)->delete();
                     
                 // Check if the file exists
                 if (file_exists($filePath)) {

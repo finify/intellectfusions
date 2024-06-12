@@ -11,6 +11,8 @@
                                 class="nav-text">Dashboard</span></a></li>
                     <li><a href="/admin/users" aria-expanded="false"><i class="mdi mdi-account"></i><span
                                 class="nav-text">Users</span></a></li>
+                    <li><a href="/admin/experts" aria-expanded="false"><i class="mdi mdi-account"></i><span
+                                class="nav-text">Experts</span></a></li>
                     <!-- <li><a href="/admin/experts" aria-expanded="false"><i class="mdi mdi-account"></i><span
                                 class="nav-text">Experts</span></a></li> -->
                     <li><a href="/admin/email" aria-expanded="false"><i class="mdi mdi-account"></i><span

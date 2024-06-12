@@ -97,7 +97,7 @@
                                         $filerealname = $parts[1] ?? null;
                                     @endphp
                                     <div class="stories-card__title flex">
-                                        <h5 class="card-title m-0"><a href="{{ route('download.tmp', ['filename' => $attachment['original_filename']]) }}"
+                                        <h5 class="card-title m-0"><a href="{{ asset('storage/tmp/uploads/' . $attachment['original_filename']) }}"
                                                 class="text-body">{{  $filerealname }}</a></h5>
                                         <!-- <small class="text-muted"><a href="#"><strong>PDF</strong></a> 22.2kb</small> -->
                                     </div>
@@ -127,52 +127,55 @@
                     </div>
                     <div class="tab-pane show fade" id="expert_attachment">
                         @forelse ($expertattachments as $expertattachment)
-                        <div class="card">
-                            <div class="d-flex align-items-center flex-wrap">
-                                <div class="m-4">
-                                    <a href="#"
-                                        class="d-flex align-items-center text-muted">
-                                        <!-- LOGO -->
-                                        <svg xmlns="http://www.w3.org/2000/svg"
-                                                width="48"
-                                                height="48">
-                                            <g stroke="currentColor"
-                                                fill="none"
-                                                stroke-width="1.5"
-                                                stroke-linecap="round"
-                                                stroke-linejoin="round">
-                                                <path d="M26.09 37.272l-7.424 1.06 1.06-7.424 19.092-19.092c1.758-1.758 4.606-1.758 6.364 0s1.758 4.606 0 6.364L26.09 37.272zM12 1.498h12c.828 0 1.5.672 1.5 1.5v3c0 .828-.672 1.5-1.5 1.5H12c-.828 0-1.5-.672-1.5-1.5v-3c0-.828.672-1.5 1.5-1.5zM25.5 4.498h6c1.656 0 3 1.344 3 3"
-                                                        stroke-width="3"></path>
-                                                <path d="M34.5 37.498v6c0 1.656-1.344 3-3 3h-27c-1.656 0-3-1.344-3-3v-36c0-1.656 1.344-3 3-3h6M10.5 16.498h15M10.5 25.498h6"
-                                                        stroke-width="3"></path>
-                                            </g>
-                                        </svg>
+                            @if ($expertattachment['status'] == 1)
+                                <div class="card">
+                                    <div class="d-flex align-items-center flex-wrap">
+                                        <div class="m-4">
+                                            <a href="#"
+                                                class="d-flex align-items-center text-muted">
+                                                <!-- LOGO -->
+                                                <svg xmlns="http://www.w3.org/2000/svg"
+                                                        width="48"
+                                                        height="48">
+                                                    <g stroke="currentColor"
+                                                        fill="none"
+                                                        stroke-width="1.5"
+                                                        stroke-linecap="round"
+                                                        stroke-linejoin="round">
+                                                        <path d="M26.09 37.272l-7.424 1.06 1.06-7.424 19.092-19.092c1.758-1.758 4.606-1.758 6.364 0s1.758 4.606 0 6.364L26.09 37.272zM12 1.498h12c.828 0 1.5.672 1.5 1.5v3c0 .828-.672 1.5-1.5 1.5H12c-.828 0-1.5-.672-1.5-1.5v-3c0-.828.672-1.5 1.5-1.5zM25.5 4.498h6c1.656 0 3 1.344 3 3"
+                                                                stroke-width="3"></path>
+                                                        <path d="M34.5 37.498v6c0 1.656-1.344 3-3 3h-27c-1.656 0-3-1.344-3-3v-36c0-1.656 1.344-3 3-3h6M10.5 16.498h15M10.5 25.498h6"
+                                                                stroke-width="3"></path>
+                                                    </g>
+                                                </svg>
 
-                                    </a>
-                                </div>
-                                @php
-                                        $modifiedValue = str_replace(' ', '-', $expertattachment['original_filename']);
-                                        // Split the string by the hyphen
-                                        $parts = explode('_', $modifiedValue);
-                                        // Get the second element
-                                        $filerealname = $parts[1] ?? null;
-                                    @endphp
-                                <div class="stories-card__title flex">
-                                    <h5 class="card-title m-0"><a href=""
-                                            class="text-body">{{ $filerealname }}</a></h5>
-                                    <!-- <small class="text-muted"><a href="#"><strong>PDF</strong></a> 22.2kb</small> -->
-                                </div>
-                                <div class="ml-auto d-flex align-items-center">
-                                    <div class="avatar-group mr-3">
+                                            </a>
+                                        </div>
+                                        @php
+                                                $modifiedValue = str_replace(' ', '-', $expertattachment['original_filename']);
+                                                // Split the string by the hyphen
+                                                $parts = explode('_', $modifiedValue);
+                                                // Get the second element
+                                                $filerealname = $parts[1] ?? null;
+                                            @endphp
+                                        <div class="stories-card__title flex">
+                                            <h5 class="card-title m-0"><a href="{{ asset('storage/tmp/uploads/' . $expertattachment['original_filename']) }}"
+                                                    class="text-body">{{ $filerealname }}</a></h5>
+                                            <!-- <small class="text-muted"><a href="#"><strong>PDF</strong></a> 22.2kb</small> -->
+                                        </div>
+                                        <div class="ml-auto d-flex align-items-center">
+                                            <div class="avatar-group mr-3">
 
-                                       
-                                    </div>
-                                    <div class="badge badge-soft-angular badge-pill mr-3">
-                                        <button type="button" class="btn btn-success">Download</button>
+                                            
+                                            </div>
+                                            <div class="badge badge-soft-angular badge-pill mr-3">
+                                                <button type="button" class="btn btn-success">Download</button>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-                        </div>
+                            @endif
+                        
                         @empty
                         <div class="alert alert-danger" role="alert"> No Files Uploaded By Expert</div>
                         @endforelse

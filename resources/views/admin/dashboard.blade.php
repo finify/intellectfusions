@@ -43,8 +43,14 @@
                                 </div>
                                 <div class="stat-content d-inline-block ml-2">
                                     <div class="stat-text">Accounts</div>
-                                    <div class="h5">All Users: 54</div>
-                                    <div class="h5">All Experts: 55</div>
+                                    <small class="d-flex align-items-center font-weight-bold text-muted mb-1">
+                                        <span class="flex text-body">All Users:</span>
+                                        <span class="mx-3">{{ $user_details['user'] }}</span>
+                                    </small>
+                                    <small class="d-flex align-items-center font-weight-bold text-muted">
+                                        <span class="flex text-body">All Experts:</span>
+                                        <span class="mx-3">{{ $user_details['expert'] }}</span>
+                                    </small>
                                 </div>
                             </div>
                         </div>
@@ -57,9 +63,18 @@
                                 </div>
                                 <div class="stat-content d-inline-block ml-2">
                                     <div class="stat-text">Projects</div>
-                                    <div class="h5 mb-1">Auction: 54</div>
-                                    <div class="h5 mb-1">In Progress: 55</div>
-                                    <div class="h5 mb-1">Completed: 55</div>
+                                    <small class="d-flex align-items-center font-weight-bold text-muted">
+                                        <span class="flex text-body">Auction:</span>
+                                        <span class="mx-3">{{ $project_details['auctions'] }}</span>
+                                    </small>
+                                    <small class="d-flex align-items-center font-weight-bold text-muted">
+                                        <span class="flex text-body">In Progress:</span>
+                                        <span class="mx-3">{{ $project_details['inprogress'] }}</span>
+                                    </small>
+                                    <small class="d-flex align-items-center font-weight-bold text-muted">
+                                        <span class="flex text-body">Completed:</span>
+                                        <span class="mx-3">{{ $project_details['completed'] }}</span>
+                                    </small>
                                 </div>
                             </div>
                         </div>
@@ -94,12 +109,14 @@
                                             <tr>
                                                 <th>User</th>
                                                 <th>Project title</th>
-                                                <th>project type</th>
-                                                <th>Price</th>
+                                                <th>Field & Type</th>
+                                                <th>User Price</th>
+                                                <th>Expert Price</th>
+                                                <th>Created</th>
                                                 <th>deadline</th>
                                                 <th>progress</th>
                                                 <th>Action</th>
-                                                <th>Created</th>
+                                               
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -107,18 +124,20 @@
                                             <tr>
                                                 <td>{{ $project->name}}</td>
                                                 <td>{{ $project->project_title}}</td>
-                                                <td>{{ $project->project_type}}</td>
+                                                <td>{{ $project->project_type}} , {{ $project->subject_area}}</td>
                                                 <td>@money($project->price)</td>
+                                                <td>@money($project->expert_price)</td>
 
-                                                <td>{{ $project->deadline}}</td>
+                                                <td> @dateformat($project->created_at)</td>
+                                                <td> @dateformat($project->deadline)</td>
                                                 <td> 
                                                     @if ($project->progress == 1)
-                                                        <span class='badge badge-success'>Auction</span>
+                                                        <span class='badge badge-danger'>Auction</span>
                                                     @elseif ($project->progress == 2)
-                                                        <span class='badge badge-danger'>In Progress</span>
+                                                        <span class='badge badge-primary'>In Progress</span>
                                                     
                                                     @elseif ($project->progress == 3)
-                                                        <span class='badge badge-danger'>Completed</span>
+                                                        <span class='badge badge-success'>Completed</span>
                                                     @else
                                                         <span class='badge badge-secondary'>Unknown</span>
                                                     @endif
@@ -128,15 +147,8 @@
                                                 <div class="btn-group" role="group">
                                                     <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">Action</button>
                                                     <div class="dropdown-menu">
-                                                        <form style="float:left; margin-left:10px;" action="{{ url('admin/dashboard') }}" method="POST">
-                                                            @csrf
-                                                            @method('POST')
-                                                            <input type="hidden" name="projectid" value="{{ $project->id }}">
-                                                            
-                                                            <input type="hidden" name="action" value="stoprobot">
-                                                            <button type="submit" class="dropdown-item text-danger">VIEW PROJECT</button>
-                                                            
-                                                        </form>
+                                                        <a class="dropdown-item" href="{{ url('admin/viewproject') }}/{{ $project->id }}">View Project</a>
+                                                        
                                                         
 
                                                     </div>
@@ -144,7 +156,7 @@
                                                 </td>
                                                 
 
-                                                <td>{{ $project->created_at}}</td>
+                                                
                                                
                                             </tr>
                                         @endforeach

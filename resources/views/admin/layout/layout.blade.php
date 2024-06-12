@@ -17,6 +17,9 @@
 
     <link href="{{ url('adminassets/vendor/sweetalert2/dist/sweetalert2.min.css') }}" rel="stylesheet">
 
+    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+    @yield('header')
+    <!-- Include Select2 JS -->
 </head>
 
 <body>
@@ -96,16 +99,18 @@
 
     <script type="text/javascript">
  
-//      $('.show_confirm').click(function(event) {
-//           event.preventDefault();
-//           Swal.fire(
-//   'Good job!',
-//   'You clicked the button!',
-//   'success'
-// )
-//       });
-  
-</script>
+    //      $('.show_confirm').click(function(event) {
+    //           event.preventDefault();
+    //           Swal.fire(
+    //   'Good job!',
+    //   'You clicked the button!',
+    //   'success'
+    // )
+    //       });
+    
+    </script>
+   
+    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
 
     @yield('footer')
 

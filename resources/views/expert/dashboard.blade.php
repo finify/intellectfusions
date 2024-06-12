@@ -46,8 +46,8 @@
                 <div class="card-header card-header-large bg-white d-flex align-items-center">
                     <div class="d-flex flex-column">
                         <h5>{{ $user['email'] }}</h5>
-                        <div class="avatar avatar-xxl avatar-online">
-                            <img src="/dashassets/images/256_daniel-gaffey-1060698-unsplash.jpg" alt="Avatar" class="avatar-img rounded-circle">
+                        <div class="avatar avatar-xl avatar-online">
+                            <img src="@if($expertdetail['profileimage'] == '') /dashassets/images/avatar/profileavatar.jpeg @else {{ asset('storage/profilepicture/' . $expertdetail['profileimage']) }} @endif" alt="Avatar" class="avatar-img rounded-circle">
                         </div>
                     </div>
                 </div>
@@ -149,26 +149,39 @@
                 </div>
                 <div class="card-body py-1 px-2">
                     @forelse ($inprogress as $inprogres)
-                        <div class="card">
-                            <div class="card-body py-2">
-                                <div class="row">
-                                    <div class="col-lg-9 d-flex flex-column w-">
-                                        <p><i class="material-icons icon-16pt mr-1">business</i> Deadline {{ $inprogres['deadline']}} </p>
-                                        <h5><a href="/expert/projects/{{ $inprogres['id']}}">{{ $inprogres['project_title']}}</a></h5>
-                                        <h6>{{ $inprogres['subject_area']}}</h6>
-                                    </div>
-                                    <div class="col-lg-3 d-flex flex-column">
-                                        <h4>@money($inprogres['price'])</h4>
+                        <div class="card p-3 mb-3">
+                            <div class="d-flex">
+                                <div class="flex-fill d-flex">
+                                    <div class="flex-fill">
+                                        <div class="d-flex mb-2">
+                                            <i class="material-icons icon-16pt mr-1">business</i>
+                                            <strong>Deadline </strong>
+                                            <div class="text-muted"> @dateformat($inprogres['deadline']) </div>
+                                            <!-- <span class="text-muted ml-1"><i class="material-icons icon-16pt">email</i> contact@frontted.com</span> -->
+                                        </div>
+
+                                        <div class="mb-2">
+                                            <a href="/expert/projects/{{ $inprogres['id']}}"
+                                                class="text-body mr-1"><strong>{{ $inprogres['project_title']}}</strong></a>
+                                        </div>
+                                        <div class="">
                                             @if ($inprogres['progress'] == 1)
-                                                <span class='badge badge-secondary'>Auction</span>
+                                                <span class='badge badge-soft-warning badge-pill mr-1'>AUCTION</span>
                                             @elseif ($inprogres['progress'] == 2)
-                                                <span class='badge badge-danger'>In Progress</span>
+                                                <span class='badge badge-soft-danger badge-pill mr-1'>In Progress</span>
                                             @elseif ($inprogres['progress'] == 3)
-                                                <span class='badge badge-success'>Completed</span>
+                                                <span class='badge badge-soft-purple badge-pill mr-1'>Completed</span>
                                             @else
-                                               
+                                            
                                             @endif
+                                            
+                                        </div>
+
                                     </div>
+                                </div>
+                                <div class="text-muted">
+                                    <h5>Price</h5>
+                                    @money($inprogres['expert_price'])
                                 </div>
                             </div>
                         </div>

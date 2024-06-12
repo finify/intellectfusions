@@ -90,7 +90,7 @@ class ProjectsController extends Controller
     }
 
     public function storeMedia(Request $request){
-        $path = storage_path('tmp/uploads');
+        $path = storage_path('app/public/tmp/uploads');
 
         if (!file_exists($path)) {
             mkdir($path, 0777, true);
@@ -98,7 +98,7 @@ class ProjectsController extends Controller
 
         $file = $request->file('file');
 
-        $name = uniqid() . '_' . trim($file->getClientOriginalName());
+        $name = uniqid() . '_' . str_replace(' ', '-', trim($file->getClientOriginalName())) ;
 
         $file->move($path, $name);
         return response()->json([

@@ -1,21 +1,21 @@
 <div class="promobar d-flex align-items-center">
     <div class="container d-flex align-items-center justify-content-between">
         <ul class="promobar_socials d-flex align-items-center">
-            <li class="promobar_socials-item">
+            <!-- <li class="promobar_socials-item">
                 <a class="link" href="#" target="_blank" rel="noopener noreferrer">
                     <i class="icon-facebook"></i>
                 </a>
-            </li>
-            <li class="promobar_socials-item">
-                <a class="link" href="#" target="_blank" rel="noopener noreferrer">
+            </li> -->
+            <!-- <li class="promobar_socials-item">
+                <a class="link" href="https://x.com/IntellectFusion?t=OnlcPx6OrLWlYOmDg1Cj5Q&s=09" target="_blank" rel="noopener noreferrer">
                     <i class="icon-twitter"></i>
                 </a>
-            </li>
-            <li class="promobar_socials-item">
+            </li> -->
+            <!-- <li class="promobar_socials-item">
                 <a class="link" href="#" target="_blank" rel="noopener noreferrer">
                     <i class="icon-instagram"></i>
                 </a>
-            </li>
+            </li> -->
         </ul>
         <div class="promobar_main d-flex align-items-center">
             <!-- <p class="promobar_main-text">Try for free! <span class="hide">30 day Trial and Free Lectures</span></p> -->
@@ -54,7 +54,7 @@
                 <li class="header_nav-list_item">
                     <a @if (Request::path()=='/' ) class="nav-item current" @else class="nav-item"  @endif href="/" data-page="home">Home</a>
                 </li>
-                <li class="header_nav-list_item dropdown">
+                <!-- <li class="header_nav-list_item dropdown">
                     <a
                         class="nav-link nav-item dropdown-toggle d-inline-flex align-items-center"
                         href="#"
@@ -83,7 +83,7 @@
                             </li>
                         </ul>
                     </div>
-                </li>
+                </li> -->
                 <li class="header_nav-list_item">
                     <a @if (Request::path()=='about' ) class="nav-item current" @else class="nav-item" @endif  href="/about" data-page="about">About Us</a>
                 </li>

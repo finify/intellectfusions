@@ -11,11 +11,13 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('user_attachment', function (Blueprint $table) {
+        Schema::create('expert_earnings', function (Blueprint $table) {
             $table->id();
-            $table->string('user_id');
-            $table->string('project_id');
-            $table->string('file_name');
+            $table->unsignedBigInteger('expert_id');
+            $table->foreign('expert_id')->references('id')->on('users');
+            $table->unsignedBigInteger('project_id');
+            $table->foreign('project_id')->references('id')->on('projects');
+            $table->string('amount');
             $table->timestamps();
         });
     }
@@ -25,6 +27,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('user_attachment');
+        Schema::dropIfExists('expert_earnings');
     }
 };

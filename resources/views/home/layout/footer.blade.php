@@ -11,30 +11,30 @@
                     Curabitur non libero at lorem finibus lobortis. Ut auctor egestas pretium. Proin nunc ligula, venenatis tempor
                 </p> -->
                 <ul class="footer_block-socials d-flex align-items-center">
-                    <li class="footer_block-socials_item">
+                    <!-- <li class="footer_block-socials_item">
                         <a class="link" href="https://www.facebook.com" target="_blank" rel="noopener noreferrer">
                             <i class="icon-facebook"></i>
                         </a>
-                    </li>
+                    </li> -->
                     <li class="footer_block-socials_item">
-                        <a class="link" href="https://www.twitter.com" target="_blank" rel="noopener noreferrer">
+                        <a class="link" href="https://x.com/IntellectFusion?t=OnlcPx6OrLWlYOmDg1Cj5Q&s=09" target="_blank" rel="noopener noreferrer">
                             <i class="icon-twitter"></i>
                         </a>
                     </li>
-                    <li class="footer_block-socials_item">
+                    <!-- <li class="footer_block-socials_item">
                         <a class="link" href="https://www.instagram.com" target="_blank" rel="noopener noreferrer">
                             <i class="icon-instagram"></i>
                         </a>
-                    </li>
+                    </li> -->
                 </ul>
                 <div class="wrapper d-flex flex-column">
                     <a class="link link--contacts text text--sm d-inline-flex align-items-center" href="mailto:example@domain.com">
                         <i class="icon-envelope icon"></i>
                         info@intellectfusions.com
                     </a>
-                    <a class="link link--contacts text text--sm d-inline-flex align-items-center" href="tel:+123456789">
+                    <a class="link link--contacts text text--sm d-inline-flex align-items-center" href="tel:+447510189494">
                         <i class="icon-phone-solid icon"></i>
-                        +1-202-555-0190
+                        +44 7510 189494
                     </a>
                 </div>
             </div>
@@ -47,24 +47,26 @@
                     <li class="footer_block-nav_item">
                         <a class="link" href="/contact">Contact Us</a>
                     </li>
+                    <li class="footer_block-nav_item">
+                        <a class="link" href="/terms">Terms and condition</a>
+                    </li>
+                    <li class="footer_block-nav_item">
+                        <a class="link" href="/refund">Refund Policy</a>
+                    </li>
                     
                 </ul>
             </div>
             <div class="footer_block col-sm-6 col-lg-auto m-sm-0" data-order="3">
                 <h5 class="footer_block-header">Popular Services:</h5>
                 <ul class="footer_block-list">
-                    <li class="footer_block-list_item d-flex align-items-baseline">
-                        <span class="marker"></span>
-                        <a class="link" href="course.html">Essay</a>
-                    </li>
-                    <li class="footer_block-list_item d-flex align-items-baseline">
-                        <span class="marker"></span>
-                        <a class="link" href="course.html">AWS Certified Developer - Associate 2020</a>
-                    </li>
-                    <li class="footer_block-list_item d-flex align-items-baseline">
-                        <span class="marker"></span>
-                        <a class="link" href="course.html">How to Draw From Beginner to Master</a>
-                    </li>
+                    @forelse ($projecttypes as $projecttype)
+                        <li class="footer_block-list_item d-flex align-items-baseline mb-1">
+                            <span class="marker"></span>
+                            <a class="link" href="#">{{ $projecttype['type_name']}}</a>
+                        </li>
+                    @empty
+                        <div class="alert alert-danger" role="alert">No project type</div>
+                    @endforelse
                 </ul>
             </div>
         </div>

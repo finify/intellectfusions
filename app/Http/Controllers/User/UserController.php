@@ -5,6 +5,7 @@ namespace App\Http\Controllers\User;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Mail;
 
 use App\Models\User;
 use App\Models\projects;
@@ -13,11 +14,15 @@ use App\Models\fields;
 use App\Models\Notifications;
 use App\Models\Attachment;
 
+use Illuminate\Support\Facades\Hash;
+
+use App\Mail\UserMail;
+
 class UserController extends Controller
 {
     public function getUserDetails(){
         $user = User::where('id', Auth::User()->id)->first()->toArray();
-        $projects = projects::where('user_id', Auth::User()->id)->get()->toArray();
+        $projects = projects::where('user_id', Auth::User()->id)->orderBy('id', 'desc')->get()->toArray();
         $notifications = Notifications::where('user_id', Auth::User()->id)->get()->toArray();
 
         $auctions = projects::where('user_id', Auth::User()->id)->where('progress','1')->get()->toArray();
@@ -86,6 +91,15 @@ class UserController extends Controller
                 $attachment = Attachment::create($attachment_details);               
             }
 
+            //email admin on new project submited
+            $mailData = [
+                'subject' => 'New Project',
+                'username'=> "Admin",
+                'body'=>'
+                <p>We have received a new project submission from '.Auth::User()->name.'. Please log in to the admin panel on the website to review the project details and proceed with the necessary steps.</p>
+               ',
+            ];
+            Mail::to(env('ADMIN_EMAIL'))->send(new UserMail($mailData));
 
             $request->session()->flash('upload_success', " Your Project Upload was successful ");
             return redirect()->back();
@@ -98,7 +112,7 @@ class UserController extends Controller
     }
 
     public function storeMedia(Request $request){
-        $path = storage_path('tmp/uploads');
+        $path = storage_path('app/public/tmp/uploads');
 
         if (!file_exists($path)) {
             mkdir($path, 0777, true);
@@ -144,6 +158,18 @@ class UserController extends Controller
     }
 
     public function settings(Request $request){
+        $data = $request->all();
+        if($request->isMethod('POST')){
+            if($data['password']){
+                #Update the new Password
+                User::where('id',$Auth::User()->id)->update(['password' => Hash::make($data['password'])]);
+                return redirect()->back()->with('success','Password Updated Successfully');
+            }else{
+
+                return redirect()->back()->with('reset_error', 'password does not match')->with('page','reset')->with('q', $data['q']);
+            }
+
+        }
         $details = $this->getUserDetails();
         return view('user.settings')->with($details);
     }
@@ -160,22 +186,22 @@ class UserController extends Controller
                     $user = User::where('email',$data['email'])->first()->toArray();
                     //email admin
                     $mailData = [
-                        'title' => 'Password Reset',
-                        'body' => '<p>We have received a request to reset the password for your account on Ranefy. To proceed with resetting your password, please follow the instructions below:</p>
+                        'subject' => 'Password Reset',
+                        'body' => '<p>We have received a request to reset the password for your account on Intellectfusions. To proceed with resetting your password, please follow the instructions below:</p>
                             </br>
                             <p>Click on the following link to reset your password:</p>
                          
-                            <a href="https://ranefy.com/resetpassword/reset?q='.$remember_token.'" style="background-color: teal; color: white;padding-top: 5px ;
+                            <a href="https://Intellectfusions.com/user/resettpassword/reset?q='.$remember_token.'" style="background-color: teal; color: white;padding-top: 5px ;
                         padding-bottom: 5px ;
                         padding-left: 10px ;
                         padding-right: 10px ; text-decoration: none; margin: auto;"> Reset Password </a>
                             </br>
                            <p> If clicking the link doesnt work, you can copy and paste the URL below into your web browsers address bar:</p>
-                            <a href="https://ranefy.com/resetpassword/reset?q='.$remember_token.'">https://ranefy.com/resetpassword/reset?q='.$remember_token.'</a> ',
-                        'username'=> $user['username']
+                            <a href="https://Intellectfusions.com/user/resettpassword/reset?q='.$remember_token.'">https://Intellectfusions.com/user/resettpassword/reset?q='.$remember_token.'</a> ',
+                        'username'=> $user['name']
                     ];
                     
-                    Mail::to($data['email'])->send(new Resetpassword($mailData));
+                    Mail::to($data['email'])->send(new UserMail($mailData));
 
                     $userUpdated = User::where('email',$data['email'])->update(['remember_token'=>$remember_token]);
                     return redirect()->back()->with('reset_success', 'Password Reset Link Sent to mail provided')->with('page','resetform');
@@ -192,7 +218,7 @@ class UserController extends Controller
             if(isset($data['q'])){
                 $tokenExists = User::where('remember_token',$data['q'])->exists();
             }else{
-                return view('home.resetpassword')->with('page','Expired');
+                return view('user.forgotpassword')->with('page','Expired');
             }
            
          
@@ -201,17 +227,17 @@ class UserController extends Controller
                     if($data['password'] == $data['confirm_password']){
                         #Update the new Password
                         User::where('remember_token',$data['q'])->update(['password' => Hash::make($data['password']), 'remember_token'=>"Null"]);
-                        return view('home.resetpassword')->with('page','completed');
+                        return view('user.forgotpassword')->with('page','completed');
                     }else{
 
-                        return redirect()->back()->with('password_error', 'password does not match')->with('page','reset')->with('q', $data['q']);
+                        return redirect()->back()->with('reset_error', 'password does not match')->with('page','reset')->with('q', $data['q']);
                     }
     
                 }
                 
-                 return view('home.resetpassword')->with('page','reset')->with('q', $data['q']);
+                 return view('user.forgotpassword')->with('page','reset')->with('q', $data['q']);
             }else{
-                return view('home.resetpassword')->with('page','Expired');
+                return view('user.forgotpassword')->with('page','Expired');
             }
             
         }

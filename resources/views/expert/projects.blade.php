@@ -7,7 +7,7 @@
         <div class="flex">
             <nav aria-label="breadcrumb">
                 <ol class="breadcrumb mb-0">
-                    <li class="breadcrumb-item"><a href="#">Home</a></li>
+                    <li class="breadcrumb-item"><a href="/expert/dashboard">Home</a></li>
                     <li class="breadcrumb-item active" aria-current="page">Projects</li>
                 </ol>
             </nav>
@@ -51,11 +51,13 @@
                 <div class="card-body tab-content">
                     <div class="tab-pane active show fade"
                             id="activity_all">
-                            <h5>Project Title:</h5>
+                            <div class="mb-1"><strong class="text-dark-gray">Project Title</strong></div>
                             <p>{{ $project['project_title'] }}</p>
-                            <h4>description:</h4>
-                            <p>{{ $project['description'] }}</p>
-                            <h4>Price Agreed:</h4>
+                            <div class="mb-1"><strong class="text-dark-gray">DESCRIPTION</strong></div>
+                            <p>
+                            {{ $project['description'] }}
+                            </p>
+                            <div class="mb-1"><strong class="text-dark-gray">Price Agreed:</strong></div>
                             <p>{{ $project['expert_price'] }}</p>
 
                           
@@ -96,8 +98,8 @@
                                         $filerealname = $parts[1] ?? null;
                                     @endphp
                                     <div class="stories-card__title flex">
-                                        <h5 class="card-title m-0"><a href="{{ route('download.tmp', ['filename' => $attachment['original_filename']]) }}"
-                                                class="text-body">{{  $filerealname }}</a></h5>
+                                        <h6 class="card-title m-0"><a href="{{ asset('storage/tmp/uploads/' . $attachment['original_filename']) }}"
+                                                class="text-body">{{  $filerealname }}</a></h6>
                                         <!-- <small class="text-muted"><a href="#"><strong>PDF</strong></a> 22.2kb</small> -->
                                     </div>
                                     <div class="ml-auto d-flex align-items-center">
@@ -107,7 +109,7 @@
                                         </div>
                                         <div class="badge badge-soft-angular badge-pill mr-3">
                                           
-                                            <a href="{{ route('download.tmp', ['filename' => $attachment['original_filename']]) }}"
+                                            <a href="{{ asset('storage/tmp/uploads/' . $attachment['original_filename']) }}"
                                                        class="btn btn-primary">Download File <i class="material-icons">file_download</i></a>
                                             <!-- <button type="button" class="btn btn-danger">Delete</button> -->
                                         </div>
@@ -153,7 +155,7 @@
                                         $filerealname = $parts[1] ?? null;
                                     @endphp
                                 <div class="stories-card__title flex">
-                                    <h5 class="card-title m-0"><a href=""
+                                    <h5 class="card-title m-0"><a href="{{ asset('storage/expertfiles/' . $expertattachment['original_filename']) }}"
                                             class="text-body">{{ $filerealname }}</a></h5>
                                     <!-- <small class="text-muted"><a href="#"><strong>PDF</strong></a> 22.2kb</small> -->
                                 </div>
@@ -163,7 +165,14 @@
                                        
                                     </div>
                                     <div class="badge badge-soft-angular badge-pill mr-3">
-                                        <button type="button" class="btn btn-success">Download</button>
+                                        <form style="float:left; margin-left:10px;" action="" method="POST">
+                                            @csrf
+                                            @method('POST')
+                                            <input type="hidden" name="attachmentid" value="{{ $expertattachment['id'] }}">
+                                            <input type="hidden" name="filename" value="{{ $expertattachment['original_filename'] }}">
+                                            <input type="hidden" name="action" value="deletefile">
+                                            <button type="submit" class="btn btn-danger">Delete</button>
+                                        </form>
                                     </div>
                                 </div>
                             </div>
@@ -214,21 +223,10 @@
 </div> <!-- // END .modal -->
 
 <script>
-    var previewTemplate = `
-            <div class="dz-preview dz-file-preview">
-                <div class="dz-details">
-                    <div class="dz-filename">
-                        <span data-dz-name></span>
-                        <span class="dz-remove" data-dz-remove>&times;</span>
-                    </div>
-                    <div class="dz-size" data-dz-size></div>
-                </div>
-            </div>
-        `;
+    
 
   var uploadedDocumentMap = {}
-  Dropzone.options.documentDropzone = {
-    previewTemplate: previewTemplate,
+    Dropzone.options.documentDropzone = {
     url: '{{ route('project.storemedia') }}',
     maxFilesize: 2, // MB
     addRemoveLinks: true,

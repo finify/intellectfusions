@@ -19,7 +19,7 @@
                 </button>
 
                 <!-- Navbar Brand -->
-                <a href="/"
+                <a href="/user/dashboard"
                 class="navbar-brand ">
 
                     <img src="{{ env('APP_LOGO_WHITE') }}" width="150px" alt=""/>
@@ -91,7 +91,7 @@
                             <span class="mr-1 d-flex-inline">
                                 <span class="text-light">{{ $user['name'] }}</span>
                             </span>
-                            <img src="/dashassets/images/avatar/demi.png"
+                            <img src="/dashassets/images/avatar/profileavatar.jpeg "
                                 class="rounded-circle"
                                 width="32"
                                 alt="Frontted">

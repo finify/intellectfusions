@@ -19,7 +19,7 @@
                 </button>
 
                 <!-- Navbar Brand -->
-                <a href="index.html"
+                <a href="/expert/dashboard"
                 class="navbar-brand ">
 
                     <img src="{{ env('APP_LOGO_WHITE') }}" width="150px" alt=""/>
@@ -98,10 +98,13 @@
                             <span class="mr-1 d-flex-inline">
                                 <span class="text-light">{{ $user['name'] }}</span>
                             </span>
-                            <img src="/dashassets/images/avatar/demi.png"
-                                class="rounded-circle"
+                            <span class="avatar avatar-sm mr-2">
+                                <img src="@if($expertdetail['profileimage'] == '') /dashassets/images/avatar/profileavatar.jpeg @else {{ asset('storage/profilepicture/' . $expertdetail['profileimage']) }} @endif"
+                                class="avatar-img rounded-circle"
                                 width="32"
                                 alt="Frontted">
+                            </span>
+                            
                         </a>
                         <div id="account_menu"
                             class="dropdown-menu dropdown-menu-right">

@@ -66,20 +66,7 @@
                   background-color:#6223D2!important;
             }
            
-            .dz-preview {
-            width: 100%;
-            display: flex;
-            align-items: center;
-            margin-bottom: 10px;
-        }
-        .dz-filename {
-            flex-grow: 1;
-        }
-        .dz-remove {
-            cursor: pointer;
-            color: red;
-            margin-left: 10px;
-        }
+          
       </style>
 
       <link href="https://cdnjs.cloudflare.com/ajax/libs/dropzone/5.5.1/min/dropzone.min.css" rel="stylesheet" />
@@ -130,6 +117,20 @@
         </div> -->
 
         <!-- jQuery -->
+        <!--Start of Tawk.to Script-->
+      <script type="text/javascript">
+      var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();
+      (function(){
+      var s1=document.createElement("script"),s0=document.getElementsByTagName("script")[0];
+      s1.async=true;
+      s1.src='https://embed.tawk.to/66673be29a809f19fb3c231b/1i01k3s0i';
+      s1.charset='UTF-8';
+      s1.setAttribute('crossorigin','*');
+      s0.parentNode.insertBefore(s1,s0);
+      })();
+      </script>
+      <!--End of Tawk.to Script-->
+
         <script src="/dashassets/vendor/jquery.min.js"></script>
 
         <!-- Bootstrap -->

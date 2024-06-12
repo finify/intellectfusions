@@ -12,20 +12,49 @@ use Illuminate\Support\Facades\Mail;
 
 use App\Mail\NotificationMail;
 use App\Mail\EmailMail;
+use App\Mail\UserMail;
 
 
 
 use App\Models\admin;
+use App\Models\projects;
 use App\Models\withdraws;
 use App\Models\User;
 use App\Models\tradingbot;
 
 class AdminController extends Controller
 {
+        public function getUserDetails(){
+            $expertuser = User::where('user_type', 'expert')->get()->toArray();
+            $user = User::where('user_type', 'user')->get()->toArray();
+    
+            $allusers = count($expertuser) + count($user);
+            $user_details = [
+                'expert'=>count($expertuser),
+                'user'=>count($user),
+                'all'=>$allusers,
+            ];
+
+        
+            $auctions = projects::where('progress','1')->get()->toArray();
+            $inprogress = projects::where('progress','2')->get()->toArray();
+            $completed = projects::where('progress','3')->get()->toArray();
+
+
+            $allprojects = count($completed) + count($inprogress)+ count($auctions);
+            $project_details = [
+                'auctions'=>count($auctions),
+                'inprogress'=>count($inprogress),
+                'completed'=>count($completed),
+                'all'=>$allprojects,
+            ];
+
+            return compact('user_details','project_details');
+        }
         //
         public function dashboard(Request $request){
           
-          
+            $details = $this->getUserDetails();
 
             if($request->isMethod('post')){
                 $data = $request->all();
@@ -55,7 +84,7 @@ class AdminController extends Controller
             ->get();
             // dd(compact('projects'));
     
-            return view('admin.dashboard')->with(compact('projects'));
+            return view('admin.dashboard')->with(compact('projects'))->with($details);
         }
     
         public function login(Request $request){
@@ -140,11 +169,11 @@ class AdminController extends Controller
                 foreach ($users as $key => $user) {
                     $mailData = [
                         'subject' => $data['subject'],
-                        'body' => $data['message'],
+                        'body' => '<p>'.$data['message'].'</p>',
                         'username'=> $user['username']
                     ];
                     // dd($user['email']);
-                    Mail::to($user['email'])->send(new EmailMail($mailData));
+                    Mail::to($user['email'])->send(new UserMail($mailData));
                 }
     
                 
@@ -153,21 +182,16 @@ class AdminController extends Controller
 
             return view('admin.email')->with('success', 'Your have successfully sent all emails');
         }
-    
-    
+
         public function viewusers(Request $request, $slug){
             $data = $request->all();
     
             
     
-            $projects = tradingbot::where('user_id',$slug)->orderBy('id','desc')->get()->toArray();
-            
-            $userbalance = User::where('id', $slug)->first(['balance'])->balance;
-            $deposits = deposit::where('user_id',$slug)->orderBy('id','desc')->get()->toArray();
-            $details = array("balance"=>$userbalance, "projects"=>count($projects));
             $user = User::where('id',$slug)->first()->toArray();
+
+            $projects = projects::where('user_id',$slug)->get()->toArray();
           
-            $refers = User::where('referral_code',$user['refcode'])->orderBy('id','desc')->get()->toArray();
     
             if($request->isMethod('POST')){
                 //arranging data
@@ -184,19 +208,19 @@ class AdminController extends Controller
                     //email Referee
                     $mailData = [
                         'subject' => $data['subject'],
-                        'body' => $data['message'],
+                        'body' => '<p>'.$data['message'].'</p>',
                         'username'=> $user['name']
                     ];
-                    Mail::to($user['email'])->send(new NotificationMail($mailData));
-                    return redirect()->back()->with('success_message', 'You have successfully sent a mail to user');
+                    Mail::to($user['email'])->send(new UserMail($mailData));
+                    return redirect()->back()->with('success', 'You have successfully sent a mail to user');
                 }
             }
     
             $user = User::where('id',$slug)->first()->toArray();
-            return view('admin.viewuser')->with(compact('user','details','deposits','projects','refers'));
+            return view('admin.viewuser')->with(compact('user','projects'));
     
         }
-    
+
         public function logout(){
             Auth::guard('admin')->logout();
             return redirect('admin/login');

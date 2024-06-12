@@ -23,13 +23,12 @@
             <div class="content-wrapper">
                 <h1 class="page_main-header">Contact Us</h1>
                 <p class="page_main-text">
-                    Donec accumsan, dolor ac malesuada rhoncus, leo arcu pellentesque dolor, nec tristique diam neque vitae sem.
-                    Nulla a lectus sollicitudin, volutpat lacus id, eleifend ipsum.
+                we value open communication and are here to assist you with any questions, concerns, or feedback you may have. Whether you need support, want to learn more about our services, or have a specific inquiry, our dedicated team is ready to help. Reach out to us through any of the following channels, and we will get back to you as soon as possible:
                 </p>
             </div>
 
             <ul class="page_main-list d-sm-flex flex-wrap justify-content-center">
-                <li class="page_main-list_item" data-aos="fade-up">
+                <!-- <li class="page_main-list_item" data-aos="fade-up">
                     <div class="wrapper">
                         <div class="content d-flex justify-content-sm-center">
                             <i class="icon-map-marker-alt-solid icon"></i>
@@ -38,14 +37,14 @@
                             </div>
                         </div>
                     </div>
-                </li>
+                </li> -->
                 <li class="page_main-list_item" data-aos="fade-up" data-aos-delay="50">
                     <div class="wrapper">
                         <div class="content d-flex justify-content-sm-center">
                             <i class="icon-phone-solid icon"></i>
                             <div class="block d-flex flex-column">
-                                <a class="content_link text" href="tel:+1234567890">+1-202-555-0150</a>
-                                <a class="content_link text" href="tel:+1234567890">+1-202-555-0151</a>
+                                <p>Whatsapp</p>
+                                <a class="content_link text" href="tel:+447510189494">+44 7510 189494</a>
                             </div>
                         </div>
                     </div>
@@ -55,8 +54,7 @@
                         <div class="content d-flex justify-content-sm-center">
                             <i class="icon-envelope icon"></i>
                             <div class="block d-flex flex-column">
-                                <a class="content_link text" href="mailto:example@domain.com">acadesiq@mail.de</a>
-                                <a class="content_link text" href="mailto:example@domain.com">hacades@sendmeil.com</a>
+                                <a class="content_link text" href="mailto:example@domain.com">info@intellectfusions.com</a>
                             </div>
                         </div>
                     </div>

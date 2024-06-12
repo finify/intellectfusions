@@ -6,7 +6,22 @@
         <link type="text/css"
               href="/dashassets/css/vendor-dropzone.rtl.css"
               rel="stylesheet">              
-              
+              <style>
+    .dropzone{
+        width:40%;
+        padding:0px;
+    }
+    /* CSS to reduce the size of the default image preview */
+    .dropzone .dz-preview .dz-image-preview {
+    width: 100px; /* Adjust width as needed */
+    height: 100px; /* Adjust height as needed */
+    }
+    /* Optionally, you can also adjust the size of the image within the preview */
+    .dropzone .dz-preview .dz-image-preview img {
+    width: 100px; /* Adjust width as needed */
+    height: 100px; /* Adjust height as needed */
+    }
+</style> 
 @endsection
 @extends('user.layout.layout')
 
@@ -19,7 +34,7 @@
         <div class="d-flex align-items-end container-fluid page__container"
                 style="position: absolute; left: 0; right: 0; bottom: 0;">
             <div class="avatar avatar-xl">
-                <img src="/dashassets/images/avatar/demi.png"
+                <img src="/dashassets/images/avatar/profileavatar.jpeg "
                         alt="avatar"
                         class="avatar-img rounded"
                         style="border: 2px solid white;">
@@ -37,59 +52,27 @@
 </div>
 
 <div class="container-fluid page__container">
+    @if(Session::has('success'))
+        <div class="alert alert-success" role="alert">
+        {{Session::get('success')}}
+        </div>
+    @endif
     <div class="row">
-        <div class="col-lg-3">
+        <!-- <div class="col-lg-3">
             <h1 class="h4 mb-1">{{ $user['name'] }}</h1>
             <p class="text-muted">{{ $user['email'] }}</p>
-            <form>
-                <div class="form-group"> 
-                    <label for="dropzone">Choose Profile image</label>
-                    <div class="dropzone dropzone-multiple w-100"
-                            data-toggle="dropzone"
-                            data-dropzone-multiple
-                            data-dropzone-url="http://"
-                            accept="image/*,application/pdf"
-                            data-dropzone-files=''>
+            <form method="POST" enctype="multipart/form-data"> @csrf
+                <div class="form-group" >
+                    <label for="document">Update Profile Image</label>
+                    <div class="needsclick dropzone" id="document-dropzone">
 
-                        <div class="fallback">
-                            <div class="custom-file">
-                                <input type="file"
-                                        class="custom-file-input"
-                                        id="customFileUploadMultiple"
-                                        multiple>
-                                <label class="custom-file-label"
-                                        for="customFileUploadMultiple">Choose file</label>
-                            </div>
-                        </div>
-
-                        <ul class="dz-preview dz-preview-multiple list-group list-group-flush">
-                            <li class="list-group-item">
-                                <div class="form-row align-items-center">
-
-                                    <div class="col">
-                                        <div class="font-weight-bold"
-                                                data-dz-name>...</div>
-                                        <p class="small text-muted mb-0"
-                                            data-dz-size>...</p>
-                                    </div>
-                                    <div class="col-auto">
-                                        <a href="#"
-                                            class="text-red"
-                                            data-dz-remove>
-                                            <i class="material-icons">close</i>
-                                        </a>
-                                    </div>
-                                </div>
-                            </li>
-                        </ul>
                     </div>
                 </div>
-               
-                
+                <input type="hidden" name="action" value="updateprofilepicture">
                 <button type="submit"
-                        class="btn btn-primary">Change Profile image</button>
+                        class="btn btn-primary">Update Image</button>
             </form>
-        </div>
+        </div> -->
         <div class="col-lg-9">
             <div class="tab-content">
                 <div class="tab-pane active"
@@ -98,23 +81,17 @@
                     <div class="card">
                         <div class="px-4 py-3">
                             <div class="d-flex mb-1">
-                                <form class="w-100">
+                                <form class="w-100" action="" method="post">@CSrf
                                     <div class="form-group">
                                         <label for="exampleInputEmail1 text-dark">Email</label>
-                                        <input type="text"
-                                                class="form-control"
-                                                id="exampleInputEmail1"
-                                                placeholder="Enter your project title ..">
+                                        <input type="text" class="form-control" id="exampleInputEmail1" value="{{ $user['email'] }}" disabled>
                                     </div>
                                     <div class="form-group">
                                         <label for="exampleInputEmail1 text-dark">New Password</label>
-                                        <input type="text"
-                                                class="form-control"
-                                                id="exampleInputEmail1"
-                                                placeholder="Enter your project title ..">
+                                        <input type="password" class="form-control" id="exampleInputEmail1" name="passowrd" placeholder="Enter your project title ..">
                                     </div>
                                     
-                                    
+                                    <input type="hidden" name="action" value="updateuser">
                                 
                                     <button type="submit"
                                             class="btn btn-primary">Update Details</button>
@@ -132,8 +109,62 @@
 
 
 @section('footer')
-    <script src="/dashassets/vendor/dropzone.min.js"></script>
-        <script src="/dashassets/js/dropzone.js"></script>
+        <script src="/dashassets/vendor/select2/select2.min.js"></script>
 
-    <script>
+
+        <script>
+            var uploadedDocumentMap = {}
+            Dropzone.options.documentDropzone = {
+                dictDefaultMessage: "Upload profile image",
+                acceptedFiles: 'image/*', // Accept only image files
+                maxFiles: 1, // Limit to only one file
+                url: '{{ route('picupload.storemedia') }}',
+                maxFilesize: 2, // MB
+                addRemoveLinks: true,
+                headers: {
+                'X-CSRF-TOKEN': "{{ csrf_token() }}"
+                },
+                success: function (file, response) {
+                $('form').append('<input type="hidden" name="document[]" value="' + response.name + '">')
+                uploadedDocumentMap[file.name] = response.name
+                },
+                removedfile: function (file) {
+                file.previewElement.remove()
+                var name = ''
+                if (typeof file.file_name !== 'undefined') {
+                    name = file.file_name
+                } else {
+                    name = uploadedDocumentMap[file.name]
+                }
+                $('form').find('input[name="document[]"][value="' + name + '"]').remove();
+
+                // Send AJAX request to delete file from server
+                    $.ajax({
+                        type: 'POST',
+                        url: '{{ route('picdelete.deletemedia') }}',
+                        data: { filename: name, _token: '{{ csrf_token() }}' },
+                        success: function(data){
+                            console.log('File deleted successfully');
+                        },
+                        error: function(xhr, status, error) {
+                            console.error('Error deleting file:', error);
+                        }
+                    });
+
+
+                },
+                init: function () {
+                    this.on("addedfile", function(file) {
+                    // Check if the added file is the first file
+                    if (this.files.length > 1) {
+                        // If there's more than one file, remove the previous file's preview
+                        var firstFile = this.files[0];
+                        this.removeFile(firstFile);
+                    }
+                    });
+                
+                }
+            }
+        </script>
 @endsection
+
