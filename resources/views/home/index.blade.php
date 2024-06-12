@@ -11,7 +11,7 @@
 <section class="hero">
     <div class="container d-lg-flex align-items-center">
         <div class="hero_content">
-            <h3 class="hero_content-header" data-aos="fade-up">Homework Assistance Excellence for Everyone</h3>
+            <h3 class="hero_content-header" data-aos="fade-up">Homework hhAssistance Excellence for Everyone</h3>
             <div class="hero_content-rating d-flex flex-column flex-sm-row align-items-center">
                 <p class="text" data-aos="fade-left">Hundreds of students trust us </p>
                 <div class="wrapper" data-aos="fade-left" data-aos-delay="50">
