@@ -169,7 +169,6 @@
             });
         });
      });
-    // $("#selectbtn1").addClass("user-type-active");
  
    
 </script>
