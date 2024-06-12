@@ -3,7 +3,7 @@
 <link rel="stylesheet" href="/homeassets/css/index.min.css" />
 @endsection
 @section('content')
-<section class="w-full relative">
+<section class="w-full relative container">
     <div class="h-12"></div>
     <div class="w-full ts-gray-2 text-center">
         <div class="h-10"></div>
@@ -34,7 +34,7 @@
     
 </section>
 
-<section class="w-full px-4 md:px-4 py-10 mt-10">
+<section class="w-full px-4 md:px-4 py-10 mt-10 container pb-5">
     <div class="w-full  flex justify-center">
         <div class="w-full flex items-center justify-center text-gray-500">
             <div class="w-full lg:w-3/4 grid grid-cols-1 gap-5 mt-10">

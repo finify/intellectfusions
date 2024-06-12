@@ -100,9 +100,9 @@
                     <a class="tag" href="#">Brands and products</a>
                 </li>
             </ul>
-            <a class="promo_content-btn btn btn--gradient" href="#" data-aos="fade-up" data-aos-delay="100">
+            <!-- <a class="promo_content-btn btn btn--gradient" href="#" data-aos="fade-up" data-aos-delay="100">
                 <span class="text">Talk to an Expert</span>
-            </a>
+            </a> -->
         </div>
     </div>
 </section>
@@ -112,7 +112,7 @@
 <div class="features py-5">
     <div class="container">
         <ul class="features_list d-md-flex flex-wrap row">
-            <li class="features_list-item col-md-4 col-6" data-order="1" data-aos="fade-up">
+            <li class="features_list-item col-md-4" data-order="1" data-aos="fade-up">
                 <div class="card">
                     <div class="content">
                         <div class="card_media">
@@ -127,7 +127,7 @@
                     </div>
                 </div>
             </li>
-            <li class="features_list-item col-md-4 col-6" data-order="2" data-aos="fade-up">
+            <li class="features_list-item col-md-4" data-order="2" data-aos="fade-up">
                 <div class="card">
                     <div class="content">
                         <div class="card_media">
@@ -142,7 +142,7 @@
                     </div>
                 </div>
             </li>
-            <li class="features_list-item col-md-4 col-6" data-order="3" data-aos="fade-up">
+            <li class="features_list-item col-md-4" data-order="3" data-aos="fade-up">
                 <div class="card">
                     <div class="content">
                         <div class="card_media">
@@ -157,7 +157,7 @@
                     </div>
                 </div>
             </li>
-            <li class="features_list-item col-md-4 col-6" data-order="3" data-aos="fade-up">
+            <li class="features_list-item col-md-4" data-order="3" data-aos="fade-up">
                 <div class="card">
                     <div class="content">
                         <div class="card_media">
@@ -172,7 +172,7 @@
                     </div>
                 </div>
             </li>
-            <li class="features_list-item col-md-4 col-6" data-order="3" data-aos="fade-up">
+            <li class="features_list-item col-md-4" data-order="3" data-aos="fade-up">
                 <div class="card">
                     <div class="content">
                         <div class="card_media">
@@ -187,7 +187,7 @@
                     </div>
                 </div>
             </li>
-            <li class="features_list-item col-md-4 col-6" data-order="3" data-aos="fade-up">
+            <li class="features_list-item col-md-4" data-order="3" data-aos="fade-up">
                 <div class="card">
                     <div class="content">
                         <div class="card_media">
@@ -223,7 +223,7 @@
 <!-- features section end -->
 
 <!-- about section start -->
-<section class="about p-4">
+<section class="about">
     <div class="container">
         <div class="about_deco">
             <lottie-player

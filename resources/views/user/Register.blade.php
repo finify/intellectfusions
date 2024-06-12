@@ -146,7 +146,6 @@
 @endsection
 
 @section('footer')
-
 <script>
      $(document).ready(function() {
         $(".signup-form").hide();
@@ -174,4 +173,5 @@
  
    
 </script>
+
 @endsection

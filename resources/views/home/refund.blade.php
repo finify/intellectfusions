@@ -3,7 +3,7 @@
 <link rel="stylesheet" href="/homeassets/css/index.min.css" />
 @endsection
 @section('content')
-<section class="w-full relative">
+<section class="w-full relative container">
     <div class="h-12"></div>
     <div class="w-full ts-gray-2 text-center">
         <div class="h-10"></div>

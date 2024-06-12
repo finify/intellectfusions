@@ -38,9 +38,13 @@
         })();
         </script>
         <!--End of Tawk.to Script-->
+
+        
+
         <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
         <script src="/homeassets/js/common.min.js"></script>
         <script src="/homeassets/js/reviews.min.js"></script>
         <script src="/homeassets/js/map.min.js"></script>
+        @yield('footer')
     </body>
 </html>
