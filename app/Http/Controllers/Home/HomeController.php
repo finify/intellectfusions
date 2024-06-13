@@ -48,6 +48,7 @@ class HomeController extends Controller
     }
 
     public function plagiarism(){
-        return view('home.plagiarism');
+        $details = $this->getDetails();
+        return view('home.plagiarism')->with($details);
     }
 }
