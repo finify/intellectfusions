@@ -37,7 +37,7 @@ class WithdrawController extends Controller
 
                 //email withdraw user approval
                 $mailData = [
-                    'title' => 'Withdrawal Approved',
+                    'subject' => 'Withdrawal Approved',
                     'body' => '<p>Your Withdrawal of $'.$currentwithdraw['amount'].' to the details provided below has been approved and payment sent to wallet specified</p>
                     <p>'.$currentwithdraw['payment_details'].'</p>
                     ',
