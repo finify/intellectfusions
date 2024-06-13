@@ -114,7 +114,7 @@ class ExpertController extends Controller
                         ',
                         'username'=> Auth::guard('expert')->User()->name
                     ];
-                    Mail::to($user['email'])->send(new UserMail($mailData));
+                    Mail::to(Auth::guard('expert')->User()->email)->send(new UserMail($mailData));
 
                     //email withdraw admin
                     $mailData = [
