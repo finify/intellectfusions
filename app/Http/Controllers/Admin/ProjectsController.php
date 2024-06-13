@@ -181,10 +181,27 @@ class ProjectsController extends Controller
                     'expert_id'=> $data['expert'],
                     'status' => 0
                 ];
+
+                 
+
+
                 $auctionexists = project_expert::where('project_id',$slug)->where('expert_id',$data['expert'])->exists();
 
                 if($auctionexists == false){
                     $expertadded = project_expert::create($project_experts);   
+
+                    //get the user who uploaded the project
+                 $expertuser = User::where('id',$data['expert'])->first()->toArray();
+                 //email expert
+                 $mailData = [
+                     'subject' => 'Project Auctioned to you',
+                     'username'=> $expertuser['name'],
+                     'body'=>'
+                     <p>Congratulations! You’ve been auctioned to take on a new project. Please log in to your account on our website to view the project details and use the chat sytem on the page to bid for the project.</p>
+                     <p> If you have any questions or need additional information, feel free to contact us</p>
+                     ',
+                 ];
+                 Mail::to($expertuser['email'])->send(new UserMail($mailData));
 
                     $details = $this->getProjectDetails($slug);
                     return redirect()->back()->with($details)->with('success','Expert Added Successfully');
