@@ -274,7 +274,7 @@ class ProjectsController extends Controller
             }elseif($data['action'] == "completenotify"){
 
                   //get the user who uploaded the project
-                  $expertuser = User::where('id',$data['expertid'])->first()->toArray();
+                  $expertuser = User::where('id',$data['userid'])->first()->toArray();
                  //email expert
                  $mailData = [
                     'subject' => 'Project Completion',

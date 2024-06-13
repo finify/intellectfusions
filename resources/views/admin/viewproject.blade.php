@@ -301,11 +301,11 @@
 
                                                     <form method="post" action="">@CSrf
                                                         
-                                                        <input type="hidden" name="expert" value="{{ $expert['id'] }}">
+                                                        <input type="hidden" name="userid" value="{{ $project['user_id'] }}">
                                                         <input type="hidden" name="expert_price" value="{{ $project['expert_price'] }}">
                                                        
                                                         <input type="hidden" name="action" value="completenotify">
-                                                        <button type="submit" class="btn btn-dark btn-block">Notify Comletion</button>
+                                                        <button type="submit" class="btn btn-dark btn-block mt-5">Notify Completion</button>
                                                     </form>
                                                 </div>
                                             </div>
