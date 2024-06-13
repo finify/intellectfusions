@@ -100,6 +100,9 @@
                     <a class="tag" href="#">Brands and products</a>
                 </li>
             </ul>
+            <div class="wrapper" data-aos="fade-up" data-aos-delay="50">
+                <a class="banner_content-btn btn btn--yellow" href="/data">Let get started</a>
+            </div>
             <!-- <a class="promo_content-btn btn btn--gradient" href="#" data-aos="fade-up" data-aos-delay="100">
                 <span class="text">Talk to an Expert</span>
             </a> -->
