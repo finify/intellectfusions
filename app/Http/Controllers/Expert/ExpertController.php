@@ -107,7 +107,7 @@ class ExpertController extends Controller
 
                     //email withdraw user
                     $mailData = [
-                        'title' => 'Withdrawal Request',
+                        'subject' => 'Withdrawal Request',
                         'body' => '<p>Your Withdrawal of $'.$data['amount'].' has been recieved and will be processed shortly</p>
                         <p>Payment Details:</p>
                         <p>'.$data['payment_details'].'</p>
@@ -118,7 +118,7 @@ class ExpertController extends Controller
 
                     //email withdraw admin
                     $mailData = [
-                        'title' => 'New Withdrawal Request',
+                        'subject' => 'New Withdrawal Request',
                         'body' => '<p>'.Auth::guard('expert')->User()->name.'Just made a Withdrawal of $'.$data['amount'].' and needs approval</p>
                         <p>Payment Details:</p>
                         <p>'.$data['payment_details'].'</p>
