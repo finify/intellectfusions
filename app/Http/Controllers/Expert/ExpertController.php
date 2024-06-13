@@ -109,7 +109,7 @@ class ExpertController extends Controller
                         ',
                         'username'=> Auth::guard('expert')->User()->name
                     ];
-                    // Mail::to($user['email'])->send(new WithdrawMail($mailData));
+                    Mail::to($user['email'])->send(new WithdrawMail($mailData));
 
                     //email withdraw admin
                     $mailData = [
@@ -120,7 +120,9 @@ class ExpertController extends Controller
                         ',
                         'username'=> "Admin"
                     ];
-                    // Mail::to(env('ADMIN_EMAIL'))->send(new WithdrawMail($mailData));
+                    Mail::to(env('ADMIN_EMAIL'))->send(new WithdrawMail($mailData));
+
+                    
                     $allwithdraws = withdraw::where('user_id', Auth::guard('expert')->User()->id)->sum('amount');
                     return redirect()->to('expert/payout')->with('withdraw_success', 'Your withdrawal was successful')->with($this->getUserDetails())->with('totalwithraws',$allwithdraws);
                 }else{

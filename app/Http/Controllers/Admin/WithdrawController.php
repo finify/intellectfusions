@@ -43,7 +43,7 @@ class WithdrawController extends Controller
                     ',
                     'username'=> $currentuser['name']
                 ];
-                // Mail::to($currentuser['email'])->send(new WithdrawMail($mailData));
+                Mail::to($currentuser['email'])->send(new WithdrawMail($mailData));
 
                 return redirect()->back()->with('withdraw_message', 'Your have successfully approved the withdrawal ');
 
