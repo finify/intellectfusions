@@ -57,8 +57,6 @@ class RegisterController extends Controller
             'user_id'=> $lastid,
             'about'=> "",
             'phone_number'=> "",
-            'field_of_study'=> "",
-            'project_type'=> "",
             'balance'=> "0",
         ];
 
