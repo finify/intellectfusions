@@ -45,7 +45,7 @@ class ExpertController extends Controller
         ->get();
         //withdrawal details
 
-        dd($auctions);
+        // dd($auctions);
 
         $all = count($completeds) + count($inprogress)+ count($auctions);
         $project_details = [
