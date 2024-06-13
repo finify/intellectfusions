@@ -228,8 +228,7 @@ class ProjectsController extends Controller
 
             }elseif($data['action'] == "updatestatus"){
 
-                //get the user who uploaded the project
-                $expertuser = User::where('id',$data['expert'])->first()->toArray();
+               
                 //status update
                 $project_detail = [
                     'progress'=> $data['projectstatus']
