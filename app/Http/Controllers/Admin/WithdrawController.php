@@ -18,6 +18,22 @@ use App\Models\withdraw;
 class WithdrawController extends Controller
 {
     //
+    public function notify($user_id,$text,$notify_id,$type){
+        $notification_details = [
+            'user_id'=> $user_id,
+            'text'=> $text,
+            'notify_id'=> $notify_id,
+            'type'=> $type,
+            'seen'=> 0
+        ];
+
+        $notify = Notifications::create($notification_details); 
+        if($notify){
+            return true;
+        }    
+    }
+
+
     public function withdraw(Request $request){
         
         $data = $request->all();
@@ -44,6 +60,16 @@ class WithdrawController extends Controller
                     'username'=> $currentuser['name']
                 ];
                 Mail::to($currentuser['email'])->send(new UserMail($mailData));
+
+                //send expert notification
+                $notify = [
+                    'user_id'=> $currentwithdraw['user_id'],
+                    'text'=> "Your Withdrawal have been approved",
+                    'notify_id'=> 'expert/payout',
+                    'type'=> "withdraw",
+                    'seen'=> 0
+                ];
+                $this->notify($notify['user_id'],$notify['text'],$notify['notify_id'],$notify['type']);
 
                 return redirect()->back()->with('withdraw_message', 'Your have successfully approved the withdrawal ');
 

@@ -259,6 +259,16 @@ class ProjectsController extends Controller
                     ];
                     Mail::to($user['email'])->send(new UserMail($mailData));
 
+                     //send user notification
+                    $notify = [
+                        'user_id'=> $user['id'],
+                        'text'=> "Your project is completed",
+                        'notify_id'=> $slug,
+                        'type'=> "completed",
+                        'seen'=> 0
+                    ];
+                    $this->notify($notify['user_id'],$notify['text'],$notify['notify_id'],$notify['type']);
+
 
                 }elseif($data['projectstatus'] == 2){
 

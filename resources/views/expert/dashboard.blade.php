@@ -86,7 +86,7 @@
                 </div>
                 <ul class="list-group list-group-flush">
 
-                    <li class="list-group-item list-group-item-action py-2">
+                    <!-- <li class="list-group-item list-group-item-action py-2">
                         <div class="row align-items-center">
                             <div class="col-lg-auto">
                                 <i class="material-icons md-18 text-muted align-middle mr-1">check_circle</i>
@@ -132,7 +132,24 @@
                                 <span class="ml-auto badge badge-outline-primary">feature</span>
                             </div>
                         </div>
-                    </li>
+                    </li> -->
+
+                    @forelse ($notifications as $notification)
+                        <li class="list-group-item list-group-item-action py-2">
+                            <div class="row align-items-center">
+                                <div class="col-lg-auto">
+                                    <i class="material-icons md-18 text-muted align-middle mr-1">check_circle</i>
+                                    <span>{{ $notification['text']}}</span>
+                                </div>
+                                <div class="col-lg d-flex align-items-center text-md-right">
+                                    
+                                    <span class="ml-auto badge badge-outline-info">{{ $notification['type']}}</span> 
+                                </div>
+                            </div>
+                        </li>
+                    @empty
+                    <div class="alert alert-danger" role="alert"> No notifications yet</div>
+                    @endforelse
 
                 </ul>
             </div>
