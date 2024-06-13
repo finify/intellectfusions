@@ -76,8 +76,10 @@ class ExpertController extends Controller
     }
 
     public function notification(Request $request){
+        $user = User::where('id', Auth::guard('expert')->User()->id)->first()->toArray();
         $notifications = Notifications::where('user_id', Auth::guard('expert')->User()->id)->get()->toArray();
-        return view('expert.notification')->with(compact('notifications'));
+        $expertdetail = Expertdetail::where('user_id', Auth::guard('expert')->User()->id)->first()?->toArray() ?? array_fill_keys(Schema::getColumnListing('expertdetails'),null);
+        return view('expert.notification')->with(compact('notifications','user','expertdetail'));
     }
 
     public function payout(Request $request){
