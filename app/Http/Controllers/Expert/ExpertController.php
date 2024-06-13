@@ -26,7 +26,7 @@ class ExpertController extends Controller
         $projects = projects::where('expert_id', Auth::guard('expert')->User()->id)->get()->toArray();
         $notifications = Notifications::where('user_id', Auth::guard('expert')->User()->id)->get()->toArray();
 
-        $auctions = project_expert::where('expert_id', Auth::guard('expert')->User()->id)->get()->toArray();
+        // $auctions = project_expert::where('expert_id', Auth::guard('expert')->User()->id)->get()->toArray();
         $inprogress = projects::where('expert_id', Auth::guard('expert')->User()->id)->where('progress','2')->get()->toArray();
         $completeds = projects::where('expert_id', Auth::guard('expert')->User()->id)->where('progress','3')->get()->toArray();
 
@@ -37,7 +37,14 @@ class ExpertController extends Controller
         $expertdetail = Expertdetail::where('user_id', Auth::guard('expert')->User()->id)->first()?->toArray() ?? array_fill_keys(Schema::getColumnListing('expertdetails'),null);
         
 
+        $auctions = DB::table('project_expert')
+        ->join('projects', 'project_expert.project_id', '=', 'projects.id')
+        ->where('project_expert.user_id', Auth::guard('expert')->User()->id)
+        ->select('projects.*', 'project_expert.*')->orderBy('project_expert.id','desc','expert','projects')
+        ->get();
         //withdrawal details
+
+        dd($auctions);
 
         $all = count($completeds) + count($inprogress)+ count($auctions);
         $project_details = [
