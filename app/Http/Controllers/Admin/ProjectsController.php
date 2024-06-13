@@ -247,15 +247,17 @@ class ProjectsController extends Controller
 
                     //send mail to user telling them that there project is in progress
                     //usermail
+                    //get the user who uploaded the project
+                    $user = User::where('id',$data['expert'])->first()->toArray();
                     //email registered user
                     $mailData = [
                         'subject' => 'Project Completion',
-                        'username'=> $expertuser['name'],
+                        'username'=> $user['name'],
                         'body'=>'
                         <p>We are pleased to inform you that your project is now complete. </p>
                         ',
                     ];
-                    Mail::to($expertuser['email'])->send(new UserMail($mailData));
+                    Mail::to($user['email'])->send(new UserMail($mailData));
 
 
                 }elseif($data['projectstatus'] == 2){
