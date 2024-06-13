@@ -40,7 +40,7 @@ class ExpertController extends Controller
 
         $auctions = DB::table('project_expert')
         ->join('projects', 'project_expert.project_id', '=', 'projects.id')
-        ->where('project_expert.user_id', Auth::guard('expert')->User()->id)
+        ->where('project_expert.expert_id', Auth::guard('expert')->User()->id)
         ->select('projects.*', 'project_expert.*')->orderBy('project_expert.id','desc','expert','projects')
         ->get();
         //withdrawal details
