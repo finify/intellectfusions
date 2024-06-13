@@ -233,7 +233,7 @@ class ProjectsController extends Controller
                 $project_detail = [
                     'progress'=> $data['projectstatus']
                 ];
-                dd($data['expertid']);
+                dd($data['userid']);
                 
                 $projectupdated = projects::where('id',$slug)->update($project_detail);
 
