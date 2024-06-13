@@ -141,7 +141,7 @@ class ExpertController extends Controller
         $allwithdraws = withdraw::where('user_id', Auth::guard('expert')->User()->id)->sum('amount');
         // dd($allwithdraws);
         $details = $this->getUserDetails();
-        return view('expert.payout')->with($details)->with('totalwithraws',$allwithdraws);
+        return view('expert.payout')->with($details)->with(compact('Expertdetail'))->with('totalwithraws',$allwithdraws);
     }
 
     public function settings(Request $request){
