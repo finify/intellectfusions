@@ -9,6 +9,7 @@ class Expertdetail extends Model
 {
     use HasFactory;
     public $timestamps = true;
+    protected $table = 'expertdetails';
     protected $fillable = [
         'user_id', 
         'balance',

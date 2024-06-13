@@ -16,7 +16,7 @@ use App\Models\projecttype;
 use App\Models\fields;
 use App\Models\Notifications;
 use App\Models\Attachment;
-use App\Models\ExpertDetail;
+use App\Models\Expertdetail;
 
 use App\Mail\UserMail;
 
@@ -61,6 +61,7 @@ class ExpertsController extends Controller
 
         $user = User::where('id',$slug)->first()->toArray();
         $expert = Expertdetail::where('user_id',$slug)->first()->toArray();
+
 
         $projects = projects::where('expert_id',$slug)->get()->toArray();
       
