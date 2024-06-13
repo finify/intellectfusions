@@ -222,7 +222,7 @@
                                                             <p>{{ $expert['degree_obtained_others'] }}</p>
 
                                                             <h5>Availability</h5>
-                                                            <p>{{ $expert['field_of_study'] }}</p>
+                                                            <p>{{ $expert['availability'] }}</p>
 
                                                             <h5>Deliverability</h5>
                                                             <p>{{ $expert['deliver'] }}</p>
