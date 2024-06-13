@@ -133,7 +133,7 @@ class ProjectsController extends Controller
 
 
                 //edit expert_id in projects to reflect it
-                projects::where('id',$slug)->update(['expert_id'=> $data['expertid']]);
+                projects::where('id',$slug)->update(['expert_id'=> $data['expertid'],'progress'=>2]);
 
                 //get project
                 $project = projects::where('id', $slug)->first()->toArray();
