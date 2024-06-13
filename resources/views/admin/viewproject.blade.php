@@ -293,6 +293,7 @@
                                                         </div>
                                                         
                                                         <input type="hidden" name="userid" value="{{ $project['user_id'] }}">
+                                                        <input type="hidden" name="expertid" value="{{ $project['expert_id'] }}">
                                                         <input type="hidden" name="expert_price" value="{{ $project['expert_price'] }}">
                                                        
                                                         <input type="hidden" name="action" value="updatestatus">
