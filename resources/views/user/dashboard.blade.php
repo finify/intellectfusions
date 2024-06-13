@@ -30,9 +30,9 @@
                 <div class="card-header card-header-large bg-white d-flex align-items-center">
                     <div class="d-flex flex-column">
                         <h5>{{ $user['email'] }}</h5>
-                        <div class="avatar avatar-xxl avatar-online">
+                        <!-- <div class="avatar avatar-xxl avatar-online">
                             <img src="/dashassets/images/256_daniel-gaffey-1060698-unsplash.jpg" alt="Avatar" class="avatar-img rounded-circle">
-                        </div>
+                        </div> -->
                     </div>
                 </div>
                 <div class="card-body py-0">

@@ -55,6 +55,8 @@
                             <p>{{ $project['project_title'] }}</p>
                             <h4>description:</h4>
                             <p>{{ $project['description'] }}</p>
+                            <h4>Price</h4>
+                            <p> @money($project['price'])</p>
 
                             <button type="button"
                                     class="btn btn-primary"
@@ -174,6 +176,8 @@
                                         </div>
                                     </div>
                                 </div>
+                            @else
+                                <div class="alert alert-danger" role="alert"> No Files Uploaded By Expert</div>
                             @endif
                         
                         @empty

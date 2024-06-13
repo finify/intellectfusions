@@ -55,7 +55,7 @@ class LoginController extends Controller
             }elseif(Auth::guard('expert')->attempt(['email'=>$data['email'], 'password'=>$data['password'],'user_type'=>'expert'])){
                 return redirect('expert/dashboard');
             }else{
-                return redirect()->back()->with('error_message','Invalid Email or Password')->withInput();
+                return redirect()->back()->with('login_error','Invalid Email or Password')->withInput();
             }
         }
       
