@@ -274,7 +274,7 @@ class ProjectsController extends Controller
             }elseif($data['action'] == "completenotify"){
 
                   //get the user who uploaded the project
-                  $expertuser = User::where('id',$data['userid'])->first()->toArray();
+                  $user = User::where('id',$data['userid'])->first()->toArray();
                  //email expert
                  $mailData = [
                     'subject' => 'Project Completion',
@@ -283,10 +283,10 @@ class ProjectsController extends Controller
                     <p>We are pleased to inform you that your project is now complete. You can check the details and download your files from your account on our website.Thank you for choosing Intellectfusions</p>
                     ',
                 ];
-                Mail::to($expertuser['email'])->send(new UserMail($mailData));
+                Mail::to($user['email'])->send(new UserMail($mailData));
 
                 $details = $this->getProjectDetails($slug);
-                return redirect()->back()->with($details)->with('success','Status Updated Successfully');
+                return redirect()->back()->with($details)->with('success','Completion mail sent Successfully');
 
 
 
