@@ -86,12 +86,7 @@ class RegisterController extends Controller
                 'username'=> $data['name'],
                 'body'=>'
                 <p>Thank you for registering with Intellectfusions. Please share the details of your project, and we’ll get started right away</p>
-                <p><strong>Follow these simple steps on Intellectfusions</strong></p>
-                <ul>
-                    <li>Login to your users dashboard</li>
-                    <li>Submit your project details</li>
-                    <li>Sit back and relax while our professional experts work on your project</li>
-                </ul>',
+               ',
             ];
             Mail::to($data['email'])->send(new UserMail($mailData));
         }
