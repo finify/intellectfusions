@@ -238,7 +238,7 @@ class ProjectsController extends Controller
                 $projectupdated = projects::where('id',$slug)->update($project_detail);
 
                 if($data['projectstatus'] == 3){
-                    $newbalance = Expertdetail::where('user_id', $data['expertid'])->pluck('balance'); + $data['expert_price'];
+                    $newbalance = Expertdetail::where('user_id', $data['expertid'])->first()->toArray()['balance']; + $data['expert_price'];
 
                     $expert_detail = [
                         'balance'=>  $newbalance 
