@@ -242,7 +242,7 @@ class ProjectsController extends Controller
                     $expert_detail = [
                         'balance'=>  $newbalance 
                     ];
-                    $expertupdated = Expertdetail::where('user_id',$data['expert'])->update($expert_detail);
+                    $expertupdated = Expertdetail::where('user_id',$data['expertid'])->update($expert_detail);
 
                     //send mail to user telling them that there project is in progress
                     //usermail
