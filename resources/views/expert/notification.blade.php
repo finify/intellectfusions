@@ -14,55 +14,22 @@
                     </div>
                 </div>
                 <ul class="list-group list-group-flush">
+                    @forelse ($notifications as $notification)
+                        <li class="list-group-item list-group-item-action py-2">
+                            <div class="row align-items-center">
+                                <div class="col-lg-auto">
+                                    <i class="material-icons md-18 text-muted align-middle mr-1">check_circle</i>
+                                    <span>{{ $notification['text']}}</span>
+                                </div>
+                                <div class="col-lg d-flex align-items-center text-md-right">
 
-                    <li class="list-group-item list-group-item-action py-2">
-                        <div class="row align-items-center">
-                            <div class="col-lg-auto">
-                                <i class="material-icons md-18 text-muted align-middle mr-1">check_circle</i>
-                                <span>Add content on lessons</span>
+                                    <span class="ml-auto badge badge-outline-info">{{ $notification['type']}}</span> 
+                                </div>
                             </div>
-                            <div class="col-lg d-flex align-items-center text-md-right">
-                                <span class="ml-auto badge badge-outline-info">Request</span> 
-                            </div>
-                        </div>
-                    </li>
-
-                    <li class="list-group-item list-group-item-action py-2">
-                        <div class="row align-items-center">
-                            <div class="col-lg-auto">
-                                <i class="material-icons md-18 text-muted align-middle mr-1">check_circle</i>
-                                <span>Fix dropdowns in navbars</span>
-                            </div>
-                            <div class="col-lg d-flex align-items-center text-md-right">
-                                <span class="ml-auto badge badge-outline-danger">Bug</span>
-                            </div>
-                        </div>
-                    </li>
-
-                    <li class="list-group-item list-group-item-action py-2">
-                        <div class="row align-items-center">
-                            <div class="col-lg-auto">
-                                <i class="material-icons md-18 text-muted align-middle mr-1">check_circle</i>
-                                <span>Add new sidebar to the right</span>
-                            </div>
-                            <div class="col-lg d-flex align-items-center text-md-right">
-                                <span class="ml-auto badge badge-outline-info">Request</span>
-                            </div>
-                        </div>
-                    </li>
-
-                    <li class="list-group-item list-group-item-action py-2">
-                        <div class="row align-items-center">
-                            <div class="col-lg-auto">
-                                <i class="material-icons md-18 text-muted align-middle mr-1">check_circle</i>
-                                <span>Create Dashboard for administrative tasks</span>
-                            </div>
-                            <div class="col-lg d-flex align-items-center text-md-right">
-                                <span class="ml-auto badge badge-outline-primary">feature</span>
-                            </div>
-                        </div>
-                    </li>
-
+                        </li>
+                    @empty
+                    <div class="alert alert-danger" role="alert"> No notifications yet</div>
+                    @endforelse
                 </ul>
             </div>
         </div>
