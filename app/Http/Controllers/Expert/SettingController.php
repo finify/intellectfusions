@@ -141,12 +141,15 @@ class SettingController extends Controller
 
                     
 
-                        // Specify the path of the file to be deleted
-                        $filePath = storage_path('app/public/profilepicture/' .$profileimage );
-                        if (file_exists($filePath)) {
-                            // Delete the file
-                            unlink($filePath);
+                        if($profileimage !=""){
+                            // Specify the path of the file to be deleted
+                            $filePath = storage_path('app/public/profilepicture/' .$profileimage );
+                            if (file_exists($filePath)) {
+                                // Delete the file
+                                unlink($filePath);
+                            }
                         }
+                       
 
                         $detailsupdated = Expertdetail::where('user_id',Auth::guard('expert')->User()->id)->update($expert_details);     
                         $details = $this->getExpertDetails();
