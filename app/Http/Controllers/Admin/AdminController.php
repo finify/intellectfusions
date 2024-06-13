@@ -151,9 +151,9 @@ class AdminController extends Controller
 
           
 
-            $users = User::query();
+            $users = User::where('user_type', 'user')->orderBy('id','desc')->get()->toArray();
     
-            $users = $users->orderBy('id','desc')->get()->toArray();
+         
             
             return view('admin.users')->with(compact('users'));
     
