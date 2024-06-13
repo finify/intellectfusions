@@ -96,7 +96,7 @@ class ExpertController extends Controller
 
                 $newbalance = $Expertdetail['balance'] - $data['amount'];
 
-                $updated = Expertdetail::where('id',Auth::guard('expert')->User()->id)->update(['balance'=> $newbalance]);
+                $updated = Expertdetail::where('user_id',Auth::guard('expert')->User()->id)->update(['balance'=> $newbalance]);
 
                 if($updated){
 
