@@ -22,7 +22,7 @@ class ProjectsController extends Controller
         $notifications = Notifications::where('user_id', Auth::guard('expert')->User()->id)->get()->toArray();
 
 
-        $project = projects::where('expert_id', Auth::guard('expert')->User()->id)->where('id',$slug)->first()->toArray();
+        $project = projects::where('id',$slug)->first()->toArray();
         $attachments = Attachment::where('project_id',$slug)->get()->toArray();
         $expertattachments = ExpertAttachment::where('project_id',$slug)->get()->toArray();
         $expertdetail = Expertdetail::where('user_id', Auth::guard('expert')->User()->id)->first()?->toArray() ?? array_fill_keys(Schema::getColumnListing('expertdetails'),null);
