@@ -30,7 +30,7 @@ class ExpertController extends Controller
     public function getUserDetails(){
         $user = User::where('id', Auth::guard('expert')->User()->id)->first()->toArray();
         $projects = projects::where('expert_id', Auth::guard('expert')->User()->id)->get()->toArray();
-        $notifications = Notifications::where('user_id', Auth::guard('expert')->User()->id)->paginate(5);
+        $notifications = Notifications::where('user_id', Auth::guard('expert')->User()->id)->orderBy('id','desc')->paginate(5);
 
         // $auctions = project_expert::where('expert_id', Auth::guard('expert')->User()->id)->get()->toArray();
         $inprogress = projects::where('expert_id', Auth::guard('expert')->User()->id)->where('progress','2')->get()->toArray();
@@ -77,7 +77,7 @@ class ExpertController extends Controller
 
     public function notification(Request $request){
         $user = User::where('id', Auth::guard('expert')->User()->id)->first()->toArray();
-        $notifications = Notifications::where('user_id', Auth::guard('expert')->User()->id)->get()->toArray();
+        $notifications = Notifications::where('user_id', Auth::guard('expert')->User()->id)->orderBy('id','desc')->get()->toArray();
         $expertdetail = Expertdetail::where('user_id', Auth::guard('expert')->User()->id)->first()?->toArray() ?? array_fill_keys(Schema::getColumnListing('expertdetails'),null);
         return view('expert.notification')->with(compact('notifications','user','expertdetail'));
     }
