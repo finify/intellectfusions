@@ -9,7 +9,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Mail;
 
-use App\Mail\WithdrawMail;
+use App\Mail\UserMail;
 
 use App\Models\Expertdetail;
 use App\Models\User;
@@ -43,7 +43,7 @@ class WithdrawController extends Controller
                     ',
                     'username'=> $currentuser['name']
                 ];
-                Mail::to($currentuser['email'])->send(new WithdrawMail($mailData));
+                Mail::to($currentuser['email'])->send(new UserMail($mailData));
 
                 return redirect()->back()->with('withdraw_message', 'Your have successfully approved the withdrawal ');
 

@@ -7,6 +7,9 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Mail;
+
+use App\Mail\UserMail;
 
 use App\Models\User;
 use App\Models\projects;
@@ -17,6 +20,8 @@ use App\Models\Notifications;
 use App\Models\Attachment;
 use App\Models\Expertdetail;
 use App\Models\withdraw;
+
+
 
 
 class ExpertController extends Controller
@@ -109,7 +114,7 @@ class ExpertController extends Controller
                         ',
                         'username'=> Auth::guard('expert')->User()->name
                     ];
-                    Mail::to($user['email'])->send(new WithdrawMail($mailData));
+                    Mail::to($user['email'])->send(new UserMail($mailData));
 
                     //email withdraw admin
                     $mailData = [
@@ -120,9 +125,9 @@ class ExpertController extends Controller
                         ',
                         'username'=> "Admin"
                     ];
-                    Mail::to(env('ADMIN_EMAIL'))->send(new WithdrawMail($mailData));
+                    Mail::to(env('ADMIN_EMAIL'))->send(new UserMail($mailData));
 
-                    
+
                     $allwithdraws = withdraw::where('user_id', Auth::guard('expert')->User()->id)->sum('amount');
                     return redirect()->to('expert/payout')->with('withdraw_success', 'Your withdrawal was successful')->with($this->getUserDetails())->with('totalwithraws',$allwithdraws);
                 }else{
