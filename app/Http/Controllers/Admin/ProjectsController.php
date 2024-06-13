@@ -278,7 +278,7 @@ class ProjectsController extends Controller
                  //email expert
                  $mailData = [
                     'subject' => 'Project Completion',
-                    'username'=> $expertuser['name'],
+                    'username'=> $user['name'],
                     'body'=>'
                     <p>We are pleased to inform you that your project is now complete. You can check the details and download your files from your account on our website.Thank you for choosing Intellectfusions</p>
                     ',
