@@ -30,7 +30,7 @@ class ExpertController extends Controller
     public function getUserDetails(){
         $user = User::where('id', Auth::guard('expert')->User()->id)->first()->toArray();
         $projects = projects::where('expert_id', Auth::guard('expert')->User()->id)->get()->toArray();
-        $notifications = Notifications::where('user_id', Auth::guard('expert')->User()->id)->get()->toArray();
+        $notifications = Notifications::where('user_id', Auth::guard('expert')->User()->id)->paginate(5);
 
         // $auctions = project_expert::where('expert_id', Auth::guard('expert')->User()->id)->get()->toArray();
         $inprogress = projects::where('expert_id', Auth::guard('expert')->User()->id)->where('progress','2')->get()->toArray();
@@ -76,8 +76,8 @@ class ExpertController extends Controller
     }
 
     public function notification(Request $request){
-        $details = $this->getUserDetails();
-        return view('expert.notification')->with($details);
+        $notifications = Notifications::where('user_id', Auth::guard('expert')->User()->id)->get()->toArray();
+        return view('expert.notification')->with(compact('notifications'));
     }
 
     public function payout(Request $request){
