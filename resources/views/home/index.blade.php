@@ -292,7 +292,7 @@
         </div>
         <div class="about_review" data-aos="zoom-in">
             <div class="about_review-wrapper">
-               <img src="" alt="">
+               <img src="/homeassets/img/howitworks.jpeg" alt="" width="100%">
         </div>
     </div>
 </section>
@@ -332,7 +332,7 @@
             IntellectFusions offers a wide range of services to help businesses and students succeed. Our data analysis services can transform raw data into valuable insights that drive growth, reduce costs, and improve decision-making. We also offer professional academic writing services for students, covering all types of assignments and papers. And for businesses, students, and other clients, we create high-quality PowerPoint presentations that effectively communicate information and ideas. In addition, we offer a variety of other services as needed, tailored to the unique requirements of our clients.
             </p>
             <div class="wrapper" data-aos="fade-up" data-aos-delay="50">
-                <a class="banner_content-btn btn btn--yellow" href="pricing.html">Get Started Today</a>
+                <a class="banner_content-btn btn btn--yellow" href="/user/login">Get Started Today</a>
             </div>
         </div>
         <div class="banner_media">

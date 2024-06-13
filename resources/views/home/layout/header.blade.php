@@ -88,6 +88,9 @@
                     <a @if (Request::path()=='about' ) class="nav-item current" @else class="nav-item" @endif  href="/about" data-page="about">About Us</a>
                 </li>
                 <li class="header_nav-list_item">
+                    <a @if (Request::path()=='data' ) class="nav-item current" @else class="nav-item" @endif  href="/data" data-page="about">Data</a>
+                </li>
+                <li class="header_nav-list_item">
                     <a @if (Request::path()=='contact' ) class="nav-item current" @else class="nav-item" @endif  href="/contact" data-page="pricing">Contact Us</a>
                 </li>
                 <li class="header_nav-list_item">

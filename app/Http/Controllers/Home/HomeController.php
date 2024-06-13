@@ -51,4 +51,9 @@ class HomeController extends Controller
         $details = $this->getDetails();
         return view('home.plagiarism')->with($details);
     }
+
+    public function data(){
+        $details = $this->getDetails();
+        return view('home.data')->with($details);
+    }
 }

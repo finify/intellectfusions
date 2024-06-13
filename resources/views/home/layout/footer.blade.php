@@ -11,11 +11,11 @@
                     Curabitur non libero at lorem finibus lobortis. Ut auctor egestas pretium. Proin nunc ligula, venenatis tempor
                 </p> -->
                 <ul class="footer_block-socials d-flex align-items-center">
-                    <!-- <li class="footer_block-socials_item">
-                        <a class="link" href="https://www.facebook.com" target="_blank" rel="noopener noreferrer">
+                    <li class="footer_block-socials_item">
+                        <a class="link" href="https://www.facebook.com/profile.php?id=61560912353046&mibextid=ZbWKwL" target="_blank" rel="noopener noreferrer">
                             <i class="icon-facebook"></i>
                         </a>
-                    </li> -->
+                    </li>
                     <li class="footer_block-socials_item">
                         <a class="link" href="https://x.com/IntellectFusion?t=OnlcPx6OrLWlYOmDg1Cj5Q&s=09" target="_blank" rel="noopener noreferrer">
                             <i class="icon-twitter"></i>

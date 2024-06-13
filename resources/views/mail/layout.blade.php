@@ -23,7 +23,7 @@
                                                             <table border="0" width="100%" cellspacing="0" cellpadding="0">
                                                                 <tbody>
                                                                     <tr>
-                                                                        <td class="v-text-align" style="padding-right: 0px; padding-left: 0px;" align="left"><img class="v-src-width v-src-max-width" style="outline: none; text-decoration: none; -ms-interpolation-mode: bicubic; clear: both; display: inline-block !important; border: none; height: auto; float: none; width: 70px; border-radius: 15px;"
+                                                                        <td class="v-text-align" style="padding-right: 0px; padding-left: 0px;" align="left"><img class="v-src-width v-src-max-width" style="outline: none; text-decoration: none; -ms-interpolation-mode: bicubic; clear: both; display: inline-block !important; border: none; height: auto; float: none; width: 140px; border-radius: 15px;"
                                                                                 title="Image" src="https://Intellectfusions.com/homeassets/img/intellectfusionlogowhite.png" alt="Image" width="70" align="left" border="0" /></td>
                                                                     </tr>
                                                                 </tbody>

@@ -19,6 +19,7 @@ use Illuminate\Support\Facades\Storage;
 Route::group(['namespace' => 'App\Http\Controllers\Home'], function(){  
     Route::get('/', 'HomeController@index')->name('home.index');
     Route::get('/about', 'HomeController@about')->name('home.about');
+    Route::get('/data', 'HomeController@data')->name('home.data');
     Route::get('/contact', 'HomeController@contact')->name('home.contact');
     Route::get('/terms', 'HomeController@terms')->name('home.terms');
     Route::get('/refund', 'HomeController@refund')->name('home.refund');
