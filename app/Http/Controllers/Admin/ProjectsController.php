@@ -17,7 +17,7 @@ use App\Models\fields;
 use App\Models\Notifications;
 use App\Models\Attachment;
 use App\Models\ExpertAttachment;
-use App\Models\ExpertDetail;
+use App\Models\Expertdetail;
 
 use App\Mail\UserMail;
 

@@ -296,7 +296,7 @@
                                                         <input type="hidden" name="expert_price" value="{{ $project['expert_price'] }}">
                                                        
                                                         <input type="hidden" name="action" value="updatestatus">
-                                                        <button type="submit" class="btn btn-dark btn-block">Update Price</button>
+                                                        <button type="submit" class="btn btn-dark btn-block">Update Status</button>
                                                     </form>
 
                                                     <form method="post" action="">@CSrf
