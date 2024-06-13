@@ -89,20 +89,20 @@
                                             <div class="d-flex mb-2">
                                                 <i class="material-icons icon-16pt mr-1">business</i>
                                                 <strong>Deadline</strong>
-                                                <div class="text-muted">{{ $auction['deadline']}} </div>
+                                                <div class="text-muted">{{ $auction->deadline}} </div>
                                                 <!-- <span class="text-muted ml-1"><i class="material-icons icon-16pt">email</i> contact@frontted.com</span> -->
                                             </div>
 
                                             <div class="mb-2">
                                                 <a href="/expert/projects/{{ $project['id']}}"
-                                                    class="text-body mr-1"><strong>{{ $auction['project_title']}}</strong></a>
+                                                    class="text-body mr-1"><strong>{{ $auction->project_title}}</strong></a>
                                             </div>
                                             <div class="">
-                                                @if ($auction['progress'] == 1)
+                                                @if ($auction->progress == 1)
                                                     <span class='badge badge-soft-warning badge-pill mr-1'>AUCTION</span>
-                                                @elseif ($auction['progress'] == 2)
+                                                @elseif ($auction->progress == 2)
                                                     <span class='badge badge-soft-danger badge-pill mr-1'>In Progress</span>
-                                                @elseif ($auction['progress'] == 3)
+                                                @elseif ($auction->progress == 3)
                                                     <span class='badge badge-soft-purple badge-pill mr-1'>Completed</span>
                                                 @else
                                                 
@@ -114,7 +114,7 @@
                                     </div>
                                     <div class="text-muted">
                                         <h5>Price</h5>
-                                        @money($auction['expert_price'])
+                                        @money($auction->expert_price)
                                     </div>
                                 </div>
                             </div>
