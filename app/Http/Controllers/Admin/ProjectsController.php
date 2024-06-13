@@ -257,7 +257,6 @@ class ProjectsController extends Controller
                         <p>We are pleased to inform you that your project is now complete. </p>
                         ',
                     ];
-                    dd($mailData);
                     Mail::to($user['email'])->send(new UserMail($mailData));
 
 
