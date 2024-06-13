@@ -142,7 +142,7 @@
                                     <span>{{ $notification['text']}}</span>
                                 </div>
                                 <div class="col-lg d-flex align-items-center text-md-right">
-                                    
+
                                     <span class="ml-auto badge badge-outline-info">{{ $notification['type']}}</span> 
                                 </div>
                             </div>
@@ -150,6 +150,7 @@
                     @empty
                     <div class="alert alert-danger" role="alert"> No notifications yet</div>
                     @endforelse
+                    <a href="/expert/notification" class="btn btn-primary"> view all</a>
 
                 </ul>
             </div>
