@@ -1,5 +1,15 @@
 @extends('user.layout.layout')
 
+@section('header')
+<style>
+    .project-title{
+        color: rgb(54 76 102 / 76%);
+    }
+    .project-description{
+        color: rgb(54 76 102 / 76%);
+    }
+</style>
+@endsection
 
 @section('content')
 <div class="container-fluid page__heading-container">
@@ -18,6 +28,11 @@
 @if(Session::has('success'))
     <div class="alert alert-success" role="alert">
     {{Session::get('success')}}
+    </div>
+@endif
+@if(Session::has('upload_success'))
+    <div class="alert alert-success" role="alert">
+        {{Session::get('upload_success')}}
     </div>
 @endif
 <div class="container-fluid page__container mt-4">
@@ -49,15 +64,45 @@
                     
                 </div>
                 <div class="card-body tab-content">
-                    <div class="tab-pane active show fade"
-                            id="activity_all">
-                            <h5>Project Title:</h5>
-                            <p>{{ $project['project_title'] }}</p>
-                            <h4>description:</h4>
-                            <p>{{ $project['description'] }}</p>
-                            <h4>Price</h4>
-                            <p> @money($project['price'])</p>
+                    <div class="tab-pane active show fade" id="activity_all">
+                            <h5 class="mb-3">Project Title: <span class="project-title">{{ $project['project_title'] }} </span></h5>
+                            
+                            <h6 class="mb-0">Project Description:</h6>
+                            <p class="project-description">{{ $project['description'] }}</p>
+                            
 
+                            <div class="row">
+                                <div class="col-lg-6 col-12">
+                                    <div class="row">
+                                        <div class="col-6">
+                                            <h6 class="mb-0">Price</h6>
+                                            <p> @money($project['price'])</p>
+                                        </div>
+                                        <div class="col-6">
+                                            <button type="button" class="btn btn-info" id="openChatButton">
+                                                <i class="material-icons mr-1">chat</i> Discuss Pricing
+                                            </button>
+                                        </div>
+                                    </div>
+                                    
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-lg-6 col-12">
+                                    <div class="row">
+                                        <div class="col-6">
+                                            <h6 class="mb-2">Field of Study</h6>
+                                            <p><button type="button" class="btn btn-secondary">{{ $project['subject_area'] }}</button></p>
+                                        </div>
+                                        <div class="col-6">
+                                            <h6 class="mb-2">Project type</h6>
+                                            <p><button type="button" class="btn btn-secondary">{{ $project['project_type'] }}</button></p>
+                                        </div>
+                                    </div>
+                                    
+                                </div>
+                            </div>
                             <button type="button"
                                     class="btn btn-primary"
                                     data-toggle="modal"
@@ -202,6 +247,12 @@
     aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="modal-standard-title">Edit Details</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">×</span>
+                </button>
+            </div>
             <div class="modal-body">
                 <div class="px-3">
                     <form action="" method="POST">
@@ -323,6 +374,16 @@
      
     }
   }
+</script>
+
+<script>
+document.getElementById('openChatButton').addEventListener('click', function() {
+        if (typeof Tawk_API !== 'undefined') {
+            Tawk_API.maximize();
+        } else {
+            alert('Chat widget is not loaded yet. Please try again later.');
+        }
+    });
 </script>
 
 @endsection

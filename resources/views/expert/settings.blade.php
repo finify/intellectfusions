@@ -91,7 +91,7 @@
                                         </select>
                                     </div>
                                     <div class="form-group">
-                                        <label for="select08">Protect Types</label>
+                                        <label for="select08">Project Types</label>
                                         <select id="projecttype" data-toggle="select" class="form-control" name="project_type[]" multiple="multiple" style="width: 100%;">
                                                 <option></option>
                                                 @forelse ($projecttypes as $projecttype)

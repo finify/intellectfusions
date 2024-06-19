@@ -11,7 +11,6 @@
                     <li class="breadcrumb-item active" aria-current="page">Projects</li>
                 </ol>
             </nav>
-            <h1 class="m-0">Projects</h1>
         </div>
         
     </div>

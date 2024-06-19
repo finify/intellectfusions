@@ -23,7 +23,7 @@ class UserController extends Controller
     public function getUserDetails(){
         $user = User::where('id', Auth::User()->id)->first()->toArray();
         $projects = projects::where('user_id', Auth::User()->id)->orderBy('id', 'desc')->get()->toArray();
-        $notifications = Notifications::where('user_id', Auth::User()->id)->get()->toArray();
+        $notifications = Notifications::where('user_id', Auth::User()->id)->orderBy('id','desc')->paginate(5);
 
         $auctions = projects::where('user_id', Auth::User()->id)->where('progress','1')->get()->toArray();
         $inprogress = projects::where('user_id', Auth::User()->id)->where('progress','2')->get()->toArray();
@@ -101,9 +101,9 @@ class UserController extends Controller
             ];
             Mail::to(env('ADMIN_EMAIL'))->send(new UserMail($mailData));
 
-            $request->session()->flash('upload_success', " Your Project Upload was successful ");
-            return redirect()->back();
-            // return redirect()->to('user/dashboard')->with('upload_success', 'Your Project Upload was successful')->with($details);
+            // $request->session()->flash('upload_success', " Your Project Upload was successful ");
+            // return redirect()->back();
+            return redirect()->to('user/projects/'.$lastid)->with('upload_success', 'Your Project Upload was successful')->with($details);
 
 
         }
@@ -153,8 +153,10 @@ class UserController extends Controller
     }
 
     public function notification(Request $request){
+        $user = User::where('id', Auth::User()->id)->first()->toArray();
+        $notifications = Notifications::where('user_id', Auth::User()->id)->orderBy('id','desc')->get()->toArray();
         $details = $this->getUserDetails();
-        return view('user.notification')->with($details);
+        return view('user.notification')->with(compact('user','notifications'));
     }
 
     public function settings(Request $request){

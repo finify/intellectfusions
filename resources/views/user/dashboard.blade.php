@@ -85,6 +85,8 @@
                     @empty
                     <div class="alert alert-danger" role="alert"> No notifications yet</div>
                     @endforelse
+
+                    <a href="/user/notification" class="btn btn-primary"> view all</a>
                 </ul>
             </div>
         </div>
