@@ -71,18 +71,18 @@
             
         </div>
         <div class="promo_content">
-            <h2 class="promo_content-header" data-aos="fade-left">We Have Data Scientics Available</h2>
+            <h2 class="promo_content-header" data-aos="fade-left">We Have Data Scientist Available</h2>
             <p class="promo_content-text" data-aos="fade-up" data-aos-delay="50">
-            Data analysis is a vital component of modern business as it is crucial for making informed business decisions, but without the proper resources and expertise, it can be a costly and time-consuming endeavor. IntellectFusions offers partnerships to companies and individuals that want a reliable and cost-effective data analysis service enabling them to gain valuable insights quickly and efficiently. 
+            Data Analysis is a vital component of modern business as it is crucial for making informed business decisions, but without the proper resources and expertise, it can be a costly and time-consuming endeavor. IntellectFusions offers partnerships to companies and individuals that want a reliable and cost-effective Data Analysis service enabling them to gain valuable insights quickly and efficiently. 
             As your trusted data analytics partner, we leverage our years of expertise and knowledge to deliver accurate and actionable insights tailored to your unique requirements.
             </p>
             <h4>Data areas covered by intellectfusions</h4>
             <ul class="popular_tags courses-tags d-flex flex-wrap align-items-start justify-content-start">
                 <li class="list-item" data-aos="fade-left">
-                    <a class="tag" href="#">Finance</a>
+                    <a class="tag" href="#">Finances</a>
                 </li>
                 <li class="list-item" data-aos="fade-left" data-aos-delay="50">
-                    <a class="tag" href="#">Academic</a>
+                    <a class="tag" href="#">Academics</a>
                 </li>
                 <li class="list-item" data-aos="fade-left" data-aos-delay="100">
                     <a class="tag" href="#">Healthcare</a>
