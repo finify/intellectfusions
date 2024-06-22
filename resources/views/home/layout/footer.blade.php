@@ -32,9 +32,9 @@
                         <i class="icon-envelope icon"></i>
                         info@intellectfusions.com
                     </a>
-                    <a class="link link--contacts text text--sm d-inline-flex align-items-center" href="tel:+447510189494">
+                    <a class="link link--contacts text text--sm d-inline-flex align-items-center" href="tel:+447440348801">
                         <i class="icon-phone-solid icon"></i>
-                        +44 7510 189494
+                        +447440348801
                     </a>
                 </div>
             </div>
