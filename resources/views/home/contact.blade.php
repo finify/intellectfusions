@@ -44,7 +44,7 @@
                             <i class="icon-phone-solid icon"></i>
                             <div class="block d-flex flex-column">
                                 <p>Whatsapp</p>
-                                <a class="content_link text" href="tel:+447510189494">+44 7510 189494</a>
+                                <a class="content_link text" href="tel:+447510189494">+447440348801</a>
                             </div>
                         </div>
                     </div>
