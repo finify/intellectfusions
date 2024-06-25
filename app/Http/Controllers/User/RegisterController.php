@@ -69,12 +69,8 @@ class RegisterController extends Controller
                 'username'=> $data['name'],
                 'body'=>'
                 <p>You recently created an account with Intellectfusions. Please finalize your account by adding a few more details about yourself.</p>
-                <p><strong>Follow these simple steps to start earning on Intellectfusions</strong></p>
-                <ul>
-                    <li>Try out our ai trading robot using the demo account</li>
-                    <li>Deposit into your Live account and start trading real assets</li>
-                    <li>Withdraw earnings after the end of robot cycle</li>
-                </ul>',
+                
+                ',
             ];
             Mail::to($data['email'])->send(new UserMail($mailData));
         }else{
