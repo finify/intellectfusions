@@ -94,7 +94,7 @@
                                             </div>
 
                                             <div class="mb-2">
-                                                <a href="/expert/projects/{{ $auction->id }}"
+                                                <a href="/expert/projects/{{ $auction->project_id }}"
                                                     class="text-body mr-1"><strong>{{ $auction->project_title}}</strong></a>
                                             </div>
                                             <div class="">

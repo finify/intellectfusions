@@ -49,20 +49,45 @@
                     
                 </div>
                 <div class="card-body tab-content">
-                    <div class="tab-pane active show fade"
-                            id="activity_all">
-                            <div class="mb-1"><strong class="text-dark-gray">Project Title</strong></div>
-                            <p>{{ $project['project_title'] }}</p>
-                            <div class="mb-1"><strong class="text-dark-gray">DESCRIPTION</strong></div>
-                            <p>
-                            {{ $project['description'] }}
-                            </p>
-                            <div class="mb-1"><strong class="text-dark-gray">Price Agreed:</strong></div>
-                            <p>{{ $project['expert_price'] }}</p>
+                    <div class="tab-pane active show fade" id="activity_all">
+                        <h5 class="mb-3">Project Title: <span class="project-title">{{ $project['project_title'] }} </span></h5>
+                        
+                        <h6 class="mb-0">Project Description:</h6>
+                        <p class="project-description">{{ $project['description'] }}</p>
+                        
 
-                          
-                            
+                        <div class="row">
+                            <div class="col-lg-8 col-12">
+                                <div class="row">
+                                    <div class="col-6">
+                                        <h6 class="mb-0">Price</h6>
+                                        <p> @money($project['price'])</p>
+                                    </div>
+                                    <div class="col-6">
+                                        <button type="button" class="btn btn-info" id="openChatButton">
+                                            <i class="material-icons mr-1">chat</i> Discuss Pricing
+                                        </button>
+                                    </div>
+                                </div>
+                                
+                            </div>
+                        </div>
 
+                        <div class="row">
+                            <div class="col-lg-8 col-12">
+                                <div class="row">
+                                    <div class="col-6">
+                                        <h6 class="mb-2">Field of Study</h6>
+                                        <p><button type="button" class="btn btn-secondary">{{ $project['subject_area'] }}</button></p>
+                                    </div>
+                                    <div class="col-6">
+                                        <h6 class="mb-2">Project type</h6>
+                                        <p><button type="button" class="btn btn-secondary">{{ $project['project_type'] }}</button></p>
+                                    </div>
+                                </div>
+                                
+                            </div>
+                        </div>
                     </div>
                     <div class="tab-pane show fade stories-cards" id="my_attachment">
                        
