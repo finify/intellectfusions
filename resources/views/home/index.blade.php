@@ -37,7 +37,24 @@
             <p class="hero_content-text" data-aos="fade-up" data-aos-delay="50">
             Receive tailored expert support across a spectrum of academic disciplines. We cover over 100 courses and programs to cater to your needs.
             </p>
-            
+            <form action="" method="POST">
+            @csrf
+                <textarea
+                    class="field required"
+                    placeholder="Describe your project briefly"
+                    data-type="message"
+                    id="myForm"
+                    col="15"
+                    name="description"
+                    style="height:200px;"
+                ></textarea>
+                <div class="contacts_form-form_footer">
+                    
+                    <button class="btn btn--gradient" type="submit">
+                        <span class="text">Find an expert</span>
+                    </button>
+                </div>
+            </form>
         </div>
         <div class="hero_media col-lg-6">
             <lottie-player

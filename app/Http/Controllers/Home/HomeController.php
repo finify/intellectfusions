@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Home;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Session;
 
 use App\Models\projecttype;
 
@@ -18,8 +19,15 @@ class HomeController extends Controller
         return compact('projecttypes','fewprojecttypes');
     }
     //
-    public function index(){
+    public function index(Request $request){
         $details = $this->getDetails();
+        $data = $request->all();
+
+        if($request->isMethod('POST')){
+            Session::put('description', $data['description']);
+            return view('user.login');
+        }
+
         return view('home.index')->with($details);
         
     }

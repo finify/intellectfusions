@@ -74,7 +74,7 @@
                 answer all your questions.
             </p>
         </div>
-        <form class="contacts_form-form" action="form.php" method="post" data-type="contacts">
+        <form class="contacts_form-form" action="" method="post" data-type="contacts">
             <div class="contacts_form-form_wrapper d-sm-flex justify-content-between">
                 <input class="field required" type="text" data-type="email" placeholder="Email" id="contactsEmail" />
                 <input class="field required" type="text" placeholder="Name" id="contactsName" />

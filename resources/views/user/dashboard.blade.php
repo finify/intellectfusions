@@ -116,7 +116,8 @@
                         </div>
                         <div class="form-group">
                             <label for="exampleInputBrief1">Brief Description:</label>
-                            <textarea class="form-control" id="exampleInputBrief1" name="description" id="" cols="30" rows="10" required></textarea>
+                            <textarea class="form-control" id="exampleInputBrief1" name="description" id="" cols="30" rows="10" required>@if(session('description')){{ session('description') }}@else @endif
+                            </textarea>
                             @error('description')
                             <span class="text-danger text-left">{{ $message }}</span>
                             @enderror
